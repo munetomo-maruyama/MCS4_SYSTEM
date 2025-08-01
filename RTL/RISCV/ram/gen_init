@@ -1,0 +1,6 @@
+#!/bin/bash
+
+../../../SOFTWARE/tools/hex2v32_lane0.exe ../../../SOFTWARE/workspace/MCS4_141PF/Debug/MCS4_141PF.hex  > MCS4_141PF.rom0
+../../../SOFTWARE/tools/hex2v32_lane1.exe ../../../SOFTWARE/workspace/MCS4_141PF/Debug/MCS4_141PF.hex  > MCS4_141PF.rom1
+../../../SOFTWARE/tools/hex2v32_lane2.exe ../../../SOFTWARE/workspace/MCS4_141PF/Debug/MCS4_141PF.hex  > MCS4_141PF.rom2
+../../../SOFTWARE/tools/hex2v32_lane3.exe ../../../SOFTWARE/workspace/MCS4_141PF/Debug/MCS4_141PF.hex  > MCS4_141PF.rom3

@@ -1,0 +1,571 @@
+//===========================================================
+// ADS4004 Assembler Test Program
+//-----------------------------------------------------------
+// File Name   : test.src
+// Description : ADS4004 Assembler Test Source
+//-----------------------------------------------------------
+// History :
+// Rev.00 2015.08.08 M.Maruyama Start Coding
+// Rev.01 2015.09.13 M.Maruyama First Release
+//-----------------------------------------------------------
+// Copyright (C) 2015-2016 M.Maruyama
+//-----------------------------------------------------------
+// Intel has licensed the use of the MCS-4 related materials
+// under a Creative Commons license. It is available now 
+// 'By-attribution, Non-Commercial, Share-Alike' (BY-NC-SA)
+// as described below:
+// http://creativecommons.org/licenses/by-nc-sa/3.0/legalcode 
+// This project is derived from the documentations below;
+//   (1) MCS-4 Micro Computer Set Users Manual,
+//       Rev.4, Feb 1973, Intel Corporation.
+//   (2) MCS-4 Assembly Language Programming Manual,
+//       Preliminay Edition, Dec 1973, Intel Corporation.
+// so it carries the same Creative Commons license (BY-NC-SA). 
+//===========================================================
+
+        org 0x000 //
+        jun RESET
+
+;-------------------------------------------
+; Comment Test
+
+// Comment
+;  Comment
+
+;-------------------------------------------
+; Label and Literal Test
+
+Leterals  // Leteral Test
+Constants ;  Leteral Test
+LABEL0  123              ; Decimal
+label0  456              // small letter
+label1  LABEL0+1  // comment
+label2  label0+1
+LABELA  10+20            ; Expresson Add
+LABELB  35 45            ; Multiple Decimal Values
+LABELC  3 * 5            ; Expression Mul
+LABELD  3 * (1 + 2)      ; Expression Mix
+LABELE  LABELB * 11      ; Expression Label
+LABELF  LABELG + 4       ; Expression Label
+LABELG  LABELG           ; Expression Label
+LABELH  0xab 0xcd        ; Multiple Hex Values
+LABELI                   ; Only Label
+LABELJ  0xef             ; Hex
+        64 128           ; No Label
+        0x40 0x80        ; No Label
+LABEL1	0xab             ; Hex
+LABEL2, LABEL3 + 5       ; Label Delimiter Comma
+LABEL3: LABEL1	+	1	 ; Label Delimiter Colon
+LABEL4: (1+2)*3          ; Expression
+LABEL5: ( 4 + 5 ) * 6    ; Expression
+LABEL6: -123             ; Negative
+LABEL7: 7 * (8 - 9)      ; Negative
+LABEL8  1 + 2,  3 * 4, 5, 6, 7  ; Multiple Values
+LABEL9  0xaa, 0x55              ; Multiple Values
+LABEL10 0xbb 0xcc 0xdd 238,0xff ; Multipe Values
+LABEL11
+
+;-------------------------------------------
+; Equation Test
+
+LABELAA= 456             ; Equate
+LABELAB= LABEL7 + LABEL1 ; Expression
+LABELAC EQU LABEL4 * 3   ; Equation
+LABELAD
+
+;-------------------------------------------
+; Origin Test
+
+       = 0x040    ; ORIGIN
+ORIGIN0 0xaa 0x55
+
+        ORG 0x050 ; ORIGIN
+ORIGIN1 0x66 0x99
+
+ORIGIN2 ORG 0x060 ; ORIGIN
+ORIGIN3 0x55 0xaa
+        equ 0x070
+RESET,  nop
+RESET2,
+
+;-------------------------------------------
+; 3.3 Index Register Instructions
+INCTST
+        ;INC 8  ; 0110RRRR Increment Register (Rn<-Rn+1) Rn=R8
+        ;INC 16 ; 0110RRRR should be error
+        ;INC 2< ; 0110RRRR should be error
+        ;INC 2P ; 0110RRRR should be error
+
+        inc 8
+        inc 3
+INCEND
+
+FINTST
+        ;FIN 7P ; 0011RRR0 Fetch Indirect (RnP<-ROM[R0P]) RnP=R14:R15
+        ;FIN 2< ; 0011RRR0 Fetch Indirect (RnP<-ROM[R0P]) RnP=R4:R5
+        ;FIN 6  ; 0011RRR0 Fetch Indirect (RnP<-ROM[R0P]) RnP=R6:R7
+        ;FIN 8P ; 0011RRR0 should be error
+
+        FIN 7P
+        FIN 2<
+        FIN 6
+        ldm 2
+        xch 1
+        jun FINPAGE
+FINRET
+FINEND
+
+;-------------------------------------------
+; 3.4 Index Register to Accumulator Instruction
+ADDTST
+        ;add 14 ; 1000RRRR Add Register to Accumlator with Carry ({CY,ACC}<-ACC+Rn+CY)
+
+        ldm 1
+        xch 0
+        ldm 14
+        add 0
+        add 0
+        add 0
+        add 0
+        add 14
+ADDEND
+SUBTST
+        ;sub 10 ; 1001RRRR Subtract Register from Accumlator with Bolow ({CY,ACC}<-ACC+/Rn+/CY})
+
+        ldm 1
+        xch 0
+        ldm 2
+        sub 0
+        sub 0
+        sub 0
+        sub 0
+        sub 10
+SUBEND
+LDXCHTST
+        ;ld  12 ; 1010RRRR Load Accumulator (ACC<-Rn)
+        ;xch 0  ; 1011RRRR Exchange Regieter and Accumulator (ACBR<-ACC, ACC<-Rn, ACC<-ACBR)
+
+        ldm 10
+        xch 12
+        ldm 5
+        ld  12
+        xch 0
+LCXCHEND
+;-------------------------------------------
+; 3.5 Accumulator Instructions
+ACCTST
+        ;clb  ; 11110000 Clear Both (CY<-0, ACC<-0)
+        ;clc  ; 11110001 Clear Carry (CY<-0)
+        ;iac  ; 11110010 Increment Accumulator ({CY, ACC}<-ACC+1)
+        ;cmc  ; 11110011 Complement Carry (CY<-/CY)
+        ;cma  ; 11110100 Complement Accumulator (ACC<-/ACC)
+        ;ral  ; 11110101 Rotate Accumulator Left through Carry (CY<-ACC[7], ACC<-{ACC[6:1], CY})
+        ;rar  ; 11110110 Rotate Accumulator Right through Carry (CY<-ACC[0], ACC<-{CY, ACC[6:1]})
+        ;tcc  ; 11110111 Transmit Carry and Clear (ACC<-{7'b0, CY}, CY<-0)
+        ;dac  ; 11111000 Decrement Accumulator ({CY, ACC}<-ACC+0xf)
+        ;tcs  ; 11111001 Transfer Carry Subtract (ACC<-(CY==0)?9:10, CY<-0)
+        ;stc  ; 11111010 Set Carry (CY<-1)
+        ;daa  ; 11111011 Decimal Adjust Accumulator (if (ACC>9 or CY==1) ACC<-ACC+6; if Carry CY=1)
+        ;kbp  ; 11111100 Keyboard Process (ACC<-(ACC==0)?0:(ACC==1)?1:(ACC==2)?2:(ACC==4)?3:(ACC==8)?4:15)
+
+        ldm 0xf
+        stc
+        clb
+
+        stc
+        clc
+
+        ldm 0xe
+        iac
+        iac
+        iac
+
+        clc
+        cmc
+        cmc
+        cmc
+
+        ldm 0x5
+        cma
+        cma
+
+        stc
+        ldm 0x5
+        ral
+        clc
+        ldm 0xb
+        ral
+
+        clc
+        ldm 0xd
+        rar
+        stc
+        ldm 0xa
+        rar
+
+        ldm 0xf
+        clc
+        tcc
+        ldm 0xf
+        stc
+        tcc
+
+        stc
+        ldm 0x1
+        dac
+        dac
+        dac
+
+        ldm 0xf
+        clc
+        tcs
+        ldm 0xf
+        stc
+        tcs
+
+        clc
+        stc
+
+        clc
+        ldm 0xa
+        daa
+        daa
+        stc
+        ldm 0x9
+        daa
+
+        ldm 0x0
+        kbp
+        ldm 0x1
+        kbp
+        ldm 0x2
+        kbp
+        ldm 0x3
+        kbp
+        ldm 0x4
+        kbp
+        ldm 0x5
+        kbp
+        ldm 0x6
+        kbp
+        ldm 0x7
+        kbp
+        ldm 0x8
+        kbp
+        ldm 0x9
+        kbp
+        ldm 0xe
+        kbp
+ACCEND
+
+;-------------------------------------------
+; 3.6 Immediate Instructions
+FIMTST
+        ;fim  2  0xfe ; 0010RRR0 IIIIIIII Fetch Immediate (RnP<-Imm8) RnP=R2;R3
+        ;FIM  1P 6    ; 0010RRR0 IIIIIIII Fetch Immediate (RnP<-Imm8) RnP=R2;R3
+        ;FIM  4< 0xab ; 0010RRR0 IIIIIIII Fetch Immediate (RnP<-Imm8) RnP=R8;R9
+
+        fim  2  0xfe
+        FIM  1P 6
+        FIM  4< 0xab
+        fim  6  0x123
+FIMEND
+LDMTST
+        ;ldm  0       ; 1101IIII          Load Accumulator Immediate (ACC<-Imm4)
+        ;LDM  15      ; 1101IIII          Load Accumulator Immediate (ACC<-Imm4)
+
+        ldm  0
+        LDM  15
+LDMEND
+
+;-------------------------------------------
+; 3.7 Transfer of Control Instructions
+JUNTST
+        ;jun  JUNTGT ; 0100AAAA AAAAAAAA Jump Unconditionally (PC<-Addr12)
+
+LBL,    jun  JUNTGT
+JUNRET
+JUNEND
+
+JINTST
+        ;jin  3P     ; 0011RRR1          Jump Indirect (if (PC[7:0]==0xFF) PC[11:8]++; PC[7:0]<-RnP)
+
+        FIM  3P JINTGT
+        jin  3P
+        ldm  10
+        ldm  11
+        ldm  12
+        ldm  13
+JINTGT
+JINEND
+
+JCNTST
+        ;JCN  AZ LBL  ; 0001CCCC AAAAAAAA Jump on Condition, CN...TZ(0001), TN(1001), C1(0010), C0(1010), AZ(0100), AN(1100)  
+        ;jcn  6  0x12 ; 0001CCCC AAAAAAAA Jump on Condition (if (CN==True) then if (PC[7:0]==0xFE) PC[11:8]++; PC[7:0]<-Addr8)
+        ;jcn  0x4 PAGE1
+
+        jun  JCNBGN
+        org  0x0fd
+JCNBGN  ldm  0
+        jcn  TZ JCN_TZ0
+        ldm  1
+JCN_TZ0 jcn  TZ JCN_TZ1
+        ldm  2
+JCN_TZ1 jcn  TN JCN_TN0
+        ldm  3
+JCN_TN0 jcn  TN JCN_TN1
+        ldm  4
+JCN_TN1 clc
+        jcn  C0 JCN_C00
+        ldm  5
+JCN_C00 stc
+        jcn  C0 JCN_C01
+        ldm  6
+JCN_C01 clc
+        jcn  C1 JCN_C10
+        ldm  7
+JCN_C10 stc
+        jcn  C1 JCN_C11
+        ldm  8
+JCN_C11 ldm  0
+        jcn  AZ JCN_AZ0
+        ldm  9
+JCN_AZ0 ldm  1
+        jcn  AZ JCN_AZ1
+        ldm  10
+JCN_AZ1 ldm  0
+        jcn  AN JCN_AN0
+        ldm  11
+JCN_AN0 ldm  1
+        jcn  AN JCN_AN1
+        ldm  12
+JCN_AN1
+JCNEND
+
+ISZTST
+        ;isz  9  ISZTST ; 0111RRRR AAAAAAAA Increment and Skip if Zero (Rn<-Rn+1, if (Rn!=0) then if (PC[7:0]==0xFE) PC[11:8]++; PC[7:0]<-Addr8)
+
+        fim  4p 0xee
+        isz  9 ISZTGT
+        isz  9 ISZTGT
+        isz  9 ISZTGT
+        isz  9 ISZTGT
+ISZTGT fim  4p 0xaa
+ISZEND
+
+;-------------------------------------------
+; 3.8 Subroutine Linkage Commands
+        ;jms  0x456  ; 0101AAAA AAAAAAAA Jump to Subroutine (STACK<-PC+2, PC<-Addr12)
+        ;bbl  0xa    ; 1100IIII          Branch Back and Load (ACC<-Imm4, PC<-STACK)
+JMSTST
+        LDM   0x4
+        JMS   JMSTGT0
+        LDM   0xf
+        jun   JMSEND
+JMSTGT0 LDM 0x5
+        JMS JMSTGT1
+        BBL 0xa
+JMSTGT1 LDM 0x6
+        JMS JMSTGT2
+        BBL 0x9
+JMSTGT2 LDM 0x7
+        BBL 0x8
+JMSEND
+;-------------------------------------------
+; 3.9 NOP Instruction
+        nop  ; 00000000 No Operation
+
+;-------------------------------------------
+; 3.10 Memory Selection Instructions
+       ;dcl      ; 11111101 Designate Command Line (CM[2:0]<-ACC[2:0])
+       ;src  2<  ; 0010RRR1 Send Register Control (Addr<-RnP)
+       ;         ;              Addr = RAM Data Char  :{CHIP2, REG2, CHR4}
+       ;         ;              RAM Status Reg :{CHIP2, REG2, 0}
+       ;         ;              RAM OutPort    :{CHIP2, 0, 0}
+       ;         ;              ROM I/O Port   :{BANK4, 0}
+       ;rdm      ; 11101001 Read Data RAM Character (ACC<-RAMCHR)
+       ;rd0      ; 11101100 Read Data RAM Status Character 0 (ACC<-RAMSTAT0)
+       ;rd1      ; 11101101 Read Data RAM Status Character 1 (ACC<-RAMSTAT1)
+       ;rd2      ; 11101110 Read Data RAM Status Character 2 (ACC<-RAMSTAT2)
+       ;rd3      ; 11101111 Read Data RAM Status Character 3 (ACC<-RAMSTAT3)
+       ;rdr      ; 11101010 Read ROM Port (ACC<-ROMPORT)
+       ;wrm      ; 11100000 Write Data RAM Character (RAMCHAR<-ACC)
+       ;wr0      ; 11100100 Write Data RAM Status Character 0 (RAMSTAT0<-ACC)
+       ;wr1      ; 11100101 Write Data RAM Status Character 1 (RAMSTAT1<-ACC)
+       ;wr2      ; 11100110 Write Data RAM Status Character 2 (RAMSTAT2<-ACC)
+       ;wr3      ; 11100111 Write Data RAM Status Character 3 (RAMSTAT3<-ACC)
+       ;wmp      ; 11100001 Write RAM Port (RAMPORT<-ACC)
+       ;wrr      ; 11100010 Write ROM Port (ROMPORT<-ACC)
+       ;adm      ; 11101011 Add Data RAM to Accumlator with Carry ({CY, ACC}<-ACC+RAMCHR+CY)
+       ;sbm      ; 11101000 Subtract Data RAM from Accumulator with Bollow ({CY, ACC}<-ACC+/RAMCHR+/CY}
+       ;wpm      ; 11100011 Write Program RAM (same operation as WRM, hardware supports Writing Program RAM)
+
+MEMTST
+        ; RAM W&R
+        ldm 1
+        dcl
+        fim 1P 0x34
+        src 1P
+        ldm 0xa
+        wrm
+        ldm 0x5
+        rdm
+
+        ; RSC W&R
+        ldm 2
+        dcl
+        fim 2P 0x60
+        src 2P
+        ldm 0xb
+        wr2
+        ldm 0x4
+        rd2
+        rd0
+
+        ; Read ROM Port
+        fim 2P 0x40
+        src 2p
+        rdr
+
+        ; Write ROM Port
+        fim 2P 0xc0
+        src 2p
+        ldm 10
+        wrr
+
+        ; Write RAM Port
+        ldm 3 ; bank4
+        dcl
+        fim 3p 0x55
+        src 3p
+        wmp
+
+        ; ADD RAM
+        ldm 2
+        dcl
+        fim 1P 0x56
+        src 1P
+        ldm 0xa
+        wrm
+        stc ; CY=1
+        ldm 0x6
+        adm
+
+        ; SUB RAM
+        ldm 2
+        dcl
+        fim 1P 0x57
+        src 1P
+        ldm 0x5
+        wrm
+        stc ; CY=0
+        ldm 0x6
+        sbm
+
+        ; Program RAM R&W
+        ldm 0
+        dcl
+        FIM 0P 0
+        src 0p
+        ldm 0x0
+        wr0
+        ldm 0x2
+        wr1
+        ldm 0x4
+        wr2
+        ;
+        jms PGM_RD
+        ;
+        fim 1P 0xab
+        jms PGM_WR
+        ;
+        fim 1P 0x0
+        jms PGM_RD
+
+MEMEND
+
+;-------------------------------------------
+; End of Test
+FINISH jun FINISH
+
+;-------------------------------------------
+; Support Far Operations
+        org 0x1fc
+       ;jcn 0xa PAGE1
+
+        org 0x1fe
+        jcn 0xa PAGE1
+
+        org 0x200
+PAGE1   nop
+        nop
+
+        org 0x2fc
+        ;isz 10 PAGE2
+
+        org 0x2fe
+        isz 8 PAGE2
+
+        org 0x300
+PAGE2   nop
+        nop
+
+        org 0x3ff
+FINPAGE fin 1P
+        jun FINRET
+        0xab ; constant @0x402
+        ;
+JUNTGT  jun JUNRET
+
+;-------------------------------------------
+; Program RAM, Read & Write
+;    Program RAM Location = Bank0, Chip0, Reg0: {RSC0, RSC1, RSC2}
+;    Program RAM Data = ;{R2:R3}
+PGM_WR
+        FIM 0P 224
+        SRC 0P
+        LDM 1
+        WRR
+        JMS PGMCOM
+        LD  2
+        WPM
+        LD  3
+        WPM
+        FIM 0P 224
+        SRC 0P
+        CLB
+        WRR
+        BBL 0
+PGM_RD
+        JMS PGMCOM
+        WPM
+        WPM
+        FIM 0P 224
+        SRC 0P
+        RDR
+        XCH 2
+        INC 0
+        SRC 0P
+        RDR
+        XCH 3
+        BBL 0
+PGMCOM
+        FIM 0P 0
+        SRC 0P
+        RD1
+        XCH 10
+        RD2
+        XCH 11
+        RD0
+        FIM 0P 240
+        SRC 0P
+        WRR
+        SRC 5P
+        BBL 0
+
+;-------------------------------------------
+;====================================
+; End of Program
+;====================================
+        END      ; end of assemble source
+;

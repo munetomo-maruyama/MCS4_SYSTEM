@@ -1,0 +1,141 @@
+000         // Memory Access Test for ADS4004
+000                 org 0x000 //
+000         MEMTST
+000                 ; RAM W&R
+000 D1              ldm 1
+001 FD              dcl
+002 22 34           fim 1P 0x34
+004 23              src 1P
+005 DA              ldm 0xa
+006 E0              wrm
+007 D5              ldm 0x5
+008 E9              rdm
+009         
+009                 ; RAM Status Character(RSC) W&R
+009 D2              ldm 2
+00A FD              dcl
+00B 24 60           fim 2P 0x60
+00D 25              src 2P
+00E DB              ldm 0xb
+00F E6              wr2
+010 D4              ldm 0x4
+011 EE              rd2
+012 EC              rd0
+013         
+013                 ; Read ROM Port
+013 24 40           fim 2P 0x40
+015 25              src 2p
+016 EA              rdr
+017         
+017                 ; Write ROM Port
+017 24 C0           fim 2P 0xc0
+019 25              src 2p
+01A DA              ldm 10
+01B E2              wrr
+01C         
+01C                 ; Write RAM Port
+01C D3              ldm 3 ; bank4
+01D FD              dcl
+01E 26 55           fim 3p 0x55
+020 27              src 3p
+021 E1              wmp
+022         
+022                 ; ADD RAM
+022 D2              ldm 2
+023 FD              dcl
+024 22 56           fim 1P 0x56
+026 23              src 1P
+027 DA              ldm 0xa
+028 E0              wrm
+029 FA              stc ; Carry=1
+02A D6              ldm 0x6
+02B EB              adm
+02C         
+02C                 ; SUB RAM
+02C D2              ldm 2
+02D FD              dcl
+02E 22 57           fim 1P 0x57
+030 23              src 1P
+031 D5              ldm 0x5
+032 E0              wrm
+033 FA              stc ; Borrow=0
+034 D6              ldm 0x6
+035 E8              sbm
+036         
+036                 ; Program RAM R&W
+036 D0              ldm 0
+037 FD              dcl
+038 20 00           fim 0p 0
+03A 21              src 0p
+03B D0              ldm 0x0
+03C E4              wr0
+03D D2              ldm 0x2
+03E E5              wr1
+03F D4              ldm 0x4
+040 E6              wr2
+041                 ;
+041 50 5E           jms PGM_RD
+043                 ;
+043 22 AB           fim 1P 0xab
+045 50 4D           jms PGM_WR
+047                 ;
+047 22 00           fim 1P 0x0
+049 50 5E           jms PGM_RD
+04B         
+04B         // End of Test
+04B 40 4B   FINISH jun FINISH
+04D         
+04D         // Program RAM, Read & Write
+04D         //   Program RAM Location = Bank0, Chip0, Reg0: {RSC0, RSC1, RSC2}
+04D         //   Program RAM Data = {R2:R3}
+04D         PGM_WR
+04D 20 E0           fim 0p 224
+04F 21              src 0p
+050 D1              ldm 1
+051 E2              wrr
+052 50 6C           jms PGMCOM
+054 A2              ld  2
+055 E3              wpm
+056 A3              ld  3
+057 E3              wpm
+058 20 E0           fim 0p 224
+05A 21              src 0p
+05B F0              clb
+05C E2              wrr
+05D C0              bbl 0
+05E         PGM_RD
+05E 50 6C           jms PGMCOM
+060 E3              wpm
+061 E3              wpm
+062 20 E0           fim 0p 224
+064 21              src 0p
+065 EA              rdr
+066 B2              xch 2
+067 60              inc 0
+068 21              src 0p
+069 EA              rdr
+06A B3              xch 3
+06B C0              bbl 0
+06C         PGMCOM
+06C 20 00           fim 0p 0
+06E 21              src 0p
+06F ED              rd1
+070 BA              xch 10
+071 EE              rd2
+072 BB              xch 11
+073 EC              rd0
+074 20 F0           fim 0p 240
+076 21              src 0p
+077 E2              wrr
+078 2B              src 5p
+079 C0              bbl 0
+07A         
+07A                 end  ; end of assemble source
+-----Label Table-----
+MEMTST   = 0x0000
+FINISH   = 0x004B
+PGM_WR   = 0x004D
+PGM_RD   = 0x005E
+PGMCOM   = 0x006C
+-----End of Label Table-----
+Total Error = 0

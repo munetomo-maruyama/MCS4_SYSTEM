@@ -1,0 +1,11 @@
+21:01:41 **** Build of configuration Debug for project MCS4_141PF_old ****
+make all 
+Invoking: GNU RISC-V Cross Print Size
+riscv-none-elf-size --format=berkeley "MCS4_141PF_old.elf"
+   text	   data	    bss	    dec	    hex	filename
+  73610	      0	1048616	1122226	 111fb2	MCS4_141PF_old.elf
+Finished building: MCS4_141PF_old.siz
+ 
+
+21:01:42 Build Finished. 0 errors, 0 warnings. (took 1s.181ms)
+

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item key="hasShownOverlayPopupBefore" value="true"/>
+	<section name="java.lang.Class">
+		<item key="replaceBarOpen" value="true"/>
+		<item key="wrap" value="true"/>
+		<item key="casesensitive" value="false"/>
+		<item key="wholeword" value="false"/>
+		<item key="incremental" value="false"/>
+		<item key="isRegEx" value="false"/>
+		<item key="selection" value="printf"/>
+		<list key="findhistory">
+			<item value="printf"/>
+			<item value="red_ribbon"/>
+			<item value="Draw_Config_Buttons"/>
+			<item value="context"/>
+			<item value="　"/>
+			<item value="FONT_BIG"/>
+			<item value="FONT_LARGE"/>
+			<item value="xprintf"/>
+			<item value="mvect"/>
+			<item value="pdMS_TO_TICKS"/>
+			<item value="port_key_prt_cmd"/>
+			<item value="round"/>
+			<item value="digit"/>
+			<item value="mie"/>
+			<item value="0xff   "/>
+		</list>
+		<list key="replacehistory">
+			<item value="Draw_Config_Controls"/>
+			<item value="FONT_LARGE"/>
+			<item value="printf"/>
+			<item value="decimal"/>
+			<item value="rounding"/>
+			<item value="LED_SPC"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="803"/>
+		<item key="DIALOG_Y_ORIGIN" value="322"/>
+		<item key="DIALOG_WIDTH" value="505"/>
+		<item key="DIALOG_HEIGHT" value="511"/>
+		<item key="DIALOG_FONT_NAME" value="1|Yu Gothic UI|13.5|0|WINDOWS|1|-18|0|0|0|400|0|0|0|1|0|0|0|0|Yu Gothic UI"/>
+	</section>
+</section>

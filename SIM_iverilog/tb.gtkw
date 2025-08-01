@@ -1,0 +1,141 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Sun Jul 06 13:34:58 2025
+[*]
+[dumpfile] "C:\MCS4_141PF\MCS4_SYSTEM\SIM_iverilog\tb.vcd"
+[dumpfile_mtime] "Sun Jul 06 13:29:32 2025"
+[dumpfile_size] 2013942902
+[savefile] "C:\MCS4_141PF\MCS4_SYSTEM\SIM_iverilog\tb.gtkw"
+[timestart] 0
+[size] 1645 889
+[pos] -1 -1
+*-38.385387 108500000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] TB_TOP.
+[treeopen] TB_TOP.U_MCS4_SYS.
+[sst_width] 211
+[signals_width] 318
+[sst_expanded] 1
+[sst_vpaned_height] 256
+@28
+TB_TOP.U_MCS4_SYS.CLK
+@22
+TB_TOP.U_MCS4_SYS.CM_RAM_N[3:0]
+@28
+TB_TOP.U_MCS4_SYS.CM_ROM_N
+@22
+TB_TOP.U_MCS4_SYS.PORT_KEYPRT_CMD[31:0]
+TB_TOP.U_MCS4_SYS.PORT_KEYPRT_RES[31:0]
+@28
+TB_TOP.U_MCS4_SYS.RES_N
+TB_TOP.U_MCS4_SYS.SYNC_N
+TB_TOP.U_MCS4_SYS.TEST
+@23
+TB_TOP.data[3:0]
+@22
+TB_TOP.c_data_i[3:0]
+TB_TOP.c_data_o[3:0]
+@28
+TB_TOP.c_data_oe
+@22
+TB_TOP.s_data_i[3:0]
+TB_TOP.s_data_o[3:0]
+@28
+TB_TOP.s_data_oe
+@22
+TB_TOP.U_MCS4_SYS.cm_ram_n_decoded[7:0]
+TB_TOP.U_MCS4_SYS.data_i_ram[3:0]
+TB_TOP.U_MCS4_SYS.data_i_rom[3:0]
+TB_TOP.U_MCS4_SYS.data_o_ram[3:0]
+@28
+TB_TOP.U_MCS4_SYS.data_o_ram_oe
+@22
+TB_TOP.U_MCS4_SYS.data_o_rom[3:0]
+@28
+TB_TOP.U_MCS4_SYS.data_o_rom_oe
+TB_TOP.U_MCS4_SYS.enable_keyprt
+@22
+TB_TOP.U_MCS4_SYS.port_in_rom_chip7_chip0[31:0]
+TB_TOP.U_MCS4_SYS.port_in_rom_chip7_chip0_keyprt[31:0]
+TB_TOP.U_MCS4_SYS.port_in_rom_chipF_chip8[31:0]
+TB_TOP.U_MCS4_SYS.port_in_rom_chipF_chip8_keyprt[31:0]
+TB_TOP.U_MCS4_SYS.port_out_ram_bank1_bank0[31:0]
+TB_TOP.U_MCS4_SYS.port_out_ram_bank3_bank2[31:0]
+TB_TOP.U_MCS4_SYS.port_out_ram_bank5_bank4[31:0]
+TB_TOP.U_MCS4_SYS.port_out_ram_bank7_bank6[31:0]
+TB_TOP.U_MCS4_SYS.port_out_rom_chip7_chip0[31:0]
+TB_TOP.U_MCS4_SYS.port_out_rom_chipF_chip8[31:0]
+@28
+TB_TOP.U_MCS4_SYS.test_keyprt
+TB_TOP.U_MCS4_SYS.KEY_PRINTER.CLK
+TB_TOP.U_MCS4_SYS.KEY_PRINTER.ENABLE
+@22
+TB_TOP.U_MCS4_SYS.KEY_PRINTER.PORT_IN_ROM_CHIP7_CHIP0[31:0]
+TB_TOP.U_MCS4_SYS.KEY_PRINTER.PORT_IN_ROM_CHIPF_CHIP8[31:0]
+TB_TOP.U_MCS4_SYS.KEY_PRINTER.PORT_KEYPRT_CMD[31:0]
+TB_TOP.U_MCS4_SYS.KEY_PRINTER.PORT_KEYPRT_RES[31:0]
+TB_TOP.U_MCS4_SYS.KEY_PRINTER.PORT_OUT_RAM_BANK1_BANK0[31:0]
+TB_TOP.U_MCS4_SYS.KEY_PRINTER.PORT_OUT_RAM_BANK3_BANK2[31:0]
+TB_TOP.U_MCS4_SYS.KEY_PRINTER.PORT_OUT_RAM_BANK5_BANK4[31:0]
+TB_TOP.U_MCS4_SYS.KEY_PRINTER.PORT_OUT_RAM_BANK7_BANK6[31:0]
+TB_TOP.U_MCS4_SYS.KEY_PRINTER.PORT_OUT_ROM_CHIP7_CHIP0[31:0]
+TB_TOP.U_MCS4_SYS.KEY_PRINTER.PORT_OUT_ROM_CHIPF_CHIP8[31:0]
+@28
+TB_TOP.U_MCS4_SYS.KEY_PRINTER.RES_N
+TB_TOP.U_MCS4_SYS.KEY_PRINTER.TEST
+@22
+TB_TOP.U_MCS4_SYS.KEY_PRINTER.key_column[9:0]
+TB_TOP.U_MCS4_SYS.KEY_PRINTER.key_row[3:0]
+@28
+TB_TOP.U_MCS4_SYS.KEY_PRINTER.lamp_memory
+TB_TOP.U_MCS4_SYS.KEY_PRINTER.lamp_minus
+TB_TOP.U_MCS4_SYS.KEY_PRINTER.lamp_overflow
+@22
+TB_TOP.U_MCS4_SYS.KEY_PRINTER.prt_clkcnt[15:0]
+@28
+TB_TOP.U_MCS4_SYS.KEY_PRINTER.prt_color
+TB_TOP.U_MCS4_SYS.KEY_PRINTER.prt_color_delay
+@22
+TB_TOP.U_MCS4_SYS.KEY_PRINTER.prt_column[16:0]
+TB_TOP.U_MCS4_SYS.KEY_PRINTER.prt_drum_count[3:0]
+@28
+TB_TOP.U_MCS4_SYS.KEY_PRINTER.prt_drum_row_each
+TB_TOP.U_MCS4_SYS.KEY_PRINTER.prt_drum_row_first
+TB_TOP.U_MCS4_SYS.KEY_PRINTER.prt_drum_row_last
+@22
+TB_TOP.U_MCS4_SYS.KEY_PRINTER.prt_fifo_dc[8:0]
+@28
+TB_TOP.U_MCS4_SYS.KEY_PRINTER.prt_fifo_empty
+TB_TOP.U_MCS4_SYS.KEY_PRINTER.prt_fifo_full
+TB_TOP.U_MCS4_SYS.KEY_PRINTER.prt_fifo_pop
+TB_TOP.U_MCS4_SYS.KEY_PRINTER.prt_fifo_pop_sync[2:0]
+@22
+TB_TOP.U_MCS4_SYS.KEY_PRINTER.prt_fifo_rdata[22:0]
+@28
+TB_TOP.U_MCS4_SYS.KEY_PRINTER.prt_fifo_re
+@22
+TB_TOP.U_MCS4_SYS.KEY_PRINTER.prt_fifo_rp[7:0]
+TB_TOP.U_MCS4_SYS.KEY_PRINTER.prt_fifo_wdata[22:0]
+@28
+TB_TOP.U_MCS4_SYS.KEY_PRINTER.prt_fifo_we
+@22
+TB_TOP.U_MCS4_SYS.KEY_PRINTER.prt_fifo_wp[7:0]
+@28
+TB_TOP.U_MCS4_SYS.KEY_PRINTER.prt_hammer
+TB_TOP.U_MCS4_SYS.KEY_PRINTER.prt_hammer_delay
+TB_TOP.U_MCS4_SYS.KEY_PRINTER.prt_paper_feed
+TB_TOP.U_MCS4_SYS.KEY_PRINTER.prt_paper_feed_delay
+TB_TOP.U_MCS4_SYS.KEY_PRINTER.prt_paper_feed_req
+@22
+TB_TOP.U_MCS4_SYS.KEY_PRINTER.prt_q0[9:0]
+TB_TOP.U_MCS4_SYS.KEY_PRINTER.prt_q1[9:0]
+@28
+TB_TOP.U_MCS4_SYS.KEY_PRINTER.prt_tick
+@22
+TB_TOP.U_MCS4_SYS.KEY_PRINTER.prt_tick_count[4:0]
+@28
+TB_TOP.U_MCS4_SYS.KEY_PRINTER.sck_key
+TB_TOP.U_MCS4_SYS.KEY_PRINTER.sck_prt
+TB_TOP.U_MCS4_SYS.KEY_PRINTER.sdi_common
+TB_TOP.U_MCS4_SYS.KEY_PRINTER.sft_cascade
+[pattern_trace] 1
+[pattern_trace] 0

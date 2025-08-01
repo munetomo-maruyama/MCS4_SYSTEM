@@ -1,0 +1,1273 @@
+//==========================================
+// pi Calculation by 4004 CPU
+//------------------------------------------
+// Rev.01 2017.01.01 Munetomo Maruyama
+//------------------------------------------
+// Copyright (C) 2016 by Munetomo Maruyama
+//==========================================
+
+//-------------------------------------------------
+// Calculate the Circular Constant Pi
+//-------------------------------------------------
+// (1) Machin's formula
+// PI/4 =  4*arctan(1/5) -   arctan(1/239)
+// PI   = 16*arctan(1/5) - 4*arctan(1/239)
+// Here, arctan(1/p) = 1/p - 1/(3*p^3) + 1/(5*p^5) - 1/(7*p^7) + ...
+// Then,
+// PI =  (16*1/5     - 4*1/239)
+//     - (16*1/3*5^3 - 4*1/3*239^3)
+//     + (16*1/5*5^5 - 4*1/5*239^5)
+//     - (16*1/7*5^7 - 4*1/7*239^7)
+//     +...
+//    =  (1/1)*(16*5/(5*5)^1 - 4*239/(239*239)^1)
+//     - (1/3)*(16*5/(5*5)^2 - 4*239/(239*239)^2)
+//     + (1/5)*(16*5/(5*5)^3 - 4*239/(239*239)^3)
+//     - (1/7)*(16*5/(5*5)^4 - 4*239/(239*239)^4)
+//     +...
+//-------------------------------------------------
+// (2) Define Arrays for Long Figure Number
+// Each element has Decimal 4 figures.
+//     PI[] : Value to be converged to Pi
+//     T1[] : (16*  5)/(  5*  5)^n (n=0...)
+//     T2[] : ( 4*239)/(239*239)^n (n=0...)
+//     T3[] : (-1)^(n+1)*(1/(2n-1))*(T1[]-T2[])
+//-------------------------------------------------
+// (3) Example
+// n TI[0] TI[1] T2[0] T2[1] T3[0] T3[1] PI[0] PI[1]
+// 0 0080  0000  0956  0000  0000  0000  0000  0000
+// 1 0003  2000  0000  0167  0003  1833  0003  1833 (+)
+// 2 0000  1280  0000  0000  0000  0426  0003  1407 (-)
+// 3 0000  0051  0000  0000  0000  0010  0003  1417 (+)
+// 4 0000  0002  0000  0000  0000  0000  0003  1417 (-)
+//-------------------------------------------------
+
+//-------------------------------------------------
+// Global RAM Assignment
+//-------------------------------------------------
+// RAM Memory Character :RAMCH[Bank][SRC]
+// 8bank x 4chip x 4reg x 16char = 2048char
+// PI[512] Bank0(SRC=0x00-0xFF) , Bank1(SRC=0x00-0xFF)
+// T1[512] Bank2(SRC=0x00-0xFF) , Bank3(SRC=0x00-0xFF)
+// T2[512] Bank4(SRC=0x00-0xFF) , Bank5(SRC=0x00-0xFF)
+// T3[512] Bank6(SRC=0x00-0xFF) , Bank7(SRC=0x00-0xFF)
+//-------------------------------------------------
+// RAM Status Character :RAMST[Bank][SRC][Pos]
+// Bank Chip Reg Pos
+// 0    0    0   0x0 Index[11:8]
+//               0x1 Index[ 7:4]
+//               0x2 Index[ 3:0]
+//               0x3 Reserved
+// Note: [SRC]=[Chip][Reg]
+//-------------------------------------------------
+
+//-------------------------------------------------
+// Major Rn Assignment
+//-------------------------------------------------
+// R0 : 2nd Bank of Augend/Minuend for Long Add/Sub
+// R1 : 2nd Bank of Addend/Subtrahend for Long Add/Sub
+// R2 : 2nd Bank of Result for Long Add/Sub
+// R3 : Converged Flag 
+// R4 : 
+// R5 :
+// R6 :
+// R7 :
+// R8 : Dividend's Highest Digit for Partial Division
+// R9 : Dividend's 2nd     Digit for Partial Division
+// R10: Dividend's 3rd     Digit for Partial Division
+// R11: Dividend's Lowest  Digit for Partial Division
+// R12: Divisor's Highest Digit for Long Division
+// R13: Divisor's Middle  Digit for Long Division
+// R14: Divisor's Lowest  Digit for Long Division
+// R15:
+//-------------------------------------------------
+
+//------------------------------------
+    org 0x0000
+RESET:
+//====================================
+// Main Routine
+// (1) Calculate Pi 512digits
+// (2) Printout Pi on 141-PF Printer
+//====================================
+MAIN:
+    //----------------------------
+    // Clear All Banks of RAM
+    //----------------------------
+    // Clear Bank Number:R0
+    CLB
+    XCH  0
+    // Bank Counter Loop
+    LDM -8
+    XCH  1     // R1=Initial Bank Counter=-8(0x8)
+MAIN1:
+    LD   0
+    DCL        // Select New Bank
+    CLB        // ACC=0, CY=0
+    // SRC Address Loop
+    FIM  1P 0  // {R2,R3}=0x00 (Initial SRC Address)
+MAIN2:
+    SRC  1P
+    WRM        // RAMCH[bankR0][R1P]=0
+    ISZ  3 MAIN2 // R3=R3+1, if NZ jump
+    ISZ  2 MAIN2 // R2=R2+1, if NZ jump
+    //
+    INC  0       // R0=R0+1, next Bank
+    ISZ  1 MAIN1 // R1=R1+1, if NZ jump
+    //----------------------------
+    // Initialize Buffer Data
+    //----------------------------
+    // T1=16*5=080.000... :Bank2
+    LDM  2
+    DCL          // Select Bank2
+    FIM  0P 0x01 // {R0,R1}=0x01
+    LDM  8
+    SRC  0P
+    WRM          // RAMCH[bank2][0x01]=8
+    // T2=4*239=956.000... :Bank4
+    LDM  4
+    DCL          // Select Bank4
+    FIM  0P 0x00 // {R0,R1}=0x00
+    LDM  9
+    SRC  0P
+    WRM          // RAMCH[bank4][0x00]=9
+    INC  1       // {R0,R1}=0x01
+    LDM  5
+    SRC  0P
+    WRM          // RAMCH[bank4][0x01]=5
+    INC  1       // {R0,R1}=0x02
+    LDM  6
+    SRC  0P
+    WRM          // RAMCH[bank4][0x02]=6
+    //-------------------------------------------
+    // Clear Index (RAMST[bank0][0x00][pos0:2]=0)
+    //-------------------------------------------
+    CLB
+    DCL         // Select Bank0
+    FIM 0P 0x00 // {R0,R1}=0x00
+    SRC 0P
+    WR0         // RAMST[bank0][0x00][pos0]=0
+    WR1         // RAMST[bank0][0x00][pos1]=0
+    WR2         // RAMST[bank0][0x00][pos2]=0
+    //-----------------------------
+    // Loop until Converged
+    //-----------------------------
+MAIN_LOOP:
+    //---------------------------------
+    // Make T1=(16*5)/(5*5)^n (n=1...)
+    //---------------------------------
+    LDM  0
+    XCH 12       // R12=0
+    LDM  2
+    XCH 13       // R13=2
+    LDM  5
+    XCH 14       // R14=5
+    //
+    LDM  2
+    XCH  0       // R0=2 (T1:Bank2,3)
+    // RAMCH[bank2:3][]=RAMCH[bank2:3][]/R[12:14]
+    JMS  LONGDIV
+    //--------------------------------------
+    // Make T2=(4*239)/(239*239)^n (n=1...)
+    //--------------------------------------
+    LDM  2
+    XCH 12       // R12=2
+    LDM  3
+    XCH 13       // R13=3
+    LDM  9
+    XCH 14       // R14=9
+    //
+    LDM  4
+    XCH  0       // R0=4 (T2:Bank4,5)
+    // RAMCH[bank4:5][]=RAMCH[bank4:5][]/R[12:14]
+    JMS  LONGDIV
+    //
+    LDM  4
+    XCH  0       // R0=4 (T2:Bank4,5)
+    // RAMCH[bank4:5][]=RAMCH[bank4:5][]/R[12:14]
+    JMS  LONGDIV
+    //-----------------------
+    // Make T3
+    //-----------------------
+    LDM  3
+    XCH  0        // R0=3 (T1:Bank2,3)
+    LDM  5
+    XCH  1        // R1=5 (T2:Bank4,5)
+    LDM  7
+    XCH  2        // R2=7 (T3:Bank6,7)
+    // RAMCH[bank6:7][]=RAMCH[bank2:3][]-RAMCH[bank4:5][]
+    JMS  LONGSUB
+    //
+    // R[12:14]=2*RAMST[bank0][0x00][pos0:2]+1
+    JMS  INDEXODD
+    //
+    LDM  6
+    XCH  0        // R0=6 (T3:Bank6,7)
+    // RAMCH[bank6:7][]=RAMCH[bank6:7][]/R[12:14]
+    JMS  LONGDIV
+    //--------------------------
+    // If Converged, break loop
+    //--------------------------
+    LD   3            // ACC=R3
+    JCN  AN CONVERGED // if ACC==1 jump, else continue
+    //-------------------
+    // Accumulate to PI
+    //-------------------
+    CLB
+    DCL        // Select Bank0
+    FIM 0P 0   // {R0,R1}=0x00
+    SRC 0P
+    RD2        // ACC=RAMST[bank0][0x00][pos2], LSB of Index
+    RAR        // CY=ACC[0](LSB)
+    //
+    LDM  1
+    XCH  0     // R0=1 (PI:Bank0,1)
+    LDM  7
+    XCH  1     // R1=7 (T3:Bank6,7)
+    LDM  1
+    XCH  2     // R2=1 (PI:Bank0,1)
+    //
+    JCN C1 PISUB // if Index is even do Add, else do Sub
+PIADD:
+    // RAMCH[bank0:1][]=RAMCH[bank0:1][]+RAMCH[bank6:7][]
+    JMS  LONGADD
+    JUN  PIEND
+PISUB:
+    // RAMCH[bank0:1][]=RAMCH[bank0:1][]-RAMCH[bank6:7][]
+    JMS  LONGSUB
+PIEND:
+    //---------------------------
+    // Increment Index and Loop
+    //---------------------------
+    // RAMST[bank0][0x00][pos0:2]=RAMST[bank0][0x00][pos0:2]+1
+    JMS  INDEXINC
+    JUN  MAIN_LOOP // Do Next Loop
+    //------------
+    // Converged
+    //------------
+CONVERGED:
+    //-----------------------
+    // Print Out Result PI[]
+    //-----------------------
+PRINTOUT:
+    JMS PRINTER_MAIN // Print RAMCH[bank0:1][]
+    //----------------
+    // Stop
+    //----------------    
+STOP:
+    JUN STOP
+
+//====================================
+// Long Addition (512digits)
+//   Input Parameters
+//     R0 = 2nd Bank(odd) of Augend
+//     R1 = 2nd Bank(odd) of Addend
+//     R2 = 2nd Bank(odd) of Result
+//   Registers to be broken
+//     R10, R11, R12, R13, R14, R15
+//====================================
+LONGADD:
+    //---------------------------------
+    // Set Loop Counter R10 for 2banks
+    //---------------------------------
+    LDM -2
+    XCH 10     // R10=-2(14)
+    //----------------------------
+    // Clear CY for Long Addition     
+    //----------------------------
+    CLC
+    //-----------------------------
+    // For 256bytes in each bank,
+    // BANK(R2)=BANK(R0)+BANK(R1)
+    //-----------------------------
+LONGADD1:
+    FIM 7P 0   // {R14,R15}=0, RAM address counter
+LONGADD2:
+    //---------------------------
+    // {R12,R13}=0xFF-{R14,R15}
+    // as SRC Address (reverse)
+    //---------------------------
+    LD  14
+    CMA
+    XCH 12     // R12=~R14 (R12=0xF-R14)
+    LD  15
+    CMA
+    XCH 13     // R13=~R15 (R13=0xF-R15)
+    //--------------------
+    // Load Augend Digit
+    //--------------------
+    LD  0
+    DCL        // Select Bank Specified by R0
+    SRC 6P
+    RDM
+    XCH 11     // R11=RAMCH[bankR0][R6P]
+    //--------------------
+    // Load Addend Digit
+    //--------------------
+    LD  1
+    DCL        // Select Bank Specified by R1
+    SRC 6P
+    RDM        // ACC=RAMCH[bankR1][R6P]
+    //--------------------
+    // Execute Addition
+    //--------------------
+    ADD 11     // ACC=ACC+R11
+    DAA        // Decimal Adjust
+    //-----------------------------
+    // Store Addition Result Digit
+    //-----------------------------
+    XCH  2
+    DCL        // Select Bank Specified by R2
+    XCH  2     // Revert ACC
+    SRC 6P
+    WRM        // RAMCH[bankR2][R6P]=ACC
+    //--------------------
+    // Repeat 256 counts
+    //--------------------
+    ISZ 15 LONGADD2 // R15=R15+1, if NZ jump
+    ISZ 14 LONGADD2 // R14=R14+1, if NZ jump
+    //-----------------------------------
+    // Decrement Bank Number R0, keep CY
+    //-----------------------------------
+    LD   0     // Simpley clear LSB of R0
+    RAR
+    CLC
+    RAL
+    XCH  0
+    //-----------------------------------
+    // Decrement Bank Number R1, keep CY
+    //-----------------------------------
+    LD   1     // Simpley clear LSB of R1
+    RAR
+    CLC
+    RAL
+    XCH  1
+    //-----------------------------------
+    // Decrement Bank Number R2, keep CY
+    //-----------------------------------
+    LD   2     // Simpley clear LSB of R2
+    RAR
+    CLC
+    RAL
+    XCH  2
+    //---------------------
+    // Repeat for 2 banks
+    //---------------------
+    ISZ 10 LONGADD1 // R10=R10+1, if NZ jump
+    //--------
+    // Return
+    //--------
+    BBL 0
+
+//====================================
+// Long Subtraction (512digits)
+//   Input Parameters
+//     R0 = 2nd Bank(odd) of Minuend
+//     R1 = 2nd Bank(odd) of Subtrahend
+//     R2 = 2nd Bank(odd) of Result
+//   Registers to be broken
+//     R10, R11, R12, R13, R14, R15
+//====================================
+LONGSUB:
+    //---------------------------------
+    // Set Loop Counter R10 for 2banks
+    //---------------------------------
+    LDM -2
+    XCH 10     // R10=-2(14)
+    //---------------------------------
+    // Set CY for Long Subtraction
+    //---------------------------------
+    STC        // No Borrow
+    //----------------------------
+    // For 256bytes in each bank,
+    // BANK(R2)=BANK(R0)-BANK(R1)
+    //----------------------------
+LONGSUB1:
+    FIM 7P 0   // {R14,R15}=0, RAM address counter
+LONGSUB2:
+    //----------------------------
+    // {R12,R13}=0xFF-{R14,R15}
+    // as SRC Address (reverse)
+    //----------------------------
+    LD  14
+    CMA
+    XCH 12     // R12=~R14 (R12=0xF-R14)
+    LD  15
+    CMA
+    XCH 13     // R13=~R15 (R13=0xF-R15)
+    //---------------------------------------------
+    // Load Subtrahend Digit and Subtract from 10
+    //---------------------------------------------
+    LD  1
+    DCL        // Select Bank Specified by R1
+    TCS        // if no borrow ACC=10, else ACC=9
+    SRC 6P
+    SBM
+    XCH 11     // R11=ACC-RAMCH[bankR1][R6P]
+    CLC        // CY=0
+    //---------------------
+    // Load Minuend Digit
+    //---------------------
+    LD  0
+    DCL        // Select Bank Specified by R0
+    SRC 6P
+    RDM        // ACC=RAMCH[bankR0][R6P]
+    //---------------------
+    // Execute Subtraction
+    //---------------------
+    ADD 11     // ACC=ACC+R11
+    DAA        // Decimal Adjust
+    //-----------------------------
+    // Store Subtract Result Digit
+    //-----------------------------
+    XCH  2
+    DCL        // Select Bank Specified by R2
+    XCH  2     // Revert ACC
+    SRC 6P
+    WRM        // RAMCH[bankR2][R6P]=ACC
+    //-------------------
+    // Repeat 256 counts
+    //-------------------
+    ISZ 15 LONGSUB2 // R15=R15+1, if NZ jump
+    ISZ 14 LONGSUB2 // R14=R14+1, if NZ jump
+    //-----------------------------------
+    // Decrement Bank Number R0, keep CY
+    //-----------------------------------
+    LD   0     // Simpley clear LSB of R0
+    RAR
+    CLC
+    RAL
+    XCH  0
+    //-----------------------------------
+    // Decrement Bank Number R1, keep CY
+    //-----------------------------------
+    LD   1     // Simpley clear LSB of R1
+    RAR
+    CLC
+    RAL
+    XCH  1
+    //-----------------------------------
+    // Decrement Bank Number R2, keep CY
+    //-----------------------------------
+    LD   2     // Simpley clear LSB of R2
+    RAR
+    CLC
+    RAL
+    XCH  2
+    //--------------------
+    // Repeat for 2 banks
+    //--------------------
+    ISZ 10 LONGSUB1 // R10=R10+1, if NZ jump
+    //---------
+    // Return
+    //---------
+    BBL 0
+
+//====================================
+// Long Division (512digits)
+//   Input Parameters
+//     Dividend  RAMCH[bankR0][all]:RAMCH[bankR0+1][all]
+//     Divisor   R[12:14]   RRR
+//     Converged Flag R3
+//   Output Parameters
+//     Result    RAMCH[bankR0][all]:RAMCH[bankR0+1][all]
+//     If Converged, R3=1
+//     Converged Flag R3
+//   Registers to be broken
+//     R4...R15
+//====================================
+LONGDIV:
+    //-----------------------------------
+    // Set Converged Flag (R3) 1, so far
+    //-----------------------------------
+    LDM  1
+    XCH  3
+    //--------------------------------------------
+    // Clear Dividend R8-R11 for Partial Division
+    //--------------------------------------------
+    FIM  4P 0    // R8 =0, R9 =0
+    FIM  5P 0    // R10=0, R11=0
+    //--------------------------------
+    // Set Loop Counter R5 for 2banks
+    //--------------------------------
+    LDM -2
+    XCH  5       // R5=-2(14)
+LONGDIV1:
+    //------------------------------------------
+    // Set {R6,R7}=0 as RAM SRC address pointer
+    //------------------------------------------
+    FIM 3P 0
+LONGDIV2:
+    //----------------------------------
+    // Chain Moves; {R8,R10}<--{R9,R11}
+    //----------------------------------
+    //-----------
+    // R8<--R9
+    //-----------
+    XCH  9
+    XCH  8
+    //-----------
+    // R9<--R10
+    //-----------
+    XCH 10
+    XCH  9
+    //-----------
+    // R10<--R11
+    //-----------
+    XCH 11
+    XCH 10
+    //----------------------------------------------
+    // Final Chain Moves; R11<--RAMCH[bankR0][R3P]
+    //----------------------------------------------
+    LD  0
+    DCL        // Select Bank Specified by R0
+    SRC 3P
+    RDM
+    XCH 11
+    //------------------------------------------------
+    // Dividend is prepared, so exec Partial Division
+    //------------------------------------------------
+    JMS PARTDIV
+    //-----------------------------------------
+    // Store Quotient R4 at RAMCH[bankR0][R3P]
+    //-----------------------------------------
+    XCH  4
+    WRM
+    //--------------------------------------
+    // If Quotient is not zero,
+    // then set Flag R3 as "Not Converged"
+    //--------------------------------------
+    JCN AZ LONGDIV3 // if ACC==0, skip
+    CLB
+    XCH  3          // Clear R3
+LONGDIV3:
+    //--------------------
+    // Repeat 256 counts
+    //--------------------
+    ISZ 7 LONGDIV2 // R7=R7+1, if NZ jump
+    ISZ 6 LONGDIV2 // R6=R6+1, if NZ jump
+    //-----------------------
+    // Increment Bank Number
+    //-----------------------
+    INC 0      // R0=R0+1
+    //---------------
+    // Repeat 2banks
+    //---------------
+    ISZ 5 LONGDIV1 // R5=R5+1, if NZ jump
+    //--------
+    // Return
+    //--------
+    BBL 0
+
+//====================================
+// Partial Division
+//   Input Parameters
+//     Dividend  R[8:11]   RRRR
+//     Divisor   R[12:14]   RRR
+//   Output Parameters
+//     Quotient  R4
+//     Remainder R[8:11]   RRRR
+//   Registers to be broken
+//     none
+//====================================
+PARTDIV:
+    //-----------------------------
+    // Initialize Quotient to Zero
+    //-----------------------------
+    CLB
+    XCH  4     // Quotient(R4)=0
+PARTDIV1:
+    //----------------------------------
+    // Repeat Subtraction until Borrow
+    //----------------------------------
+    JMS  PARTSUB     // Partial Subtract
+    INC  4           // Increment Quotient(R4)
+    JCN  C1 PARTDIV1 // if (CY==1, No Borrow) repeat
+PARTDIV2:
+    //---------------------------
+    // Restore Extra Subtraction
+    //---------------------------
+    JMS  PARTADD // Partial Addition
+    //------------------------------
+    // Decrement Quotient(R4)
+    // according to Last Restoring
+    //------------------------------
+    LD  4
+    DAC
+    XCH 4
+    //---------
+    // Return
+    //---------
+    BBL  0
+
+//====================================
+// Partial Addition
+//   Input Parameters
+//     Augend  R[8:11]   RRRR
+//     Addend  R[12:14]   RRR
+//   Output Parameters
+//     Result  R[8:11]   RRRR
+//   Registers to be broken
+//     R15
+//====================================
+PARTADD:
+    //-----------------------------
+    // Clear CY for Long Addition     
+    //-----------------------------
+    CLC
+    //-----------------
+    // R11=R11+R14+CY
+    //-----------------
+    LD  11
+    ADD 14
+    DAA
+    XCH 11
+    //-----------------
+    // R10=R10+R13+CY
+    //-----------------
+    LD  10
+    ADD 13
+    DAA
+    XCH 10
+    //-----------------
+    // R9=R9+R12+CY
+    //-----------------
+    LD   9
+    ADD 12
+    DAA
+    XCH  9
+    //-----------------
+    // R8=R8+0+CY
+    //-----------------
+    LDM  0
+    XCH 15     // R15=0
+    LD   8
+    ADD 15
+    DAA
+    XCH  8
+    //---------
+    // Return
+    //---------
+    BBL  0
+
+//====================================
+// Partial Subtract
+//   Input Parameters
+//     Minuend    R[8:11]   RRRR
+//     Subtrahend R[12:14]   RRR
+//   Output Parameters
+//     Result     R[8:11]   RRRR
+//   Registers to be broken
+//     R15
+//====================================
+PARTSUB:
+    //------------------------------
+    // Set CY for Long Subtraction
+    //------------------------------
+    STC        // No Borrow
+    //---------------------
+    // R11=R11+(10-R14)-CY
+    //---------------------
+    TCS        // if no borrow ACC=10, else ACC=9
+    SUB 14
+    CLC
+    ADD 11
+    DAA
+    XCH 11
+    //---------------------
+    // R10=R10+(10-R13)-CY
+    //---------------------
+    TCS        // if no borrow ACC=10, else ACC=9
+    SUB 13
+    CLC
+    ADD 10
+    DAA
+    XCH 10
+    //---------------------
+    // R9=R9+(10-R12)-CY
+    //---------------------
+    TCS        // if no borrow ACC=10, else ACC=9
+    SUB 12
+    CLC
+    ADD  9
+    DAA
+    XCH  9
+    //---------------------
+    // R8=R8-(10-0)-CY
+    //---------------------
+    LDM  0
+    XCH 15     // R15=0
+    TCS        // if no borrow ACC=10, else ACC=9
+    SUB 15
+    CLC
+    ADD  8
+    DAA
+    XCH  8
+    //---------
+    // Return
+    //---------
+    BBL  0
+
+//====================================
+// Increment Index by 1
+//   Input Parameters
+//     RAMST[bank0][0x00][pos0:2] : Index
+//   Output Parameters
+//     RAMST[bank0][0x00][pos0:2] : Index + 1
+//   Registers to be broken
+//     R6, R7
+//====================================
+INDEXINC:
+    //------------------------------------
+    // Select RAM at Bank0, Chip=0, Reg=0
+    //------------------------------------
+    CLB
+    DCL        // Select Bank 0
+    FIM 3P 0   // {R6,R7}=0x00
+    SRC 3P     // Select Bank0, Chip=0, Reg=0
+    //---------------------------
+    // Preparation to Increment
+    //---------------------------
+    STC        // CY=1
+    //---------------------------
+    // Addition of Lowest Digit
+    //---------------------------
+    RD2        // ACC=RAMST[bank0][0x00][pos2]
+    ADD 7      // ACC=ACC+R7+CY (R7=0)
+    DAA        // Decimal Adjust
+    WR2        // RAMST[bank0][0x00][pos2]=ACC
+    //---------------------------
+    // Addition of Middle Digit
+    //---------------------------
+    RD1        // ACC=RAMST[bank0][0x00][pos1]
+    ADD 7      // ACC=ACC+R7+CY (R7=0)
+    DAA        // Decimal Adjust
+    WR1        // RAMST[bank0][0x00][pos1]=ACC
+    //---------------------------
+    // Addition of Highest Digit
+    //---------------------------
+    RD0        // ACC=RAMST[bank0][0x00][pos0]
+    ADD 7      // ACC=ACC+R7+CY (R7=0)
+    DAA        // Decimal Adjust
+    WR0        // RAMST[bank0][0x00][pos0]=ACC
+    //--------
+    // Return
+    //--------
+    BBL 0
+
+//====================================
+// Make Odd Number from Index
+//   Input Parameters
+//     RAMST[bank0][0x00][pos0:2] : Index
+//   Output Parameters
+//     R[12:14] = 2 * Index + 1
+//   Registers to be broken
+//     R6, R7
+//====================================
+INDEXODD:
+    //------------------------------------
+    // Select RAM at Bank0, Chip=0, Reg=0
+    //------------------------------------
+    CLB
+    DCL        // Select Bank 0
+    FIM 3P 0   // {R6,R7}=0x00
+    SRC 3P     // Select Bank0, Chip=0, Reg=0
+    //------------------------
+    // Preparation to Add One
+    //------------------------
+    STC        // CY=1
+    //-------------------------------------------
+    // Addition of Lowest Digit (Index + Index)
+    //-------------------------------------------
+    RD2        // ACC=RAMST[bank0][0x00[pos2]
+    XCH  7     // R7=ACC
+    LD   7     // ACC=R7
+    ADD  7     // ACC=ACC+R7+CY
+    DAA        // Decimal Adjust
+    XCH 14     // R14=ACC
+    //-------------------------------------------
+    // Addition of Middle Digit (Index + Index)
+    //-------------------------------------------
+    RD1        // ACC=RAMST[bank0][0x00][pos1]
+    XCH  7     // R7<->ACC
+    LD   7     // ACC=R7
+    ADD  7     // ACC=ACC+R7+CY
+    DAA        // Decimal Adjust
+    XCH 13     // R13=ACC
+    //-------------------------------------------
+    // Addition of Highest Digit (Index + Index)
+    //-------------------------------------------
+    RD0        // ACC=RAMST[bank0][0x00][pos0]
+    XCH  7     // R7<->ACC
+    LD   7     // ACC=R7
+    ADD  7     // ACC=ACC+R7+CY
+    DAA        // Decimal Adjust
+    XCH 12     // R12=ACC
+    //---------
+    // Return
+    //---------
+    BBL  0
+
+//==========================================
+// Printer Main Routine  
+//   Printout 500digits in Buffer RAMCH[bank0:1][] 
+//   Register to be broken
+//     R3, R4: Loop Counter
+//     R0, R1, R2, R11, R12, R13, R14, R15
+//==========================================
+PRINTER_MAIN:
+    //---------------------------
+    // Initialize Buffer Pointer
+    //---------------------------
+    JMS PRINTER_BUFPTR_INIT
+    //----------------------
+    // Repeat 5x10=50 times
+    //----------------------
+    LDM  16-5
+    XCH  3 // R3=#-5(0xB)
+PRINTER_MAIN1:
+    LDM  16-10
+    XCH  4 // R4=#-10(0x6)
+PRINTER_MAIN2:
+    //-------------------------------
+    // Printout 10digits from Buffer
+    //-------------------------------
+    JMS PRINTER_TEN_DIGIT
+    //-------------
+    // Repeat Loop
+    //-------------
+    ISZ  4 PRINTER_MAIN2 // R4=R4+1, if NZ jump
+    ISZ  3 PRINTER_MAIN1 // R3=R3+1, if NZ jump
+    //---------
+    // Return
+    //---------
+    BBL  0
+
+//==================================
+// Initialize Buffer Pointer
+//   Output Parameters
+//     RAMST[bank0][chip0][reg1][0]: Bank No. of Buffer at Next
+//     RAMST[bank0][chip0][reg1][1]: Addr H of Buffer at Next
+//     RAMST[bank0][chip0][reg1][2]: Addr L of Buffer at Next
+//   Register to be broken
+//     R14, R15 
+//==================================
+PRINTER_BUFPTR_INIT:
+    //----------------------
+    // Select RAM at Bank0
+    //----------------------
+    CLB
+    DCL
+    //----------------------
+    // Select Chip0 Reg1
+    //----------------------
+    FIM 7P 0x10
+    SRC 7P    
+    //----------------------
+    // Initial Bank=0
+    //----------------------
+    WR0
+    //----------------------
+    // Initial Address=0x03
+    //----------------------
+    WR1
+    LDM 3
+    WR2
+    //---------
+    // Return
+    //---------
+    BBL  0
+    
+//==================================
+// Print 10 Digits
+//   Input Parameters
+//     RAMST[bank0][chip0][reg1][0]: Bank No. of Buffer at Start
+//     RAMST[bank0][chip0][reg1][1]: Addr H of Buffer at Start
+//     RAMST[bank0][chip0][reg1][2]: Addr L of Buffer at Start
+//   Output Parameters
+//     RAMST[bank0][chip0][reg1][0]: Bank No. of Buffer at Next
+//     RAMST[bank0][chip0][reg1][1]: Addr H of Buffer at Next
+//     RAMST[bank0][chip0][reg1][2]: Addr L of Buffer at Next
+//   Register to be broken
+//     R0: Drum Sector No.
+//     R1: A Digit taken from Buffer
+//     R2: Shift Out Data (0 or 1)
+//     R10: Shift Out Loop Counter
+//      R11, R12, R13, R14, R15
+//==================================
+PRINTER_TEN_DIGIT:
+    //---------------------------------------------------
+    // Wait for Drum Index Position, twice
+    // (twice means to prevent overflow in FPGA buffer)
+    // and Set Drum Sectror No. R0 to Zero
+    //---------------------------------------------------
+    CLB
+    XCH  0
+PRINTER_TEN_DIGIT00:
+    JMS PRINTER_DRUM_SECTOR
+    LD  0
+    JCN AN PRINTER_TEN_DIGIT00
+PRINTER_TEN_DIGIT01:
+    JMS PRINTER_DRUM_SECTOR
+    LD  0
+    JCN AN PRINTER_TEN_DIGIT01
+    //--------------------------
+    // Proceed Buffer Pointer 
+    //--------------------------
+    JMS PRINTER_BUFPTR_ADD_TEN
+    //-------------------------------
+    // Main Loop (Drum Sector 0-9)
+    //-------------------------------
+PRINTER_TEN_DIGIT1:
+    //--------------------------------------
+    // Shift Out Ten Digits to PRS8-PRS17
+    // PRS18-PRS19 will be undefined, but OK
+    //--------------------------------------
+    LDM   6
+    XCH  10 // R10=#-10(0x06) as Loop Counter
+PRINTER_TEN_DIGIT2:
+    //--------------------------
+    // Decrement Buffer Pointer
+    //--------------------------
+    JMS PRINTER_BUFPTR_DEC
+    //--------------------------
+    // Take a Digit from Buffer
+    //--------------------------
+    JMS PRINTER_BUFPTR_GET_DIGIT // R1=Digit
+    //-----------------------------------------------
+    // If the Digit is same as Current Sector No. R0,
+    // then Shift Out 1, else Shift Out 0
+    //-----------------------------------------------
+    LD   1 // ACC=R1
+    CLC
+    SUB  0 // ACC=ACC-R0
+    JCN AN PRINTER_TEN_DIGIT3 // if not equal, jump
+    LDM 1 // ACC=1
+    JUN PRINTER_TEN_DIGIT4
+PRINTER_TEN_DIGIT3:
+    CLB   // ACC=0
+PRINTER_TEN_DIGIT4:
+    XCH 2 // R2=ACC
+    JMS PRINTER_SHIFT_OUT
+    //------------------------------------
+    // Repeat the Shift Out Loop 10 times
+    //------------------------------------
+    ISZ 10 PRINTER_TEN_DIGIT2 // R10=R10+1, if NZ jump
+    //---------------------------
+    // Shift Out 0 to PRS0-PRS7
+    //---------------------------
+    CLB
+    XCH  2
+    JMS PRINTER_SHIFT_OUT // PRS7
+    JMS PRINTER_SHIFT_OUT // PRS6
+    JMS PRINTER_SHIFT_OUT // PRS5
+    JMS PRINTER_SHIFT_OUT // PRS4
+    JMS PRINTER_SHIFT_OUT // PRS3
+    JMS PRINTER_SHIFT_OUT // PRS2
+    JMS PRINTER_SHIFT_OUT // PRS1
+    JMS PRINTER_SHIFT_OUT // PRS0    
+    //---------------
+    // Fire Hammers
+    //---------------
+    JMS PRINTER_HAMMER
+    //---------------------------
+    // Proceed Buffer Pointer
+    //---------------------------
+    JMS PRINTER_BUFPTR_ADD_TEN
+    //---------------------------
+    // Wait for Next Drum Sector
+    // and Update Sector No. R0
+    //---------------------------
+    JMS PRINTER_DRUM_SECTOR
+    //-----------------------------------
+    // If Drum Sector != 10, Repeat Loop
+    // (Skip Drum Sector 10, 11, 12)
+    //-----------------------------------
+    LDM 10 // ACC=#10
+    CLC    // CY=0 (no borrow)
+    SUB  0 // ACC=ACC-R0
+    JCN AN PRINTER_TEN_DIGIT1
+    //-------------
+    // Paper Feed
+    //-------------
+    JMS PRINTER_PAPER_FEED
+    //---------
+    // Return
+    //---------
+    BBL  0
+        
+//==================================
+// Update Drum Sector
+//   Input Parameters
+//     R0: Drum Sector No.
+//   Output Parameters
+//     R0: Drum Sector No.
+//   Register to be broken
+//      R0, R14, R15
+//==================================
+PRINTER_DRUM_SECTOR:
+    //------------------------------------
+    // Wait for Sector signal becomes Low
+    //------------------------------------
+PRINTER_DRUM_SECTOR1:
+    JCN TN PRINTER_DRUM_SECTOR1
+    //-------------------------------------------
+    // Wait for Sector signal High (Rising Edge)
+    //-------------------------------------------
+PRINTER_DRUM_SECTOR2:
+    JCN TZ PRINTER_DRUM_SECTOR2
+    //--------------------------------
+    // Read ROM#2 IO0 (Index Signal)
+    //--------------------------------
+    FIM  7P 0x20
+    SRC  7P
+    RDR
+    //--------------------------------------
+    // If Index Signal is Low, Incremnt R0
+    //--------------------------------------
+    RAR
+    JCN C1 PRINTER_DRUM_SECTOR3
+    INC  0
+    //---------
+    // Return
+    //---------
+    BBL  0
+PRINTER_DRUM_SECTOR3:
+    //--------------------------------------
+    // If Index Signal is High, Clear R0
+    //--------------------------------------
+    CLB
+    XCH  0
+    //---------
+    // Return
+    //---------
+    BBL  0
+
+//==================================
+// Add 10 to Buffer Pointer
+//   Input Parameters
+//     RAMST[bank0][chip0][reg1][0]: Bank No. of Buffer at Start
+//     RAMST[bank0][chip0][reg1][1]: Addr H of Buffer at Start
+//     RAMST[bank0][chip0][reg1][2]: Addr L of Buffer at Start
+//   Output Parameters
+//     RAMST[bank0][chip0][reg1][0]: Bank No. of Buffer at Next
+//     RAMST[bank0][chip0][reg1][1]: Addr H of Buffer at Next
+//     RAMST[bank0][chip0][reg1][2]: Addr L of Buffer at Next
+//   Register to be broken
+//     R14, R15
+//==================================
+PRINTER_BUFPTR_ADD_TEN:
+    //----------------------
+    // Select RAM at Bank0
+    //----------------------
+    CLB
+    DCL
+    //----------------------
+    // Select Chip0 Reg1
+    //----------------------
+    FIM 7P 0x10
+    SRC 7P    
+    //-------------------
+    // Add Addr L and 10
+    //-------------------
+    LDM 10
+    XCH 15
+    RD2
+    CLC
+    ADD 15
+    WR2
+    //-------------------
+    // Add Addr H and CY
+    //-------------------
+    LDM 0
+    XCH 15
+    RD1
+    ADD 15
+    WR1
+    //-------------------
+    // Add Bank and CY
+    //-------------------
+    RD0
+    ADD 15
+    WR0
+    //---------
+    // Return
+    //---------
+    BBL  0
+
+//==================================
+// Decrement Buffer Pointer
+//   Input Parameters
+//     RAMST[bank0][chip0][reg1][0]: Bank No. of Buffer at Start
+//     RAMST[bank0][chip0][reg1][1]: Addr H of Buffer at Start
+//     RAMST[bank0][chip0][reg1][2]: Addr L of Buffer at Start
+//   Output Parameters
+//     RAMST[bank0][chip0][reg1][0]: Bank No. of Buffer at Next
+//     RAMST[bank0][chip0][reg1][1]: Addr H of Buffer at Next
+//     RAMST[bank0][chip0][reg1][2]: Addr L of Buffer at Next
+//   Register to be broken
+//     R14, R15
+//==================================
+PRINTER_BUFPTR_DEC:
+    //---------------------
+    // Select RAM at Bank0
+    //---------------------
+    CLB
+    DCL
+    //-------------------
+    // Select Chip0 Reg1
+    //-------------------
+    FIM 7P 0x10
+    SRC 7P    
+    //--------------------------
+    // Subtract One from Addr L 
+    //--------------------------
+    LDM 0
+    XCH 15
+    STC    // CY=1, borrow
+    RD2
+    SUB 15
+    WR2
+    CMC
+    //---------------
+    // Borrow Chain
+    //---------------
+    RD1
+    SUB 15
+    WR1
+    CMC
+    RD0
+    SUB 15
+    WR0
+    //---------
+    // Return
+    //---------
+    BBL  0
+
+//==================================
+// Get a Digit from Buffer
+//   Input Parameters
+//     RAMST[bank0][chip0][reg1][0]: Bank No. of Buffer at Start
+//     RAMST[bank0][chip0][reg1][1]: Addr H of Buffer at Start
+//     RAMST[bank0][chip0][reg1][2]: Addr L of Buffer at Start
+//   Output Parameters
+//     RAMST[bank0][chip0][reg1][0]: Bank No. of Buffer at Next
+//     RAMST[bank0][chip0][reg1][1]: Addr H of Buffer at Next
+//     RAMST[bank0][chip0][reg1][2]: Addr L of Buffer at Next
+//     R1: Digit
+//   Register to be broken
+//      R11, R12, R13, R14, R15
+//==================================
+PRINTER_BUFPTR_GET_DIGIT:
+    //----------------------
+    // Select RAM at Bank0
+    //----------------------
+    CLB
+    DCL
+    //----------------------
+    // Select Chip0 Reg1
+    //----------------------
+    FIM 7P 0x10
+    SRC 7P    
+    //-------------------------------
+    // Set Bank No. of Buffer in R11
+    //-------------------------------
+    RD0
+    XCH 11
+    //-------------------------------
+    // Set Addr of Buffer in R6P
+    //-------------------------------
+    RD1
+    XCH 12
+    RD2
+    XCH 13
+    //-------------------------------------------
+    // Read a Digit from Buffer and Set it in R1
+    //-------------------------------------------
+    LD  11
+    DCL
+    SRC 6P
+    RDM
+    XCH  1
+    //---------
+    // Return
+    //---------
+    BBL  0
+
+//==================================
+// Shift Out One Bit
+//   Input Parameters
+//     R2: A bit (0 or 1) to be shifted out
+//   Registers to be broken
+//     R14, R15
+//==================================
+PRINTER_SHIFT_OUT:
+    //-----------------------------------
+    // ROM#0 bit2=CLOCK, bit1=DATAIN
+    // Set Shift Out Data and Set Clock
+    //-----------------------------------
+    FIM 7P 0x00
+    SRC 7P
+    LD  2 // R2=0 or 1
+    JCN AZ PRINTER_SHIFT_OUT1
+    LDM 6 // ACC=0110
+    JUN PRINTER_SHIFT_OUT2
+PRINTER_SHIFT_OUT1:
+    LDM 4 // ACC=0100
+PRINTER_SHIFT_OUT2:
+    WRR
+    //-----------------------------------
+    // Clear Shift Out Data and Clock
+    //-----------------------------------
+    CLB
+    WRR
+    //--------
+    // Return
+    //--------
+    BBL  0
+
+//==================================
+// Fire Hammers
+//   Registers to be broken
+//     R14, R15
+//==================================
+PRINTER_HAMMER:
+    //--------------------
+    // RAM#0 bit1=HAMMER
+    //--------------------
+    CLB
+    DCL
+    FIM 7P 0x00
+    LDM  2
+    WMP // Set
+    CLB
+    WMP // Clear
+    //---------
+    // Return
+    //---------
+    BBL  0
+
+//==================================
+// Paper Feed
+//   Registers to be broken
+//     R14, R15
+//==================================
+PRINTER_PAPER_FEED:
+    //-----------------------
+    // RAM#0 bit3=PAPER_FEED
+    //-----------------------
+    CLB
+    DCL
+    FIM 7P 0x00
+    LDM  8
+    WMP // Set
+    CLB
+    WMP // Clear
+    //---------
+    // Return
+    //---------
+    BBL  0
+
+END
+//==========================================
+// End of Program
+//==========================================

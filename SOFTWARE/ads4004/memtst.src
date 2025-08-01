@@ -1,0 +1,133 @@
+// Memory Access Test for ADS4004
+        org 0x000 //
+MEMTST
+        ; RAM W&R
+        ldm 1
+        dcl
+        fim 1P 0x34
+        src 1P
+        ldm 0xa
+        wrm
+        ldm 0x5
+        rdm
+
+        ; RAM Status Character(RSC) W&R
+        ldm 2
+        dcl
+        fim 2P 0x60
+        src 2P
+        ldm 0xb
+        wr2
+        ldm 0x4
+        rd2
+        rd0
+
+        ; Read ROM Port
+        fim 2P 0x40
+        src 2p
+        rdr
+
+        ; Write ROM Port
+        fim 2P 0xc0
+        src 2p
+        ldm 10
+        wrr
+
+        ; Write RAM Port
+        ldm 3 ; bank4
+        dcl
+        fim 3p 0x55
+        src 3p
+        wmp
+
+        ; ADD RAM
+        ldm 2
+        dcl
+        fim 1P 0x56
+        src 1P
+        ldm 0xa
+        wrm
+        stc ; Carry=1
+        ldm 0x6
+        adm
+
+        ; SUB RAM
+        ldm 2
+        dcl
+        fim 1P 0x57
+        src 1P
+        ldm 0x5
+        wrm
+        stc ; Borrow=0
+        ldm 0x6
+        sbm
+
+        ; Program RAM R&W
+        ldm 0
+        dcl
+        fim 0p 0
+        src 0p
+        ldm 0x0
+        wr0
+        ldm 0x2
+        wr1
+        ldm 0x4
+        wr2
+        ;
+        jms PGM_RD
+        ;
+        fim 1P 0xab
+        jms PGM_WR
+        ;
+        fim 1P 0x0
+        jms PGM_RD
+
+// End of Test
+FINISH jun FINISH
+
+// Program RAM, Read & Write
+//   Program RAM Location = Bank0, Chip0, Reg0: {RSC0, RSC1, RSC2}
+//   Program RAM Data = {R2:R3}
+PGM_WR
+        fim 0p 224
+        src 0p
+        ldm 1
+        wrr
+        jms PGMCOM
+        ld  2
+        wpm
+        ld  3
+        wpm
+        fim 0p 224
+        src 0p
+        clb
+        wrr
+        bbl 0
+PGM_RD
+        jms PGMCOM
+        wpm
+        wpm
+        fim 0p 224
+        src 0p
+        rdr
+        xch 2
+        inc 0
+        src 0p
+        rdr
+        xch 3
+        bbl 0
+PGMCOM
+        fim 0p 0
+        src 0p
+        rd1
+        xch 10
+        rd2
+        xch 11
+        rd0
+        fim 0p 240
+        src 0p
+        wrr
+        src 5p
+        bbl 0
+
+        end  ; end of assemble source

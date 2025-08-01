@@ -1,0 +1,12 @@
++define+SIMULATION
+
++incdir+${DIR_SIM}
++incdir+${DIR_RTL_SYS}
+
+${DIR_RTL_SYS}/MCS4/mcs4_cpu.v
+${DIR_RTL_SYS}/MCS4/mcs4_sys.v
+${DIR_RTL_SYS}/MCS4/mcs4_rom.v
+${DIR_RTL_SYS}/MCS4/mcs4_ram.v
+${DIR_RTL_SYS}/MCS4/key_printer.v
+${DIR_RTL_SYS}/MCS4/mcs4_shifter.v
+${DIR_SIM}/tb_TOP.v

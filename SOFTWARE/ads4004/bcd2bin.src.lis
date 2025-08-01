@@ -1,0 +1,83 @@
+000         // BCD to BIN for ADS4004
+000             org 0x000
+000         
+000             // Main Routine
+000         MAIN
+000             // Store BCD in Bank0/Chip0/Reg0/Chr2-Chr0
+000 D0          ldm 0
+001 FD          dcl
+002 20 02       fim 0p 0x02
+004 21          src 0p
+005 D1          ldm 0x1   ; MSB of BCD Code
+006 E0          wrm
+007 20 01       fim 0p 0x01
+009 21          src 0p
+00A D2          ldm 0x2   ; Middle of BCD Code
+00B E0          wrm
+00C 20 00       fim 0p 0x00
+00E 21          src 0p
+00F D3          ldm 0x3   ; LSB of BCD Code
+010 E0          wrm
+011             // Call BCD to BIN Converter
+011 50 1F       jms BCDBIN
+013             // Store BIN Result in Bank0/Chip0/Reg0/Chr4-Chr3
+013 20 04       fim 0p 0x04
+015 21          src 0p
+016 B2          xch 2     ; MSB of R1P (Result)
+017 E0          wrm
+018 20 03       fim 0p 0x03
+01A 21          src 0p
+01B B3          xch 3     ; LSB of R1P (Result)
+01C E0          wrm
+01D         FINISH
+01D 40 1D       jun FINISH    
+01F             
+01F         // Convert BCD to Binary
+01F         BCDBIN
+01F 20 00       fim 0p 0   ; R0P=0
+021         BCDBIN_1 // 1st Digit
+021 22 00       fim 1p 0   ; R1P=0 (Result)
+023 21          src 0p
+024 E9          rdm        ; Read 1st (LSB) BCD Digit
+025 B3          xch 3      ; R1P(LSB)=1st BCD Digit
+026         BCDBIN_2 // 2nd Digit
+026 24 0A       fim 2p 10  ; R2P=10, for 2nd Digit
+028 50 2F       jms BCDADD ; Repeat (R1P=R1P+R2P) for Digit times
+02A         BCDBIN_3 // 3rd Digit
+02A 24 64       fim 2p 100 ; R2P=100, for 3rd Digit
+02C 50 2F       jms BCDADD ; Repeat (R1P=R1P+R2P) for Digit times
+02E         BCDBIN_END
+02E C0           bbl 0     ; Return
+02F         BCDADD
+02F 61          inc 1      ; R1=R1+1
+030 21          src 0p     ; Prepare to Read Next Digit
+031         BA1
+031 E9          rdm        ; Read the BCD Digit
+032 14 3F       jcn az BA2 ; if ACC==0, jump to BA2
+034 F8          dac        ; ACC=ACC-1
+035 E0          wrm        ; Write Back the Decremented BCD Digit to RAM
+036 F1          clc        ; R1P=R1P+R2P
+037 A3          ld 3       ;   ACC=R3
+038 85          add 5      ;   ACC=ACC+R5
+039 B3          xch 3      ;   R3=ACC
+03A A2          ld 2       ;   ACC=R2
+03B 84          ADD 4      ;   ACC=ACC+R4
+03C B2          xch 2      ;   R2=ACC
+03D 40 31       jun BA1    ; jump to BA1
+03F         BA2
+03F C0          bbl 0      ; Return
+040         
+040             end
+-----Label Table-----
+MAIN     = 0x0000
+FINISH   = 0x001D
+BCDBIN   = 0x001F
+BCDBIN_1 = 0x0021
+BCDBIN_2 = 0x0026
+BCDBIN_3 = 0x002A
+BCDBIN_END = 0x002E
+BCDADD   = 0x002F
+BA1      = 0x0031
+BA2      = 0x003F
+-----End of Label Table-----
+Total Error = 0

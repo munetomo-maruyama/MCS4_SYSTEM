@@ -1,0 +1,180 @@
+%==============================================================
+In this chapter, we develop and execute a program in 4004 CPU assembly to compute 500 digits of the mathematical constant $\pi$. Despite being the world's first microprocessor developed during the dawn of microcontroller technology, the Intel 4004 exhibits surprisingly sufficient computational capability—even with its primitive instruction set.
+
+Through this experiment, we aim to:
+\begin{itemize}
+  \item Showcase the computational potential of the 4004 CPU despite its limitations.
+  \item Implement high-precision arithmetic routines within the constraints of a 4-bit architecture.
+  \item Demonstrate practical applications of early microprocessors for complex numerical tasks.
+  \item Celebrate the architectural elegance and historical significance of the MCS-4 system.
+\end{itemize}
+
+The challenge underscores that even vintage systems can tackle sophisticated calculations with careful programming, optimization, and ingenuity.
+
+%==============================================================
+\section{Principle of Pi Calculation}
+
+This program utilizes Machin's formula to calculate the digits of $\pi$. Although the formula converges slowly, it is well-suited for implementation on simple microcontrollers.
+
+Machin's formula is expressed as follows:
+
+
+\begin{equation}
+\frac{\pi}{4} = 4\arctan\left(\frac{1}{5}\right) - \arctan\left(\frac{1}{239}\right)
+\end{equation}
+
+
+That is,
+
+
+\begin{equation}
+\pi = 16\arctan\left(\frac{1}{5}\right) - 4\arctan\left(\frac{1}{239}\right)
+\end{equation}
+
+
+
+The arctangent function can be expanded into the infinite series:
+
+
+\begin{equation}
+\arctan\left(\frac{1}{p}\right) = \frac{1}{p} - \frac{1}{3p^3} + \frac{1}{5p^5} - \frac{1}{7p^7} + \cdots
+\end{equation}
+
+
+
+Therefore, $\pi$ can be computed as:
+
+\begin{multline}
+\pi = \left(16 \cdot \frac{1}{5} - 4 \cdot \frac{1}{239}\right)
+    - \left(16 \cdot \frac{1}{3 \cdot 5^3} - 4 \cdot \frac{1}{3 \cdot 239^3}\right)\\
+    + \left(16 \cdot \frac{1}{5 \cdot 5^5} - 4 \cdot \frac{1}{5 \cdot 239^5}\right)
+    - \left(16 \cdot \frac{1}{7 \cdot 5^7} - 4 \cdot \frac{1}{7 \cdot 239^7}\right)
+    + \cdots
+\end{multline}
+
+
+
+Which can also be written in the following form:
+
+
+\begin{multline}
+\pi = \frac{1}{1}\left(\frac{16 \cdot 5}{(5^2)^1} - \frac{4 \cdot 239}{(239^2)^1}\right)
+    - \frac{1}{3}\left(\frac{16 \cdot 5}{(5^2)^2} - \frac{4 \cdot 239}{(239^2)^2}\right)\\
+    + \frac{1}{5}\left(\frac{16 \cdot 5}{(5^2)^3} - \frac{4 \cdot 239}{(239^2)^3}\right)
+    - \frac{1}{7}\left(\frac{16 \cdot 5}{(5^2)^4} - \frac{4 \cdot 239}{(239^2)^4}\right)
+    + \cdots
+\end{multline}
+
+If multi-byte addition, subtraction, and division operations can be implemented, it becomes feasible to compute $\pi$ to a large number of digits.
+
+%==============================================================
+\section{Pi Calculation Algorithm}
+This algorithm computes $\pi$ digit-by-digit using decimal arrays. Each array element stores a single decimal digit.
+
+For example:
+- Indexes \texttt{[0--3]} store the integer part.
+- Indexes \texttt{[4+]} store the fractional part.
+
+\vspace{1em}
+\noindent \textbf{Arrays used:}
+\begin{itemize}
+  \item \texttt{PI[]}: Stores the value converging to $\pi$.
+  \item \texttt{T1[]}: Computed as $(16 \times 5)/(5 \times 5)^n$
+  \item \texttt{T2[]}: Computed as $(4 \times 239)/(239 \times 239)^n$
+  \item \texttt{T3[]}: Computed as $(-1)^{n+1} \cdot \frac{1}{2n - 1} \cdot (\texttt{T1} - \texttt{T2})$
+\end{itemize}
+
+\vspace{1em}
+\noindent \textbf{Computation Procedure:}
+\begin{enumerate}
+  \item $n = 0$: Compute \texttt{T1[]} and \texttt{T2[]}. Derive \texttt{T3[]} from \texttt{T1[]} and \texttt{T2[]}. Initialize \texttt{PI[]} to zero.
+  \item $n = 1$: Compute \texttt{T1[]} and \texttt{T2[]}. Compute \texttt{T3[]} and add to \texttt{PI[]}.
+  \item $n = 2$: Compute \texttt{T1[]} and \texttt{T2[]}. Compute \texttt{T3[]} and subtract from \texttt{PI[]}.
+  \item $n = 3$: Compute \texttt{T1[]} and \texttt{T2[]}. Compute \texttt{T3[]} and add to \texttt{PI[]}.
+  \item $n = 4$: Compute \texttt{T1[]} and \texttt{T2[]}. Compute \texttt{T3[]}. If \texttt{T3[]} is zero, convergence is achieved.
+\end{enumerate}
+
+\vspace{1em}
+\noindent \textbf{Example Calculation (Up to Four Decimal Places):}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & \texttt{T1[]} & \texttt{T2[]} & \texttt{T3[]} & \texttt{PI[]} \\
+\hline
+0 & 0080.0000 & 0956.0000 & 0000.0000 & 0000.0000 \\
+1 & 0003.2000 & 0000.0167 & 0003.1833 (+) & 0003.1833 \\
+2 & 0000.1280 & 0000.0000 & 0000.0426 (-- ) & 0003.1407 \\
+3 & 0000.0051 & 0000.0000 & 0000.0010 (+) & 0003.1417 \\
+4 & 0000.0002 & 0000.0000 & 0000.0000 (-- ) & 0003.1417 \\
+\hline
+\end{tabular}
+\caption{Values of \texttt{T1[]}, \texttt{T2[]}, \texttt{T3[]}, and \texttt{PI[]} for Each $n$}
+\end{table}
+
+%==============================================================
+\section{RAM Data Assignment}
+We assign memory data to RAM in the MCS-4 system for the computation of $\pi$.
+
+The array RAMCH[Bank][SRC] stores four primary arrays: \texttt{T1[]}, \texttt{T2[]}, \texttt{T3[]}, and \texttt{PI[]}. The available RAM size is:
+
+\[
+8~\text{banks} \times 4~\text{chips} \times 4~\text{registers} \times 16~\text{characters} = 2048~\text{characters}
+\]
+
+Since there are four arrays, each is allocated 512 elements. This defines the precision to 500 digits of $\pi$. The arrays are assigned to RAM banks as follows:
+
+\begin{itemize}
+  \item \texttt{PI[512]}: Bank 0 (SRC=0x00--0xFF), Bank 1 (SRC=0x00--0xFF)
+  \item \texttt{T1[512]}: Bank 2 (SRC=0x00--0xFF), Bank 3 (SRC=0x00--0xFF)
+  \item \texttt{T2[512]}: Bank 4 (SRC=0x00--0xFF), Bank 5 (SRC=0x00--0xFF)
+  \item \texttt{T3[512]}: Bank 6 (SRC=0x00--0xFF), Bank 7 (SRC=0x00--0xFF)
+\end{itemize}
+
+%==============================================================
+\section{Source Program for Pi Computation}
+The source code for the $\pi$ computation program is written in assembler for the ADS4004 tool. It is located at:
+
+
+\[
+\texttt{SOFTWARE/ADS4004/pi4004.src}
+\]
+
+
+The program can be assembled and simulated on a PC. Use memory dumps to verify behavior during execution.
+
+%==============================================================
+\section{Printing the Result with 141-PF Printer}
+To execute the $\pi$ computation program, set SW8 to ON on the DE10-Lite board and reset the RISC-V 141-PF calculator program. The total computation time at a clock speed of 750~KHz (4004 CPU) is approximately 17 minutes.
+
+The final result—500 digits of $\pi$—is printed by the 141-PF printer. The following is an example display from the serial terminal:
+
+\begin{verbatim}
+===== pi4004 ===== [CUI]
+Loading...Done
+     1415926535      
+     8979323846      
+     2643383279      
+     5028841971      
+     6939937510      
+     5820974944      
+     5923078164      
+     0628620899      
+     ..........
+     0921861173      
+     8193261179      
+     3105118548      
+     0744623799      
+     6274956735      
+     1885752724      
+     8912279381      
+     8301194912
+\end{verbatim}
+
+
+%==============================================================
+
+
+
+

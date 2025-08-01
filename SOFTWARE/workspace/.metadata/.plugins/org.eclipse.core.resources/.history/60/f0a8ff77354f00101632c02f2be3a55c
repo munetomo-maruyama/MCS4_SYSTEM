@@ -1,0 +1,552 @@
+//===========================================================
+// MCS4 Project
+//-----------------------------------------------------------
+// File Name   : cui_141pf.c
+// Description : MCS4 Calculator Source Program (FreeRTOS)
+//-----------------------------------------------------------
+// History :
+// Rev.01 2025.06.10 M.Maruyama First Release
+//-----------------------------------------------------------
+// Copyright (C) 2025 M.Maruyama
+//===========================================================
+
+// OS kernel includes
+#include <stdio.h>
+#include <stdint.h>
+#include "FreeRTOS.h"
+#include "queue.h"
+#include "semphr.h"
+#include "task.h"
+
+// Application includes
+#include "cui_141pf.h"
+#include "riscv-virt.h"
+#include "gpio.h"
+#include "uart.h"
+#include "xprintf.h"
+
+// Priorities used by the tasks.
+#define PRIORITY_TASK_CUI_141PF_KEY (tskIDLE_PRIORITY + 3)
+#define PRIORITY_TASK_CUI_141PF_PRT (tskIDLE_PRIORITY + 4)
+
+// The rate at which data is sent to the queue.
+// The 200ms value is converted to ticks using the pdMS_TO_TICKS() macro.
+#define PERIOD_TASK_CUI_141PF_PRT_MS   pdMS_TO_TICKS(1000)
+
+// Mutex Handle
+static SemaphoreHandle_t xMutex_CUI_UART = NULL;
+static SemaphoreHandle_t xMutex_CUI_GPIO = NULL;
+
+// Binary Semaphore among ISR
+static SemaphoreHandle_t xSemaphore_CUI = NULL;
+
+//---------------------------------------
+// 141-PF Key/Switch Input Information
+//---------------------------------------
+uint32_t cui_decimal  = 0; // 0,1,2,3,4,5,6,,8
+uint32_t cui_rounding = 0; // 0(float), 1(rounding), 8(truncate)
+uint32_t cui_feed     = 0; // Paper Feed
+uint32_t cui_keycode  = 0; // Key Code of Key-Matrix
+
+//---------------------------------------
+// 141-PF Print Line Buffer
+//---------------------------------------
+#define CUI_PLINE_MAX 22
+
+//--------------------------------------------------
+// Main CUI 141-PF
+//--------------------------------------------------
+int Main_CUI_141PF( void )
+{
+    printf("\n===== Busicom 141-PF =====\n");
+
+    // Create Mutex
+    xMutex_CUI_UART = xSemaphoreCreateMutex();
+    xMutex_CUI_GPIO = xSemaphoreCreateMutex();
+    // Create Binary Semaphore
+    xSemaphore_CUI = xSemaphoreCreateBinary();
+
+    // Create Tasks
+    if ((xMutex_CUI_UART != NULL) && (xMutex_CUI_GPIO != NULL) &&(xSemaphore_CUI))
+    {
+        xTaskCreate(Task_CUI_141PF_Key, "KEY", configMINIMAL_STACK_SIZE * 4U, NULL,
+                PRIORITY_TASK_CUI_141PF_KEY, NULL );
+        xTaskCreate(Task_CUI_141PF_Prt, "PRT", configMINIMAL_STACK_SIZE * 4U, NULL,
+                PRIORITY_TASK_CUI_141PF_PRT, NULL );
+    }
+
+    // Start Tasks
+    vTaskStartScheduler();
+    return 0;
+}
+
+//-------------------------------------
+// External Interrupt Handler
+//     Should be defined macro as shown below in Assembler Option
+//     portasmHANDLE_INTERRUPT=External_Interrupt_Handler
+//-------------------------------------
+void External_Interrupt_Handler(void)
+{
+    BaseType_t xHigherPriorityTaskWoken;
+    xHigherPriorityTaskWoken = pdFALSE;
+    //
+    // Check the interrupt is from UART?
+    if (INT_UART_Check())
+    {
+        // Give Semaphore to ISR
+        xSemaphoreGiveFromISR(xSemaphore_CUI, &xHigherPriorityTaskWoken);
+    }
+    //
+    // Request Context Switch
+    portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
+}
+
+//-------------------------------------------------------
+// Task 141-PF Key Input (invoked by UART RXD Interrupt)
+//-------------------------------------------------------
+static void Task_CUI_141PF_Key(void *pvParameters)
+{
+    BaseType_t xStatus;
+    TickType_t xNextWakeTime;
+    const TickType_t xTicksToWait = 1000UL;
+    uint32_t state = 0;
+    uint8_t rxd = 0;
+
+    // Remove compiler warning about unused parameter.
+    (void) pvParameters;
+
+    // Initialize xNextWakeTime - this only needs to be done once.
+    xNextWakeTime = xTaskGetTickCount();
+
+    for ( ;; )
+    {
+        // Only when expecting Key Input...
+        if (state != 1)
+        {
+            // Wait for IRQ from UART RXD
+            xSemaphoreTake(xSemaphor_CUIe, portMAX_DELAY);
+            //
+            // Take Mutex_UART
+            xStatus = xSemaphoreTake(xMutex_CUI_UART, xTicksToWait);
+            //
+            if (xStatus == pdTRUE)
+            {
+                // Check Receive Interrupt?
+              //if ((mem_rd8(UART_CSR) & 0x01) != 0x01) return;
+                //
+                // Get Received Data
+                rxd = UART_RxD();
+                // Convert Lower-case to Upper-case
+                rxd = (rxd < 'a')? rxd
+                    : (rxd > 'z')? rxd
+                    : rxd - 'a' + 'A';
+            }
+            // Release Mutex_UART
+            xSemaphoreGive(xMutex_CUI_UART);
+        }
+        // Handle Key Command
+        MCS4_CUI_141PF_Key_Control(&state, rxd);
+        //
+        // Place this task in the blocked state until it is time to run again.
+      //vTaskDelayUntil( &xNextWakeTime, pdMS_TO_TICKS(200));
+        vTaskDelay(pdMS_TO_TICKS(50));
+    }
+}
+
+//----------------------------------------------------
+// Task 141-PF Printer
+//----------------------------------------------------
+static void Task__CUI141PF_Prt( void *pvParameters )
+{
+    BaseType_t xStatus;
+    TickType_t xNextWakeTime;
+    const TickType_t xTicksToWait = 1000UL;
+    uint32_t state = 0;
+
+    // Remove compiler warning about unused parameter.
+    ( void ) pvParameters;
+
+    // Initialize xNextWakeTime - this only needs to be done once.
+    xNextWakeTime = xTaskGetTickCount();
+
+    for( ;; )
+    {
+        // Handle Printer
+        MCS4_CUI_141PF_Prt_Control(&state);
+        //
+        // Place this task in the blocked state until it is time to run again.
+      //vTaskDelayUntil( &xNextWakeTime, pdMS_TO_TICKS(50));
+        vTaskDelay(pdMS_TO_TICKS(50));
+    }
+}
+
+//-------------------------------------
+// MCS4 141-PF Key Control
+//-------------------------------------
+void MCS4_CUI_141PF_Key_Control(uint32_t *pState, uint8_t rxd)
+{
+    BaseType_t xStatus;
+    const TickType_t xTicksToWait = 1000UL;
+    uint32_t port_key_prt_cmd;
+    uint32_t port_key_prt_res;
+    uint32_t rdata, wdata;
+    //
+    // Dispatch State
+    switch(*pState)
+    {
+        //
+        // Normal Key Input ON
+        case 0 :
+        {
+            // Print 7-Seg LED
+            xStatus = xSemaphoreTake(xMutex_CUI_GPIO, xTicksToWait);
+            if (xStatus == pdTRUE)
+            {
+                GPIO_PutCharSEG(rxd);
+            }
+            xSemaphoreGive(xMutex_CUI_GPIO);
+            //
+            // Make Key Code
+            switch(rxd)
+            {
+                case C_KEY_S   : {keycode = 0x09d; break;} // S  Sign (for Negative Input)
+                case C_KEY_EX  : {keycode = 0x09e; break;} // EX Exchange (for Division)
+                case C_KEY_CE  : {keycode = 0x09f; break;} // CE Clear Entry
+                case C_KEY_C   : {keycode = 0x0a0; break;} // C  Clear All
+                //
+                case C_KEY_7   : {keycode = 0x099; break;} // 7
+                case C_KEY_4   : {keycode = 0x09a; break;} // 4
+                case C_KEY_1   : {keycode = 0x09b; break;} // 1
+                case C_KEY_0   : {keycode = 0x09c; break;} // 0
+                //
+                case C_KEY_8   : {keycode = 0x095; break;} // 8
+                case C_KEY_5   : {keycode = 0x096; break;} // 5
+                case C_KEY_2   : {keycode = 0x097; break;} // 2
+                case C_KEY_00  : {keycode = 0x098; break;} // 00
+                //
+                case C_KEY_9   : {keycode = 0x091; break;} // 9
+                case C_KEY_6   : {keycode = 0x092; break;} // 6
+                case C_KEY_3   : {keycode = 0x093; break;} // 3
+                case C_KEY_DOT : {keycode = 0x094; break;} // .
+                //
+                case C_KEY_SUB : {keycode = 0x08d; break;} // -
+                case C_KEY_ADD : {keycode = 0x08e; break;} // +
+                //
+                case C_KEY_NUM : {keycode = 0x089; break;} // #  Print Again
+                case C_KEY_DIV : {keycode = 0x08a; break;} // /
+                case C_KEY_MUL : {keycode = 0x08b; break;} // X
+                case C_KEY_EQU : {keycode = 0x08c; break;} // =
+                //
+                case C_KEY_SQR : {keycode = 0x085; break;} // SQ Square Root
+                case C_KEY_PER : {keycode = 0x086; break;} // %  Percent
+                case C_KEY_MES : {keycode = 0x087; break;} // M=- After Equal, Memory Sub
+                case C_KEY_MEA : {keycode = 0x088; break;} // M=+ After Equal, Memory Add
+                //
+                case C_KEY_MC  : {keycode = 0x081; break;} // MC  Memory Clear
+                case C_KEY_MR  : {keycode = 0x082; break;} // MR  Memory Read
+                case C_KEY_MS  : {keycode = 0x083; break;} // M-  Memory Sub
+                case C_KEY_MA  : {keycode = 0x084; break;} // M+  Memory Add
+                //
+                default : {keycode = 0x000; break;}
+            }
+            //
+            // Paper Feed?
+            feed = (rxd == C_KEY_FED)? 1 : 0;
+            //
+            // Escape?
+            // Then Start to Configure decimal Point SW and roundinging SW
+            if (rxd == ESC)
+            {
+                xStatus = xSemaphoreTake(xMutex_CUI_UART, xTicksToWait);
+                if (xStatus == pdTRUE)
+                {
+                    xprintf("----------------------------\n");
+                    xprintf("Set Slide Switches on 141-PF\n");
+                    xprintf("----------------------------\n");
+                    xprintf("decimal Point : 0~6/8 (now %1x)=? ", decimal);
+                }
+                xSemaphoreGive(xMutex_CUI_UART);
+                *pState = 2;
+            }
+            //
+            // Send Key Command
+            else
+            {
+                port_key_prt_cmd = (1        << 31)  // enable 141-PF
+                                 | (feed     << 14)  // paper feed
+                                 | (rounding << 12)  // rounding switch
+                                 | (decimal  <<  8)  // decimal point
+                                 | (keycode  <<  0); // key code
+                // maintain printer fifo pop request
+                xStatus = xSemaphoreTake(xMutex_CUI_GPIO, xTicksToWait);
+                if (xStatus == pdTRUE)
+                {
+                    rdata = mem_rd32(GPIO_PDR3);
+                    wdata = rdata & (1 << 15);
+                    wdata = wdata | port_key_prt_cmd;
+                    mem_wr32(GPIO_PDR3, wdata);
+                }
+                xSemaphoreGive(xMutex_CUI_GPIO);
+                //
+                *pState = 1;
+            }
+            break;
+        }
+        //
+        // Normal Key Input OFF
+        case 1 :
+        {
+            port_key_prt_cmd = (1        << 31)  // enable 141-PF
+                             | (rounding << 12)  // rounding switch
+                             | (decimal  <<  8); // decimal point
+            // maintain printer fifo pop request
+            xStatus = xSemaphoreTake(xMutex_CUI_GPIO, xTicksToWait);
+            if (xStatus == pdTRUE)
+            {
+                rdata = mem_rd32(GPIO_PDR3);
+                wdata = rdata & (1 << 15);
+                wdata = wdata | port_key_prt_cmd;
+                mem_wr32(GPIO_PDR3, wdata);
+            }
+            xSemaphoreGive(xMutex_CUI_GPIO);
+            //
+            *pState = 0;
+            break;
+        }
+        // Get decimal Point SW Position
+        case 2:
+        {
+            xStatus = xSemaphoreTake(xMutex_CUI_UART, xTicksToWait);
+            if (xStatus == pdTRUE)
+            {
+                putchar(rxd);
+                putchar('\n');
+                if (((rxd >= '0') && (rxd <= '6')) || (rxd == '7'))
+                {
+                    decimal = (uint32_t)(rxd - '0');
+                    xprintf("decimal Point SW Changed (now %1x)\n", decimal);
+                }
+                else
+                {
+                    xprintf("decimal Point SW Not Changed (now %1x)\n", decimal);
+                }
+                //
+                xprintf("rounding : FLOAT=0/rounding=1/TRUNC=8 (now %1x)=? ", rounding);
+            }
+            xSemaphoreGive(xMutex_CUI_UART);
+            *pState = 3;
+            break;
+        }
+        // Get rounding SW Position
+        case 3:
+        {
+            xStatus = xSemaphoreTake(xMutex_CUI_UART, xTicksToWait);
+            if (xStatus == pdTRUE)
+            {
+                putchar(rxd);
+                putchar('\n');
+                if ((rxd == '0') || (rxd == '1') || (rxd == '8'))
+                {
+                    rounding = (uint32_t)(rxd - '0');
+                    xprintf("rounding SW Changed (now %1x)\n", rounding);
+                }
+                else
+                {
+                    xprintf("rounding SW Not Changed (now %1x)\n", rounding);
+                }
+                xprintf("----------------------------\n");
+            }
+            xSemaphoreGive(xMutex_CUI_UART);
+            *pState = 0;
+            break;
+        }
+        //
+        // You will never reach here.
+        default :
+        {
+            *pState = 1;
+            break;
+        }
+    }
+}
+
+//-------------------------------------
+// MCS4 141-PF Printer Control
+//-------------------------------------
+void MCS4_CUI_141PF_Prt_Control(uint32_t *pState)
+{
+    const char* PRT_DRUM_COL_1_15[13] = {"0"  ,"1"  ,"2"  ,"3"  ,"4"  ,"5"  ,
+                                   "6"  ,"7"  ,"8"  ,"9"  ,"."  ,"."  ,"."};
+    const char* PRT_DRUM_COL_17[13]   = {" DM"," + "," - "," x "," / "," M+",
+                                   " M-"," ^ "," = "," SQ"," % "," C "," R "}; // 3bytes each
+    const char* PRT_DRUM_COL_18[13]   = {" # "," * "," I "," II","III"," M+",
+                                   " M-"," T "," K "," E "," Ex"," C "," M "}; // 3bytes each
+    BaseType_t xStatus;
+    const TickType_t xTicksToWait = 1000UL;
+    uint32_t port_key_prt_cmd;
+    uint32_t port_key_prt_res;
+    uint32_t rdata, wdata;
+    uint32_t fifo_rdy;
+    uint32_t prt_col;
+    uint32_t prt_drum;
+    uint32_t prt_red;
+    uint32_t prt_feed;
+    uint32_t lamp_neg;
+    uint32_t lamp_ovf;
+    uint32_t lamp_mem;
+    uint32_t fifo_pop_ack;
+    uint32_t col;
+    uint32_t pos;
+    uint8_t  *str;
+    uint32_t len;
+    uint32_t i;
+    static uint32_t red_ribbon = 0;
+    static uint8_t pline[CUI_PLINE_MAX] =
+    {
+        ' ',' ',' ',' ',' ',
+        ' ',' ',' ',' ',' ',
+        ' ',' ',' ',' ',' ',
+        ' ',' ',' ',' ',' ',' ','\0'
+    };
+    //
+    // Dispatch State
+    switch(*pState)
+    {
+        //
+        // FIFO Pop Request
+        case 0 :
+        {
+            // Check FIFO Status
+            port_key_prt_res = mem_rd32(GPIO_PDR4);
+            fifo_rdy = (port_key_prt_res >> 31) & 0x01;
+            //
+            // if FIFO has data
+            if (fifo_rdy)
+            {
+                // Send FIFO Pop Request
+                port_key_prt_cmd = (1        << 31)  // enable 141-PF
+                                 | (1        << 15); // printer pop request
+                // Maintain key input information
+                xStatus = xSemaphoreTake(xMutex_CUI_GPIO, xTicksToWait);
+                if (xStatus == pdTRUE)
+                {
+                    rdata = mem_rd32(GPIO_PDR3);
+                    wdata = rdata & 0x7fff;
+                    wdata = wdata | port_key_prt_cmd;
+                    mem_wr32(GPIO_PDR3, wdata);
+                }
+                xSemaphoreGive(xMutex_CUI_GPIO);
+                //
+                *pState = 1;
+            }
+            break;
+        }
+        //
+        // FIFO Pop Acknowledged?
+        case 1 :
+        {
+            // Check FIFO Pop Acknowledge
+            port_key_prt_res = mem_rd32(GPIO_PDR4);
+            fifo_pop_ack = (port_key_prt_res >> 0) & 0x01;
+            // if Ack
+            if (fifo_pop_ack)
+            {
+                prt_col  = (port_key_prt_res >> 14) & 0x01ffff;
+                prt_drum = (port_key_prt_res >> 10) & 0x0f;
+                prt_red  = (port_key_prt_res >>  9) & 0x01;
+                prt_feed = (port_key_prt_res >>  8) & 0x01;
+                lamp_neg = (port_key_prt_res >>  7) & 0x01;
+                lamp_ovf = (port_key_prt_res >>  6) & 0x01;
+                lamp_mem = (port_key_prt_res >>  5) & 0x01;
+                //
+                // Paper Feed?
+                if (prt_feed)
+                {
+                    if (red_ribbon)
+                    {
+                        printf(" [RED]\n");
+                        red_ribbon = 0;
+                    }
+                    else
+                    {
+                        printf("\n");
+                    }
+                    for (i = 0; i < CUI_PLINE_MAX - 1 ; i++) pline[i] = ' ';
+                }
+                // Red Ink?
+                else if (prt_red)
+                {
+                    red_ribbon = 1;
+                }
+                // Print Hammer
+                else
+                {
+                    for (col = 0; col < 17; col++)
+                    {
+                        pos = (col == 0)? 19
+                            : (col == 1)? 16
+                            : 16 - col;
+                        str = " ";
+                        len = 1;
+                        //
+                        if ((col >= 2) && (prt_col & (1 << col)))
+                        {
+                            str = (uint8_t*) PRT_DRUM_COL_1_15[prt_drum];
+                            len = 1;
+                        }
+                        else if ((col == 1) && (prt_col & (1 << col)))
+                        {
+                            str = (uint8_t*) PRT_DRUM_COL_17[prt_drum];
+                            len = 3;
+                        }
+                        else if ((col == 0) && (prt_col & (1 << col)))
+                        {
+                            str = (uint8_t*) PRT_DRUM_COL_18[prt_drum];
+                            len = 3;
+                        }
+                        //
+                        for (i = 0; i < len; i++)
+                        {
+                            if (str[i] != ' ') pline[pos + i] = str[i];
+                        }
+                    }
+                    //
+                    printf("\r");
+                    printf("%s", pline);
+                    if (lamp_ovf) printf(" OVF");
+                    if (lamp_neg) printf(" NEG");
+                    if (lamp_mem) printf(" MEM");
+                  //printf("RDY=%1x DRUM=%1x COL=%05x RED=%1x FEED=%1x NEG=%1x OVF=%1x MEM=%1x ACK=%1x\n",
+                  //        fifo_rdy, prt_drum, prt_col, prt_red, prt_feed,
+                  //        lamp_neg, lamp_ovf, lamp_mem, fifo_pop_ack);
+                }
+                // Clear fifo pop request
+                port_key_prt_cmd = (1        << 31)  // enable 141-PF
+                                 | (0        << 15); // printer pop request
+                // Maintain key input information
+                xStatus = xSemaphoreTake(xMutex_CUI_GPIO, xTicksToWait);
+                if (xStatus == pdTRUE)
+                {
+                    rdata = mem_rd32(GPIO_PDR3);
+                    wdata = rdata & 0x7fff;
+                    wdata = wdata | port_key_prt_cmd;
+                    mem_wr32(GPIO_PDR3, wdata);
+                }
+                xSemaphoreGive(xMutex_CUI_GPIO);
+                *pState = 0;
+            }
+            break;
+        }
+        //
+        // You will never reach here.
+        default :
+        {
+            *pState = 0;
+            break;
+        }
+    }
+}
+
+//===========================================================
+// End of Program
+//===========================================================

@@ -1,0 +1,293 @@
+------------------------------------------------------------
+Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1200mV 85C Model Setup 'CLK_RISC_V'
+Slack : 4.471
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Setup 'CLK50'
+Slack : 16.955
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Setup 'POR'
+Slack : 33.599
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Setup 'TCK'
+Slack : 35.512
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Setup 'CLK_MCS4_S'
+Slack : 159.032
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Setup 'CLK_MCS4_C'
+Slack : 806.430
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'CLK_RISC_V'
+Slack : 0.281
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'CLK_MCS4_S'
+Slack : 0.340
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'CLK_MCS4_C'
+Slack : 0.348
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'CLK50'
+Slack : 0.356
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'TCK'
+Slack : 0.378
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'POR'
+Slack : 14.994
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Recovery 'CLK_RISC_V'
+Slack : 39.882
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Recovery 'TCK'
+Slack : 39.913
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Recovery 'CLK_MCS4_S'
+Slack : 1327.692
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Removal 'CLK_RISC_V'
+Slack : 1.092
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Removal 'TCK'
+Slack : 4.341
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Removal 'CLK_MCS4_S'
+Slack : 4.922
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'CLK50'
+Slack : 9.700
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'CLK_RISC_V'
+Slack : 24.668
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'TCK'
+Slack : 49.641
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'CLK_MCS4_C'
+Slack : 666.213
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'CLK_MCS4_S'
+Slack : 666.330
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'POR'
+Slack : 2499.926
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'CLK_RISC_V'
+Slack : 8.076
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'CLK50'
+Slack : 17.195
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'POR'
+Slack : 34.174
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'TCK'
+Slack : 36.348
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'CLK_MCS4_S'
+Slack : 159.771
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'CLK_MCS4_C'
+Slack : 808.404
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'CLK_RISC_V'
+Slack : 0.277
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'CLK_MCS4_S'
+Slack : 0.305
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'CLK_MCS4_C'
+Slack : 0.311
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'CLK50'
+Slack : 0.322
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'TCK'
+Slack : 0.339
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'POR'
+Slack : 14.636
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Recovery 'TCK'
+Slack : 40.413
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Recovery 'CLK_RISC_V'
+Slack : 40.702
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Recovery 'CLK_MCS4_S'
+Slack : 1328.147
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Removal 'CLK_RISC_V'
+Slack : 0.988
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Removal 'TCK'
+Slack : 3.944
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Removal 'CLK_MCS4_S'
+Slack : 4.436
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'CLK50'
+Slack : 9.724
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'CLK_RISC_V'
+Slack : 24.686
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'TCK'
+Slack : 49.736
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'CLK_MCS4_S'
+Slack : 666.350
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'CLK_MCS4_C'
+Slack : 666.393
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'POR'
+Slack : 2499.935
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'CLK50'
+Slack : 18.715
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'CLK_RISC_V'
+Slack : 21.018
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'POR'
+Slack : 36.789
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'TCK'
+Slack : 39.387
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'CLK_MCS4_S'
+Slack : 162.663
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'CLK_MCS4_C'
+Slack : 820.795
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'CLK_RISC_V'
+Slack : 0.114
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'CLK_MCS4_S'
+Slack : 0.148
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'CLK50'
+Slack : 0.152
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'CLK_MCS4_C'
+Slack : 0.152
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'TCK'
+Slack : 0.153
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'POR'
+Slack : 12.213
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Recovery 'TCK'
+Slack : 42.553
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Recovery 'CLK_RISC_V'
+Slack : 45.157
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Recovery 'CLK_MCS4_S'
+Slack : 1330.569
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Removal 'CLK_RISC_V'
+Slack : 0.465
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Removal 'TCK'
+Slack : 2.074
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Removal 'CLK_MCS4_S'
+Slack : 2.293
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'CLK50'
+Slack : 9.464
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'CLK_RISC_V'
+Slack : 24.710
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'TCK'
+Slack : 49.336
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'CLK_MCS4_C'
+Slack : 665.851
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'CLK_MCS4_S'
+Slack : 666.362
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'POR'
+Slack : 2499.965
+TNS   : 0.000
+
+------------------------------------------------------------

@@ -1,0 +1,62 @@
+create_clock -name CLK50      -period   20.000 [get_ports {CLK50}]
+create_clock -name TCK        -period  100.000 [get_ports {TCK}]
+create_clock -name CLK_RISC_V -period   60.000 [get_nets {U_PLL|altpll_component|auto_generated|wire_pll1_clk[1]}]
+create_clock -name CLK_MCS4_S -period 1333.333 [get_nets {U_PLL|altpll_component|auto_generated|wire_pll1_clk[2]}]
+create_clock -name CLK_MCS4_C -period 1333.333 [get_ports {C_MCS4_CLK}]
+
+derive_pll_clocks
+derive_clock_uncertainty
+
+set_clock_groups -asynchronous -group [get_clocks {TCK}]        -group [get_clocks {CLK50}]
+set_clock_groups -asynchronous -group [get_clocks {CLK_RISC_V}] -group [get_clocks {CLK50}]
+set_clock_groups -asynchronous -group [get_clocks {CLK_RISC_V}] -group [get_clocks {TCK}]
+set_clock_groups -asynchronous -group [get_clocks {CLK_RISC_V}] -group [get_clocks {CLK_MCS4_S}]
+set_clock_groups -asynchronous -group [get_clocks {CLK_RISC_V}] -group [get_clocks {CLK_MCS4_C}]
+set_clock_groups -asynchronous -group [get_clocks {CLK_MCS4_S}] -group [get_clocks {CLK50}]
+set_clock_groups -asynchronous -group [get_clocks {CLK_MCS4_S}] -group [get_clocks {TCK}]
+set_clock_groups -asynchronous -group [get_clocks {CLK_MCS4_S}] -group [get_clocks {CLK_RISC_V}]
+set_clock_groups -asynchronous -group [get_clocks {CLK_MCS4_S}] -group [get_clocks {CLK_MCS4_C}]
+set_clock_groups -asynchronous -group [get_clocks {CLK_MCS4_C}] -group [get_clocks {CLK50}]
+set_clock_groups -asynchronous -group [get_clocks {CLK_MCS4_C}] -group [get_clocks {TCK}]
+set_clock_groups -asynchronous -group [get_clocks {CLK_MCS4_C}] -group [get_clocks {CLK_RISC_V}]
+set_clock_groups -asynchronous -group [get_clocks {CLK_MCS4_C}] -group [get_clocks {CLK_MCS4_S}]
+
+set_false_path -from [get_ports {RES_N}]
+set_false_path -from [get_cells {por_n}]
+set_false_path   -to [get_ports {RESOUT_N}]
+
+set_output_delay -clock {CLK_RISC_V}  0 [get_ports {RESOUT_N}]
+set_input_delay  -clock {TCK  }  5 [get_ports {TRSTn}]
+set_input_delay  -clock {TCK  }  5 [get_ports {TDI TMS}]
+set_output_delay -clock {TCK  }  5 [get_ports {TDO}]
+
+set_input_delay  -clock {CLK_RISC_V} 10 [get_ports {GPIO0[*] GPIO1[*] GPIO2[*]}]
+set_output_delay -clock {CLK_RISC_V} 10 [get_ports {GPIO0[*] GPIO1[*] GPIO2[*]}] -add_delay
+set_input_delay  -clock {CLK_RISC_V} 10 [get_ports {RXD}]
+set_output_delay -clock {CLK_RISC_V} 10 [get_ports {TXD}]
+set_input_delay  -clock {CLK_RISC_V} 10 [get_ports {I2C0_SCL I2C0_SDA I2C0_INT1 I2C0_INT2}]
+set_output_delay -clock {CLK_RISC_V} 10 [get_ports {I2C0_SCL I2C0_SDA}]
+set_input_delay  -clock {CLK_RISC_V} 10 [get_ports {I2C1_SCL I2C1_SDA}]
+set_output_delay -clock {CLK_RISC_V} 10 [get_ports {I2C1_SCL I2C1_SDA}]
+set_input_delay  -clock {CLK_RISC_V} 10 [get_ports {SPI_MISO}]
+set_output_delay -clock {CLK_RISC_V} 10 [get_ports {SPI_CSN[*] SPI_SCK SPI_MOSI}]
+set_input_delay  -clock {CLK_RISC_V} 20 [get_ports {SDRAM_DQ[*]}]
+set_output_delay -clock {CLK_RISC_V} 20 [get_ports {SDRAM_DQ[*] SDRAM_ADDR[*]}]
+set_output_delay -clock {CLK_RISC_V} 20 [get_ports {SDRAM_CSn SDRAM_RASn SDRAM_CASn SDRAM_WEn}]
+set_output_delay -clock {CLK_RISC_V} 20 [get_ports {SDRAM_CKE SDRAM_BA[*] SDRAM_DQM[*]}]
+set_output_delay -clock {CLK_RISC_V}  0 [get_ports {SDRAM_CLK}]
+
+set_false_path -from [get_ports {C_MCS4_RES_N}]
+set_false_path -to   [get_ports {S_MCS4_RES_N}]
+set_output_delay -clock {CLK_MCS4_S} 500 [get_ports {S_MCS4_CLK}]
+set_input_delay  -clock {CLK_MCS4_S} 500 [get_ports {S_MCS4_SYNC_N S_MCS4_CM_ROM_N S_MCS4_CM_RAM_N[*]}]
+set_output_delay -clock {CLK_MCS4_S} 500 [get_ports {S_MCS4_TEST}]
+set_output_delay -clock {CLK_MCS4_S} 500 [get_ports {S_MCS4_DATA[*]}]
+set_input_delay  -clock {CLK_MCS4_S} 500 [get_ports {S_MCS4_DATA[*]}] -add_delay
+set_input_delay  -clock {CLK_MCS4_C} 500 [get_ports {C_MCS4_TEST}]
+set_output_delay -clock {CLK_MCS4_C} 500 [get_ports {C_MCS4_SYNC_N C_MCS4_CM_ROM_N C_MCS4_CM_RAM_N[*]}]
+set_output_delay -clock {CLK_MCS4_C} 500 [get_ports {C_MCS4_DATA[*]}]
+set_input_delay  -clock {CLK_MCS4_C} 500 [get_ports {C_MCS4_DATA[*]}] -add_delay
+
+set_input_delay  -clock {altera_reserved_tck} 10 [get_ports {altera_reserved_*}]
+set_output_delay -clock {altera_reserved_tck} 10 [get_ports {altera_reserved_*}]

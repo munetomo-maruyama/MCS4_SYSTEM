@@ -1,0 +1,71 @@
+// BCD to BIN for ADS4004
+    org 0x000
+
+    // Main Routine
+MAIN
+    // Store BCD in Bank0/Chip0/Reg0/Chr2-Chr0
+    ldm 0
+    dcl
+    fim 0p 0x02
+    src 0p
+    ldm 0x1   ; MSB of BCD Code
+    wrm
+    fim 0p 0x01
+    src 0p
+    ldm 0x2   ; Middle of BCD Code
+    wrm
+    fim 0p 0x00
+    src 0p
+    ldm 0x3   ; LSB of BCD Code
+    wrm
+    // Call BCD to BIN Converter
+    jms BCDBIN
+    // Store BIN Result in Bank0/Chip0/Reg0/Chr4-Chr3
+    fim 0p 0x04
+    src 0p
+    xch 2     ; MSB of R1P (Result)
+    wrm
+    fim 0p 0x03
+    src 0p
+    xch 3     ; LSB of R1P (Result)
+    wrm
+FINISH
+    jun FINISH    
+    
+// Convert BCD to Binary
+BCDBIN
+    fim 0p 0   ; R0P=0
+BCDBIN_1 // 1st Digit
+    fim 1p 0   ; R1P=0 (Result)
+    src 0p
+    rdm        ; Read 1st (LSB) BCD Digit
+    xch 3      ; R1P(LSB)=1st BCD Digit
+BCDBIN_2 // 2nd Digit
+    fim 2p 10  ; R2P=10, for 2nd Digit
+    jms BCDADD ; Repeat (R1P=R1P+R2P) for Digit times
+BCDBIN_3 // 3rd Digit
+    fim 2p 100 ; R2P=100, for 3rd Digit
+    jms BCDADD ; Repeat (R1P=R1P+R2P) for Digit times
+BCDBIN_END
+     bbl 0     ; Return
+BCDADD
+    inc 1      ; R1=R1+1
+    src 0p     ; Prepare to Read Next Digit
+BA1
+    rdm        ; Read the BCD Digit
+    jcn az BA2 ; if ACC==0, jump to BA2
+    dac        ; ACC=ACC-1
+    wrm        ; Write Back the Decremented BCD Digit to RAM
+    clc        ; R1P=R1P+R2P
+    ld 3       ;   ACC=R3
+    add 5      ;   ACC=ACC+R5
+    xch 3      ;   R3=ACC
+    ld 2       ;   ACC=R2
+    ADD 4      ;   ACC=ACC+R4
+    xch 2      ;   R2=ACC
+    jun BA1    ; jump to BA1
+BA2
+    bbl 0      ; Return
+
+    end
+

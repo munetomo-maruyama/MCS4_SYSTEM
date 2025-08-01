@@ -1,0 +1,51 @@
+\babel@toc {english}{}\relax 
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces The world’s first microprocessor: the 4004}}{3}{figure.caption.6}%
+\contentsline {figure}{\numberline {1.2}{\ignorespaces MCS-4 Chip Set\footnotemark [2]}}{3}{figure.caption.6}%
+\contentsline {figure}{\numberline {1.3}{\ignorespaces Die Photo of the 4004 chip\footnotemark [3]}}{3}{figure.caption.7}%
+\contentsline {figure}{\numberline {1.4}{\ignorespaces Busicom's 141-PF Calculator\footnotemark [4]}}{4}{figure.caption.8}%
+\contentsline {figure}{\numberline {1.5}{\ignorespaces Intel Museum (California, Santa Clara)\footnotemark [5]}}{5}{figure.caption.9}%
+\contentsline {figure}{\numberline {1.6}{\ignorespaces NEC’s TK-80 single-board kit\footnotemark [6]}}{5}{figure.caption.10}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Pinout of 4004 CPU chip}}{10}{figure.caption.12}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Pinout of 4001 ROM chip}}{11}{figure.caption.13}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Structure of 4001 ROM chip}}{12}{figure.caption.14}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Pinout of 4002 RAM chip}}{13}{figure.caption.15}%
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Structure of 4002 RAM chip}}{14}{figure.caption.16}%
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Pinout of 4003 Shift Regisster chip}}{15}{figure.caption.18}%
+\contentsline {figure}{\numberline {2.7}{\ignorespaces Structure of 4003 Shift Register chip}}{16}{figure.caption.19}%
+\contentsline {figure}{\numberline {2.8}{\ignorespaces Example Memory Configuration of the MCS-4 System}}{17}{figure.caption.20}%
+\contentsline {figure}{\numberline {2.9}{\ignorespaces Example MCS-4 System Configuration (2)}}{18}{figure.caption.21}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces 4004 CPU Programmers Model}}{20}{figure.caption.24}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces 4004 CPU Instruction Timing}}{21}{figure.caption.25}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces 4004 CPU Instruction Fetch}}{27}{figure.caption.30}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces 4004 CPU Data Read Operation}}{28}{figure.caption.31}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces RAM Bank Expansion and DCL Decoder}}{29}{figure.caption.33}%
+\contentsline {figure}{\numberline {3.6}{\ignorespaces 4004 CPU Data Write Operation}}{30}{figure.caption.35}%
+\contentsline {figure}{\numberline {3.7}{\ignorespaces 4004 CPU Subroutine Call}}{31}{figure.caption.36}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces System synchronization method using \texttt {SYNC} signal}}{50}{figure.caption.40}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Key Board and Switches on Calculator 141-PF}}{73}{figure.caption.47}%
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Block Diagram of MCS-4 System}}{74}{figure.caption.48}%
+\contentsline {figure}{\numberline {6.3}{\ignorespaces Terasic DE10-Lite Board}}{76}{figure.caption.50}%
+\contentsline {figure}{\numberline {6.4}{\ignorespaces Adafruit 2.8" TFT Touch Shield for Arduino with Capacitive Touch (Product ID: 1947)}}{77}{figure.caption.51}%
+\contentsline {figure}{\numberline {6.5}{\ignorespaces Adafruit 2.8" TFT Touch Shield for Arduino with Resistive Touch Screen (Product ID: 1651)}}{77}{figure.caption.52}%
+\contentsline {figure}{\numberline {6.6}{\ignorespaces I/O Circuit of the Busicom 141-PF Calculator via MCS-4 System}}{80}{figure.caption.55}%
+\contentsline {figure}{\numberline {6.7}{\ignorespaces Printing Mechanism of the Calculator}}{82}{figure.caption.59}%
+\contentsline {figure}{\numberline {6.8}{\ignorespaces Waveform of 141-PF Simulation}}{93}{figure.caption.71}%
+\contentsline {figure}{\numberline {6.9}{\ignorespaces Waveform of FPGA Simulation}}{94}{figure.caption.72}%
+\contentsline {figure}{\numberline {6.10}{\ignorespaces Case A: MCS4\_CPU (4004 CPU) Connection}}{97}{figure.caption.79}%
+\contentsline {figure}{\numberline {6.11}{\ignorespaces Case B: MCS4\_CPU (4004 CPU) Connection}}{97}{figure.caption.80}%
+\contentsline {figure}{\numberline {6.12}{\ignorespaces Case C: MCS4\_CPU (4004 CPU) Connection}}{98}{figure.caption.81}%
+\contentsline {figure}{\numberline {6.13}{\ignorespaces Connection of RISC-V USB-JTAG Interface Board}}{99}{figure.caption.82}%
+\contentsline {figure}{\numberline {6.14}{\ignorespaces An example of schematics of RISC-V USB-JTAG Interface Board}}{99}{figure.caption.83}%
+\contentsline {figure}{\numberline {6.15}{\ignorespaces How to use the 141-PF (Normal Calculation)}}{100}{figure.caption.84}%
+\contentsline {figure}{\numberline {6.16}{\ignorespaces How to use the 141-PF (Memory Calculation)}}{101}{figure.caption.85}%
+\contentsline {figure}{\numberline {6.17}{\ignorespaces Character Display on 7 segment LED}}{102}{figure.caption.87}%
+\contentsline {figure}{\numberline {6.18}{\ignorespaces Operation on Touch LCD Panel}}{104}{figure.caption.88}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }

@@ -1,0 +1,18 @@
+bib2gls 4.5 (2025-05-14)
+Default encoding: windows-31j
+Current working directory: C:\MCS4_141PF\MCS4_SYSTEM\doc\TexLive
+Reading MCS4_System_TRM.log
+Encoding: not set
+Warning: No information about the glossaries-extra package was found in MCS4_System_TRM.log.
+Check your document has loaded glossaries-extra.sty and rerun LaTeX.
+No sentence case protection required now
+Default setting --no-mfirstuc-protection now applied, use --mfirstuc-protection to revert
+Default setting --no-mfirstuc-math-protection now applied, use --mfirstuc-math-protection to revert
+Reading MCS4_System_TRM.aux
+Encoding: windows-31j
+Warning: Can't parse MCS4_System_TRM.aux: may not be windows-31j encoded.
+(Try a different encoding with --tex-encoding or --default-encoding.)
+Unable to detect character encoding for TeX file.
+Defaulting to: windows-31j.
+(Use --tex-encoding if this is incorrect.)
+Error: Missing \glsxtr@resource in aux file. (Have you used \glsxtrresourcefile or \GlsXtrLoadResources?)

@@ -1,0 +1,106 @@
+// Sample Source for ADS4004
+    org 0x000
+    jun RESET
+
+; Label and Literal
+LABEL0  123
+LABEL1, 3 * (1 + 2)
+LABEL2: 0x12, 0x34, 0x56
+LABEL3  -5 // negative
+LABEL4  0xa // negative
+
+; Equation
+LABELA= 456
+LABELB= LABEL0 + LABEL1
+LABELC equ LABELA * 3
+
+; Origin
+    = 0x040
+    0x44 0x45 // literal
+
+    org 0x050
+    0x55 0x56 ; literal
+
+    equ 0x060
+    0x66 0x67 ; literals
+RESET
+
+; Machine Instruction (1-word)
+MACHINE1
+    nop
+    ldm 0xa
+    ldm 10
+    ldm LABEL0
+    ld 3
+    ld 15
+    xch 3
+    xch 15
+    add 3
+    add 15
+    sub 3
+    sub 15
+    inc 8
+    inc 12
+    bbl 0xa
+    bbl 12
+    jin 3p
+    jin 3<
+    src 5p
+    src 5<
+    src 10
+    fin 7p
+    fin 7<
+    fin 14
+; Machine Instruction (2-word)
+MACHINE2
+    jun MACHINE1
+    jun 0x123
+    jms MACHINE1
+    jms 0x0abc
+    jcn 0x4 MACHINE2
+    jcn 9 0x0ab
+    jcn TZ MACHINE2
+    jcn tn MACHINE2
+    jcn C0 MACHINE2
+    jcn c1 MACHINE2
+    jcn AZ MACHINE2
+    jcn an MACHINE2
+    isz 9 MACHINE2
+    isz 9 0x0ab
+    fim 1p 0xfe
+    fim 1< 0xfe
+    fim 2 0xfe
+; Data Access Instruction
+    rdm
+    rd0
+    rd1
+    rd2
+    rd3
+    rdr
+    wrm
+    wr0
+    wr1
+    wr2
+    wr3
+    wrr
+    wmp
+    adm
+    sbm
+    wpm
+; Accumulator Instruction
+    clb
+    clc
+    cmc
+    stc
+    cma
+    iac
+    dac
+    ral
+    rar
+    tcc
+    daa
+    tcs
+    kbp
+    dcl
+; End of Assembler
+    end

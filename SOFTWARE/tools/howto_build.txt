@@ -1,0 +1,10 @@
+# How to Build on WSL2
+
+x86_64-w64-mingw32-g++ -fpermissive -o XXXX.exe XXXX.cpp
+x86_64-w64-mingw32-objdump -p XXXX.exe | grep 'DLL Name'
+
+KERNEL32.dll and msvcrt.dll are included in Windows as dafault dll.
+
+x86_64-w64-mingw32-g++ -fpermissive -static-libgcc -static-libstdc++ -o XXXX.exe XXXX.cpp
+
+

@@ -1,0 +1,672 @@
+000         //===========================================================
+000         // ADS4004 Assembler Test Program
+000         //-----------------------------------------------------------
+000         // File Name   : test.src
+000         // Description : ADS4004 Assembler Test Source
+000         //-----------------------------------------------------------
+000         // History :
+000         // Rev.00 2015.08.08 M.Maruyama Start Coding
+000         // Rev.01 2015.09.13 M.Maruyama First Release
+000         //-----------------------------------------------------------
+000         // Copyright (C) 2015-2016 M.Maruyama
+000         //-----------------------------------------------------------
+000         // Intel has licensed the use of the MCS-4 related materials
+000         // under a Creative Commons license. It is available now 
+000         // 'By-attribution, Non-Commercial, Share-Alike' (BY-NC-SA)
+000         // as described below:
+000         // http://creativecommons.org/licenses/by-nc-sa/3.0/legalcode 
+000         // This project is derived from the documentations below;
+000         //   (1) MCS-4 Micro Computer Set Users Manual,
+000         //       Rev.4, Feb 1973, Intel Corporation.
+000         //   (2) MCS-4 Assembly Language Programming Manual,
+000         //       Preliminay Edition, Dec 1973, Intel Corporation.
+000         // so it carries the same Creative Commons license (BY-NC-SA). 
+000         //===========================================================
+000         
+000                 org 0x000 //
+000 40 70           jun RESET
+002         
+002         ;-------------------------------------------
+002         ; Comment Test
+002         
+002         // Comment
+002         ;  Comment
+002         
+002         ;-------------------------------------------
+002         ; Label and Literal Test
+002         
+002         Leterals  // Leteral Test
+002         Constants ;  Leteral Test
+002 7B      LABEL0  123              ; Decimal
+003 C8      label0  456              // small letter
+004 03      label1  LABEL0+1  // comment
+005 04      label2  label0+1
+006 1E      LABELA  10+20            ; Expresson Add
+007 23 2D   LABELB  35 45            ; Multiple Decimal Values
+009 0F      LABELC  3 * 5            ; Expression Mul
+00A 09      LABELD  3 * (1 + 2)      ; Expression Mix
+00B 4D      LABELE  LABELB * 11      ; Expression Label
+00C 11      LABELF  LABELG + 4       ; Expression Label
+00D 0D      LABELG  LABELG           ; Expression Label
+00E AB CD   LABELH  0xab 0xcd        ; Multiple Hex Values
+010         LABELI                   ; Only Label
+010 EF      LABELJ  0xef             ; Hex
+011 40 80           64 128           ; No Label
+013 40 80           0x40 0x80        ; No Label
+015 AB      LABEL1	0xab             ; Hex
+016 1C      LABEL2, LABEL3 + 5       ; Label Delimiter Comma
+017 16      LABEL3: LABEL1	+	1	 ; Label Delimiter Colon
+018 09      LABEL4: (1+2)*3          ; Expression
+019 36      LABEL5: ( 4 + 5 ) * 6    ; Expression
+01A 85      LABEL6: -123             ; Negative
+01B F9      LABEL7: 7 * (8 - 9)      ; Negative
+01C 03 0C   LABEL8  1 + 2,  3 * 4, 5, 6, 7  ; Multiple Values
+01E 05 06
+020 07
+021 AA 55   LABEL9  0xaa, 0x55              ; Multiple Values
+023 BB CC   LABEL10 0xbb 0xcc 0xdd 238,0xff ; Multipe Values
+025 DD EE
+027 FF
+028         LABEL11
+028         
+028         ;-------------------------------------------
+028         ; Equation Test
+028         
+028         LABELAA= 456             ; Equate
+028         LABELAB= LABEL7 + LABEL1 ; Expression
+028         LABELAC EQU LABEL4 * 3   ; Equation
+028         LABELAD
+028         
+028         ;-------------------------------------------
+028         ; Origin Test
+028         
+040                = 0x040    ; ORIGIN
+040 AA 55   ORIGIN0 0xaa 0x55
+042         
+050                 ORG 0x050 ; ORIGIN
+050 66 99   ORIGIN1 0x66 0x99
+052         
+060         ORIGIN2 ORG 0x060 ; ORIGIN
+060 55 AA   ORIGIN3 0x55 0xaa
+070                 equ 0x070
+070 00      RESET,  nop
+071         RESET2,
+071         
+071         ;-------------------------------------------
+071         ; 3.3 Index Register Instructions
+071         INCTST
+071                 ;INC 8  ; 0110RRRR Increment Register (Rn<-Rn+1) Rn=R8
+071                 ;INC 16 ; 0110RRRR should be error
+071                 ;INC 2< ; 0110RRRR should be error
+071                 ;INC 2P ; 0110RRRR should be error
+071         
+071 68              inc 8
+072 63              inc 3
+073         INCEND
+073         
+073         FINTST
+073                 ;FIN 7P ; 0011RRR0 Fetch Indirect (RnP<-ROM[R0P]) RnP=R14:R15
+073                 ;FIN 2< ; 0011RRR0 Fetch Indirect (RnP<-ROM[R0P]) RnP=R4:R5
+073                 ;FIN 6  ; 0011RRR0 Fetch Indirect (RnP<-ROM[R0P]) RnP=R6:R7
+073                 ;FIN 8P ; 0011RRR0 should be error
+073         
+073 3E              FIN 7P
+074 34              FIN 2<
+075 36              FIN 6
+076 D2              ldm 2
+077 B1              xch 1
+078 43 FF           jun FINPAGE
+07A         FINRET
+07A         FINEND
+07A         
+07A         ;-------------------------------------------
+07A         ; 3.4 Index Register to Accumulator Instruction
+07A         ADDTST
+07A                 ;add 14 ; 1000RRRR Add Register to Accumlator with Carry ({CY,ACC}<-ACC+Rn+CY)
+07A         
+07A D1              ldm 1
+07B B0              xch 0
+07C DE              ldm 14
+07D 80              add 0
+07E 80              add 0
+07F 80              add 0
+080 80              add 0
+081 8E              add 14
+082         ADDEND
+082         SUBTST
+082                 ;sub 10 ; 1001RRRR Subtract Register from Accumlator with Bolow ({CY,ACC}<-ACC+/Rn+/CY})
+082         
+082 D1              ldm 1
+083 B0              xch 0
+084 D2              ldm 2
+085 90              sub 0
+086 90              sub 0
+087 90              sub 0
+088 90              sub 0
+089 9A              sub 10
+08A         SUBEND
+08A         LDXCHTST
+08A                 ;ld  12 ; 1010RRRR Load Accumulator (ACC<-Rn)
+08A                 ;xch 0  ; 1011RRRR Exchange Regieter and Accumulator (ACBR<-ACC, ACC<-Rn, ACC<-ACBR)
+08A         
+08A DA              ldm 10
+08B BC              xch 12
+08C D5              ldm 5
+08D AC              ld  12
+08E B0              xch 0
+08F         LCXCHEND
+08F         ;-------------------------------------------
+08F         ; 3.5 Accumulator Instructions
+08F         ACCTST
+08F                 ;clb  ; 11110000 Clear Both (CY<-0, ACC<-0)
+08F                 ;clc  ; 11110001 Clear Carry (CY<-0)
+08F                 ;iac  ; 11110010 Increment Accumulator ({CY, ACC}<-ACC+1)
+08F                 ;cmc  ; 11110011 Complement Carry (CY<-/CY)
+08F                 ;cma  ; 11110100 Complement Accumulator (ACC<-/ACC)
+08F                 ;ral  ; 11110101 Rotate Accumulator Left through Carry (CY<-ACC[7], ACC<-{ACC[6:1], CY})
+08F                 ;rar  ; 11110110 Rotate Accumulator Right through Carry (CY<-ACC[0], ACC<-{CY, ACC[6:1]})
+08F                 ;tcc  ; 11110111 Transmit Carry and Clear (ACC<-{7'b0, CY}, CY<-0)
+08F                 ;dac  ; 11111000 Decrement Accumulator ({CY, ACC}<-ACC+0xf)
+08F                 ;tcs  ; 11111001 Transfer Carry Subtract (ACC<-(CY==0)?9:10, CY<-0)
+08F                 ;stc  ; 11111010 Set Carry (CY<-1)
+08F                 ;daa  ; 11111011 Decimal Adjust Accumulator (if (ACC>9 or CY==1) ACC<-ACC+6; if Carry CY=1)
+08F                 ;kbp  ; 11111100 Keyboard Process (ACC<-(ACC==0)?0:(ACC==1)?1:(ACC==2)?2:(ACC==4)?3:(ACC==8)?4:15)
+08F         
+08F DF              ldm 0xf
+090 FA              stc
+091 F0              clb
+092         
+092 FA              stc
+093 F1              clc
+094         
+094 DE              ldm 0xe
+095 F2              iac
+096 F2              iac
+097 F2              iac
+098         
+098 F1              clc
+099 F3              cmc
+09A F3              cmc
+09B F3              cmc
+09C         
+09C D5              ldm 0x5
+09D F4              cma
+09E F4              cma
+09F         
+09F FA              stc
+0A0 D5              ldm 0x5
+0A1 F5              ral
+0A2 F1              clc
+0A3 DB              ldm 0xb
+0A4 F5              ral
+0A5         
+0A5 F1              clc
+0A6 DD              ldm 0xd
+0A7 F6              rar
+0A8 FA              stc
+0A9 DA              ldm 0xa
+0AA F6              rar
+0AB         
+0AB DF              ldm 0xf
+0AC F1              clc
+0AD F7              tcc
+0AE DF              ldm 0xf
+0AF FA              stc
+0B0 F7              tcc
+0B1         
+0B1 FA              stc
+0B2 D1              ldm 0x1
+0B3 F8              dac
+0B4 F8              dac
+0B5 F8              dac
+0B6         
+0B6 DF              ldm 0xf
+0B7 F1              clc
+0B8 F9              tcs
+0B9 DF              ldm 0xf
+0BA FA              stc
+0BB F9              tcs
+0BC         
+0BC F1              clc
+0BD FA              stc
+0BE         
+0BE F1              clc
+0BF DA              ldm 0xa
+0C0 FB              daa
+0C1 FB              daa
+0C2 FA              stc
+0C3 D9              ldm 0x9
+0C4 FB              daa
+0C5         
+0C5 D0              ldm 0x0
+0C6 FC              kbp
+0C7 D1              ldm 0x1
+0C8 FC              kbp
+0C9 D2              ldm 0x2
+0CA FC              kbp
+0CB D3              ldm 0x3
+0CC FC              kbp
+0CD D4              ldm 0x4
+0CE FC              kbp
+0CF D5              ldm 0x5
+0D0 FC              kbp
+0D1 D6              ldm 0x6
+0D2 FC              kbp
+0D3 D7              ldm 0x7
+0D4 FC              kbp
+0D5 D8              ldm 0x8
+0D6 FC              kbp
+0D7 D9              ldm 0x9
+0D8 FC              kbp
+0D9 DE              ldm 0xe
+0DA FC              kbp
+0DB         ACCEND
+0DB         
+0DB         ;-------------------------------------------
+0DB         ; 3.6 Immediate Instructions
+0DB         FIMTST
+0DB                 ;fim  2  0xfe ; 0010RRR0 IIIIIIII Fetch Immediate (RnP<-Imm8) RnP=R2;R3
+0DB                 ;FIM  1P 6    ; 0010RRR0 IIIIIIII Fetch Immediate (RnP<-Imm8) RnP=R2;R3
+0DB                 ;FIM  4< 0xab ; 0010RRR0 IIIIIIII Fetch Immediate (RnP<-Imm8) RnP=R8;R9
+0DB         
+0DB 22 FE           fim  2  0xfe
+0DD 22 06           FIM  1P 6
+0DF 28 AB           FIM  4< 0xab
+0E1 26 23           fim  6  0x123
+WARNING: Ignored Upper Bits of Immediate Value in line 271.
+0E3         FIMEND
+0E3         LDMTST
+0E3                 ;ldm  0       ; 1101IIII          Load Accumulator Immediate (ACC<-Imm4)
+0E3                 ;LDM  15      ; 1101IIII          Load Accumulator Immediate (ACC<-Imm4)
+0E3         
+0E3 D0              ldm  0
+0E4 DF              LDM  15
+0E5         LDMEND
+0E5         
+0E5         ;-------------------------------------------
+0E5         ; 3.7 Transfer of Control Instructions
+0E5         JUNTST
+0E5                 ;jun  JUNTGT ; 0100AAAA AAAAAAAA Jump Unconditionally (PC<-Addr12)
+0E5         
+0E5 44 03   LBL,    jun  JUNTGT
+0E7         JUNRET
+0E7         JUNEND
+0E7         
+0E7         JINTST
+0E7                 ;jin  3P     ; 0011RRR1          Jump Indirect (if (PC[7:0]==0xFF) PC[11:8]++; PC[7:0]<-RnP)
+0E7         
+0E7 26 EE           FIM  3P JINTGT
+0E9 37              jin  3P
+0EA DA              ldm  10
+0EB DB              ldm  11
+0EC DC              ldm  12
+0ED DD              ldm  13
+0EE         JINTGT
+0EE         JINEND
+0EE         
+0EE         JCNTST
+0EE                 ;JCN  AZ LBL  ; 0001CCCC AAAAAAAA Jump on Condition, CN...TZ(0001), TN(1001), C1(0010), C0(1010), AZ(0100), AN(1100)  
+0EE                 ;jcn  6  0x12 ; 0001CCCC AAAAAAAA Jump on Condition (if (CN==True) then if (PC[7:0]==0xFE) PC[11:8]++; PC[7:0]<-Addr8)
+0EE                 ;jcn  0x4 PAGE1
+0EE         
+0EE 40 FD           jun  JCNBGN
+0FD                 org  0x0fd
+0FD D0      JCNBGN  ldm  0
+0FE 11 01           jcn  TZ JCN_TZ0
+100 D1              ldm  1
+101 11 04   JCN_TZ0 jcn  TZ JCN_TZ1
+103 D2              ldm  2
+104 19 07   JCN_TZ1 jcn  TN JCN_TN0
+106 D3              ldm  3
+107 19 0A   JCN_TN0 jcn  TN JCN_TN1
+109 D4              ldm  4
+10A F1      JCN_TN1 clc
+10B 1A 0E           jcn  C0 JCN_C00
+10D D5              ldm  5
+10E FA      JCN_C00 stc
+10F 1A 12           jcn  C0 JCN_C01
+111 D6              ldm  6
+112 F1      JCN_C01 clc
+113 12 16           jcn  C1 JCN_C10
+115 D7              ldm  7
+116 FA      JCN_C10 stc
+117 12 1A           jcn  C1 JCN_C11
+119 D8              ldm  8
+11A D0      JCN_C11 ldm  0
+11B 14 1E           jcn  AZ JCN_AZ0
+11D D9              ldm  9
+11E D1      JCN_AZ0 ldm  1
+11F 14 22           jcn  AZ JCN_AZ1
+121 DA              ldm  10
+122 D0      JCN_AZ1 ldm  0
+123 1C 26           jcn  AN JCN_AN0
+125 DB              ldm  11
+126 D1      JCN_AN0 ldm  1
+127 1C 2A           jcn  AN JCN_AN1
+129 DC              ldm  12
+12A         JCN_AN1
+12A         JCNEND
+12A         
+12A         ISZTST
+12A                 ;isz  9  ISZTST ; 0111RRRR AAAAAAAA Increment and Skip if Zero (Rn<-Rn+1, if (Rn!=0) then if (PC[7:0]==0xFE) PC[11:8]++; PC[7:0]<-Addr8)
+12A         
+12A 28 EE           fim  4p 0xee
+12C 79 34           isz  9 ISZTGT
+12E 79 34           isz  9 ISZTGT
+130 79 34           isz  9 ISZTGT
+132 79 34           isz  9 ISZTGT
+134 28 AA   ISZTGT fim  4p 0xaa
+136         ISZEND
+136         
+136         ;-------------------------------------------
+136         ; 3.8 Subroutine Linkage Commands
+136                 ;jms  0x456  ; 0101AAAA AAAAAAAA Jump to Subroutine (STACK<-PC+2, PC<-Addr12)
+136                 ;bbl  0xa    ; 1100IIII          Branch Back and Load (ACC<-Imm4, PC<-STACK)
+136         JMSTST
+136 D4              LDM   0x4
+137 51 3C           JMS   JMSTGT0
+139 DF              LDM   0xf
+13A 41 46           jun   JMSEND
+13C D5      JMSTGT0 LDM 0x5
+13D 51 40           JMS JMSTGT1
+13F CA              BBL 0xa
+140 D6      JMSTGT1 LDM 0x6
+141 51 44           JMS JMSTGT2
+143 C9              BBL 0x9
+144 D7      JMSTGT2 LDM 0x7
+145 C8              BBL 0x8
+146         JMSEND
+146         ;-------------------------------------------
+146         ; 3.9 NOP Instruction
+146 00              nop  ; 00000000 No Operation
+147         
+147         ;-------------------------------------------
+147         ; 3.10 Memory Selection Instructions
+147                ;dcl      ; 11111101 Designate Command Line (CM[2:0]<-ACC[2:0])
+147                ;src  2<  ; 0010RRR1 Send Register Control (Addr<-RnP)
+147                ;         ;              Addr = RAM Data Char  :{CHIP2, REG2, CHR4}
+147                ;         ;              RAM Status Reg :{CHIP2, REG2, 0}
+147                ;         ;              RAM OutPort    :{CHIP2, 0, 0}
+147                ;         ;              ROM I/O Port   :{BANK4, 0}
+147                ;rdm      ; 11101001 Read Data RAM Character (ACC<-RAMCHR)
+147                ;rd0      ; 11101100 Read Data RAM Status Character 0 (ACC<-RAMSTAT0)
+147                ;rd1      ; 11101101 Read Data RAM Status Character 1 (ACC<-RAMSTAT1)
+147                ;rd2      ; 11101110 Read Data RAM Status Character 2 (ACC<-RAMSTAT2)
+147                ;rd3      ; 11101111 Read Data RAM Status Character 3 (ACC<-RAMSTAT3)
+147                ;rdr      ; 11101010 Read ROM Port (ACC<-ROMPORT)
+147                ;wrm      ; 11100000 Write Data RAM Character (RAMCHAR<-ACC)
+147                ;wr0      ; 11100100 Write Data RAM Status Character 0 (RAMSTAT0<-ACC)
+147                ;wr1      ; 11100101 Write Data RAM Status Character 1 (RAMSTAT1<-ACC)
+147                ;wr2      ; 11100110 Write Data RAM Status Character 2 (RAMSTAT2<-ACC)
+147                ;wr3      ; 11100111 Write Data RAM Status Character 3 (RAMSTAT3<-ACC)
+147                ;wmp      ; 11100001 Write RAM Port (RAMPORT<-ACC)
+147                ;wrr      ; 11100010 Write ROM Port (ROMPORT<-ACC)
+147                ;adm      ; 11101011 Add Data RAM to Accumlator with Carry ({CY, ACC}<-ACC+RAMCHR+CY)
+147                ;sbm      ; 11101000 Subtract Data RAM from Accumulator with Bollow ({CY, ACC}<-ACC+/RAMCHR+/CY}
+147                ;wpm      ; 11100011 Write Program RAM (same operation as WRM, hardware supports Writing Program RAM)
+147         
+147         MEMTST
+147                 ; RAM W&R
+147 D1              ldm 1
+148 FD              dcl
+149 22 34           fim 1P 0x34
+14B 23              src 1P
+14C DA              ldm 0xa
+14D E0              wrm
+14E D5              ldm 0x5
+14F E9              rdm
+150         
+150                 ; RSC W&R
+150 D2              ldm 2
+151 FD              dcl
+152 24 60           fim 2P 0x60
+154 25              src 2P
+155 DB              ldm 0xb
+156 E6              wr2
+157 D4              ldm 0x4
+158 EE              rd2
+159 EC              rd0
+15A         
+15A                 ; Read ROM Port
+15A 24 40           fim 2P 0x40
+15C 25              src 2p
+15D EA              rdr
+15E         
+15E                 ; Write ROM Port
+15E 24 C0           fim 2P 0xc0
+160 25              src 2p
+161 DA              ldm 10
+162 E2              wrr
+163         
+163                 ; Write RAM Port
+163 D3              ldm 3 ; bank4
+164 FD              dcl
+165 26 55           fim 3p 0x55
+167 27              src 3p
+168 E1              wmp
+169         
+169                 ; ADD RAM
+169 D2              ldm 2
+16A FD              dcl
+16B 22 56           fim 1P 0x56
+16D 23              src 1P
+16E DA              ldm 0xa
+16F E0              wrm
+170 FA              stc ; CY=1
+171 D6              ldm 0x6
+172 EB              adm
+173         
+173                 ; SUB RAM
+173 D2              ldm 2
+174 FD              dcl
+175 22 57           fim 1P 0x57
+177 23              src 1P
+178 D5              ldm 0x5
+179 E0              wrm
+17A FA              stc ; CY=0
+17B D6              ldm 0x6
+17C E8              sbm
+17D         
+17D                 ; Program RAM R&W
+17D D0              ldm 0
+17E FD              dcl
+17F 20 00           FIM 0P 0
+181 21              src 0p
+182 D0              ldm 0x0
+183 E4              wr0
+184 D2              ldm 0x2
+185 E5              wr1
+186 D4              ldm 0x4
+187 E6              wr2
+188                 ;
+188 54 16           jms PGM_RD
+18A                 ;
+18A 22 AB           fim 1P 0xab
+18C 54 05           jms PGM_WR
+18E                 ;
+18E 22 00           fim 1P 0x0
+190 54 16           jms PGM_RD
+192         
+192         MEMEND
+192         
+192         ;-------------------------------------------
+192         ; End of Test
+192 41 92   FINISH jun FINISH
+194         
+194         ;-------------------------------------------
+194         ; Support Far Operations
+1FC                 org 0x1fc
+1FC                ;jcn 0xa PAGE1
+1FC         
+1FE                 org 0x1fe
+1FE 1A 00           jcn 0xa PAGE1
+200         
+200                 org 0x200
+200 00      PAGE1   nop
+201 00              nop
+202         
+2FC                 org 0x2fc
+2FC                 ;isz 10 PAGE2
+2FC         
+2FE                 org 0x2fe
+2FE 78 00           isz 8 PAGE2
+300         
+300                 org 0x300
+300 00      PAGE2   nop
+301 00              nop
+302         
+3FF                 org 0x3ff
+3FF 32      FINPAGE fin 1P
+400 40 7A           jun FINRET
+402 AB              0xab ; constant @0x402
+403                 ;
+403 40 E7   JUNTGT  jun JUNRET
+405         
+405         ;-------------------------------------------
+405         ; Program RAM, Read & Write
+405         ;    Program RAM Location = Bank0, Chip0, Reg0: {RSC0, RSC1, RSC2}
+405         ;    Program RAM Data = ;{R2:R3}
+405         PGM_WR
+405 20 E0           FIM 0P 224
+407 21              SRC 0P
+408 D1              LDM 1
+409 E2              WRR
+40A 54 24           JMS PGMCOM
+40C A2              LD  2
+40D E3              WPM
+40E A3              LD  3
+40F E3              WPM
+410 20 E0           FIM 0P 224
+412 21              SRC 0P
+413 F0              CLB
+414 E2              WRR
+415 C0              BBL 0
+416         PGM_RD
+416 54 24           JMS PGMCOM
+418 E3              WPM
+419 E3              WPM
+41A 20 E0           FIM 0P 224
+41C 21              SRC 0P
+41D EA              RDR
+41E B2              XCH 2
+41F 60              INC 0
+420 21              SRC 0P
+421 EA              RDR
+422 B3              XCH 3
+423 C0              BBL 0
+424         PGMCOM
+424 20 00           FIM 0P 0
+426 21              SRC 0P
+427 ED              RD1
+428 BA              XCH 10
+429 EE              RD2
+42A BB              XCH 11
+42B EC              RD0
+42C 20 F0           FIM 0P 240
+42E 21              SRC 0P
+42F E2              WRR
+430 2B              SRC 5P
+431 C0              BBL 0
+432         
+432         ;-------------------------------------------
+432         ;====================================
+432         ; End of Program
+432         ;====================================
+432                 END      ; end of assemble source
+-----Label Table-----
+Leterals = 0x0002
+LABEL0   = 0x0002
+Constants = 0x0002
+label0   = 0x0003
+label1   = 0x0004
+label2   = 0x0005
+LABELA   = 0x0006
+LABELB   = 0x0007
+LABELC   = 0x0009
+LABELD   = 0x000A
+LABELE   = 0x000B
+LABELF   = 0x000C
+LABELG   = 0x000D
+LABELH   = 0x000E
+LABELI   = 0x0010
+LABELJ   = 0x0010
+LABEL1   = 0x0015
+LABEL2   = 0x0016
+LABEL3   = 0x0017
+LABEL4   = 0x0018
+LABEL5   = 0x0019
+LABEL6   = 0x001A
+LABEL7   = 0x001B
+LABEL8   = 0x001C
+LABEL9   = 0x0021
+LABEL10  = 0x0023
+LABEL11  = 0x0028
+LABELAD  = 0x0028
+LABELAB  = 0x0030
+ORIGIN0  = 0x0040
+LABELAC  = 0x0048
+ORIGIN1  = 0x0050
+ORIGIN2  = 0x0052
+ORIGIN3  = 0x0060
+RESET    = 0x0070
+RESET2   = 0x0071
+INCTST   = 0x0071
+INCEND   = 0x0073
+FINTST   = 0x0073
+FINEND   = 0x007A
+ADDTST   = 0x007A
+FINRET   = 0x007A
+ADDEND   = 0x0082
+SUBTST   = 0x0082
+LDXCHTST = 0x008A
+SUBEND   = 0x008A
+LCXCHEND = 0x008F
+ACCTST   = 0x008F
+ACCEND   = 0x00DB
+FIMTST   = 0x00DB
+FIMEND   = 0x00E3
+LDMTST   = 0x00E3
+LDMEND   = 0x00E5
+LBL      = 0x00E5
+JUNTST   = 0x00E5
+JUNEND   = 0x00E7
+JUNRET   = 0x00E7
+JINTST   = 0x00E7
+JINEND   = 0x00EE
+JINTGT   = 0x00EE
+JCNTST   = 0x00EE
+JCNBGN   = 0x00FD
+JCN_TZ0  = 0x0101
+JCN_TZ1  = 0x0104
+JCN_TN0  = 0x0107
+JCN_TN1  = 0x010A
+JCN_C00  = 0x010E
+JCN_C01  = 0x0112
+JCN_C10  = 0x0116
+JCN_C11  = 0x011A
+JCN_AZ0  = 0x011E
+JCN_AZ1  = 0x0122
+JCN_AN0  = 0x0126
+JCNEND   = 0x012A
+ISZTST   = 0x012A
+JCN_AN1  = 0x012A
+ISZTGT   = 0x0134
+ISZEND   = 0x0136
+JMSTST   = 0x0136
+JMSTGT0  = 0x013C
+JMSTGT1  = 0x0140
+JMSTGT2  = 0x0144
+JMSEND   = 0x0146
+MEMTST   = 0x0147
+MEMEND   = 0x0192
+FINISH   = 0x0192
+LABELAA  = 0x01C8
+PAGE1    = 0x0200
+PAGE2    = 0x0300
+FINPAGE  = 0x03FF
+JUNTGT   = 0x0403
+PGM_WR   = 0x0405
+PGM_RD   = 0x0416
+PGMCOM   = 0x0424
+-----End of Label Table-----
+Total Error = 0

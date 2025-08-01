@@ -1,0 +1,151 @@
+%==============================================================
+% mmRISC-1 Technical Reference Manual
+%==============================================================
+\documentclass[dvipdfmx, a4paper,12pt]{book}
+\usepackage[T1]{fontenc}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage[dvipdfmx]{color}
+\renewcommand{\bibname}{References}
+\usepackage[htt]{hyphenat}
+\usepackage{moreverb}
+\usepackage{makecell}
+\usepackage{comment}
+\usepackage{inputenc}
+\usepackage{lmodern}
+\usepackage[english]{babel}
+\usepackage{vtable}
+\usepackage{colortbl}
+\usepackage{xcolor}
+\usepackage{layout}
+\usepackage[twoside,top=20truemm,bottom=20truemm,inner=25truemm,outer=25truemm]{geometry}
+\usepackage{import}
+\usepackage{tabularx}
+\usepackage{adjustbox}
+\usepackage{multirow}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{seqsplit}
+\usepackage[bookmarks=true,bookmarksnumbered=true]{hyperref}
+\usepackage{listings}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{midpage}
+\usepackage{upquote}
+\usepackage{hyperref}
+\usepackage{autobreak}
+%\usepackage[backend=biber,sorting=nty,style=authoryear-comp,sortcites=true,date=year]{biblatex}
+%\addbibresource{MCS4\_System\_TRM.bib}
+%\usepackage{odsfile}
+
+\renewcommand{\figurename}{Figure}
+\renewcommand{\tablename}{Table}
+\captionsetup[figure]{format=plain, labelformat=simple, labelsep=colon, font={bf,it,normalsize}, justification=raggedright, singlelinecheck=off}
+\captionsetup[table]{format=plain, labelformat=simple, labelsep=colon, font={bf,it,normalsize}, justification=raggedright, singlelinecheck=off}
+\captionsetup[lstlisting]{format=plain, labelformat=simple, labelsep=colon, font={bf,it,normalsize}, justification=raggedright, singlelinecheck=off}
+
+\definecolor{LightPurple}{rgb}{0.90,0.90,1}
+
+%==============================================================
+% Start Document
+%==============================================================
+\begin{document}
+%\layout{}
+\frontmatter
+
+%==============================================================
+% Title Page
+%==============================================================
+\import{./00_Front/}{Title.tex}
+
+%==============================================================
+% History
+%==============================================================
+\import{./00_Front/}{History.tex}
+
+%==============================================================
+% Table Contents
+%==============================================================
+\setcounter{tocdepth}{1}
+\tableofcontents
+\listoffigures
+\listoftables
+\lstlistoflistings
+
+%==============================================================
+% Start Main Pages
+%==============================================================
+\mainmatter
+
+%\begin{comment}
+
+%==============================================================
+% Chapter 1 The Birth of the World's First Microcomputer 
+%==============================================================
+\newpage\chapter{The Birth of the World's First Microcomputer}
+\import{./01_BirthOfMicro/}{BirthOfMicro.tex}
+
+%==============================================================
+% Chapter 2 MCS-4 System
+%==============================================================
+\newpage\chapter{MCS-4 Chip Set and System}
+\import{./02_MCS4ChipSet/}{MCS4ChipSet.tex}
+
+%==============================================================
+% Chapter 3 4004 CPU Instruction Set Architecture
+%==============================================================
+\newpage\chapter{4004 CPU Instruction Set Architecture}
+\import{./03_CPUArchitecture/}{CPUArchitecture.tex}
+
+%==============================================================
+% Chapter 4 Development Tool for 4004 Assembler Program
+%==============================================================
+\newpage\chapter{Development Tool for 4004 Assembler Program}
+\import{./04_CPUProgDevTool/}{CPUProgDevTool.tex}
+
+%==============================================================
+% Chapter 5 Logic Design of MCS-4 Chips
+%==============================================================
+\newpage\chapter{Logic Design of MCS-4 Chips}
+\import{./05_MCS4LogicDesign/}{MCS4LogicDesign.tex}
+
+%==============================================================
+% Chapter 6 MCS-4 System and Busicom 141-PF
+%==============================================================
+\newpage\chapter{MCS-4 System and Busicom 141-PF}
+\import{./06_Busicom141PF/}{Busicom141PF.tex}
+
+%==============================================================
+% Chapter 7 A challenge: Calculating 500 Digits of Pi with the 4004 CPU
+%==============================================================
+\newpage\chapter{A challenge: Calculating 500 Digits of Pi with the 4004 CPU}
+\import{./07_PI4004/}{PI4004.tex}
+
+%==============================================================
+% Chapter 8 Conclusion
+%==============================================================
+\newpage\chapter{Conclusion}
+The author's journey with microcomputers began in 1975 with the acquisition of the TK-80, an 8-bit single-board computer based on the 8080A. Although I have been involved with microcomputers for nearly 50 years, my first in-depth study of the MCS-4 system, including the 4004 CPU, was only about a decade ago. As for the Busicom 141-PF calculator, I had seen it exhibited but had never personally operated one.
+
+In this project, I built a system to run the binary version of the 141-PF calculator program available online, incorporating RTL design of the 4004. Initially, I had no idea how the calculator's keys were supposed to be used. It was only after completing the entire system—from the RISC-V user interface to the MCS-4 logic—that I witnessed the 141-PF program finally come to life. That moment was truly moving. It revealed the calculator's surprisingly practical functionality and performance.
+
+Engaging with the legacy left by our predecessors and rediscovering the profound wisdom and engineering embedded in these early systems has been an immensely valuable learning experience.
+
+%==============================================================
+% Bibliography
+%==============================================================
+\bibliography{references}
+\bibliographystyle{unsrt}
+
+%==============================================================
+% Back Page
+%==============================================================
+\backmatter
+\newpage\chapter{}
+\newpage\import{./99_Back/}{Back.tex}
+
+%==============================================================
+% End of Document
+%==============================================================
+\end{document}
+\end
+%==============================================================

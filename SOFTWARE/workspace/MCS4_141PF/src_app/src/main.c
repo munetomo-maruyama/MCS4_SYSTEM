@@ -1,0 +1,220 @@
+//===========================================================
+// mmRISC Project
+//-----------------------------------------------------------
+// File Name   : main.c
+// Description : Main Routine
+//-----------------------------------------------------------
+// History :
+// Rev.01 2021.05.08 M.Maruyama First Release
+//-----------------------------------------------------------
+// Copyright (C) 2020-2021 M.Maruyama
+//===========================================================
+// This program is based on following program.
+/*
+ * FreeRTOS V202104.00
+ * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of
+ * this software and associated documentation files (the "Software"), to deal in
+ * the Software without restriction, including without limitation the rights to
+ * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+ * the Software, and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+ * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+ * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+ * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * https://www.FreeRTOS.org
+ * https://www.github.com/FreeRTOS
+ *
+ * 1 tab == 4 spaces!
+ */
+
+// FreeRTOS kernel includes
+#include "FreeRTOS.h"
+#include "task.h"
+
+// mmRISC includes
+#include <stdint.h>
+#include "common.h"
+#include "cui_141pf.h"
+#include "gpio.h"
+#include "gui_141pf.h"
+#include "i2c.h"
+#include "interrupt.h"
+#include "mcs4.h"
+#include "spi.h"
+#include "system.h"
+#include "uart.h"
+#include "xprintf.h"
+
+// ROM Programs
+enum ROMHEX {ROMHEX_141PF, ROMHEX_PI4004};
+
+// Prototypes
+void vApplicationMallocFailedHook( void );
+void vApplicationIdleHook( void );
+void vApplicationStackOverflowHook( TaskHandle_t pxTask, char *pcTaskName );
+void vApplicationTickHook( void );
+
+//-------------------------------------------
+// Run a simple demo just prints 'Blink'
+//-------------------------------------------
+int main( void )
+{
+    int ret;
+    uint32_t found_panel_tft = 0;
+    uint32_t found_touch_res = 0;
+    uint32_t found_touch_cap = 0;
+    uint32_t touch_dev = TOUCH_NONE;
+    uint32_t exec_pi4004;
+    //
+    // Initialize Hardware
+    GPIO_Init();
+    UART_Init();
+    SPI_Init();
+    INT_Init();
+    //
+    // Check LCD Touch Panel
+    found_panel_tft = LCD_Init();
+    if (found_panel_tft)
+    {
+        found_touch_res = TOUCH_RES_Init();
+        if (found_touch_res == 0) found_touch_cap = TOUCH_CAP_Init();
+        touch_dev = (found_touch_cap)? TOUCH_CAPACITIVE :
+                    (found_touch_res)? TOUCH_RESISTIVE : TOUCH_NONE;
+        found_panel_tft = (touch_dev == TOUCH_NONE)? 0 : found_panel_tft;
+    }
+    //
+    // Execute pi4004 if SW9 is on
+    exec_pi4004 = (GPIO_GetSW10() & 0x100)? 1 : 0;
+    //
+    // If you are to execute pi4004, use CUI
+    if (exec_pi4004)
+    {
+        printf("\n===== pi4004 ===== [CUI]\n");
+        // Load Program
+        if (MCS4_ROM_Detection() != ROMHEX_PI4004)
+        {
+            printf("Loading...");
+            if (MCS4_ROM_Stote_PI4004()) printf("CAUTION! Load Error PI4004\n");
+            printf("Done\n");
+        }
+        // Start MCS4
+        mem_wr32(GPIO_PDR5, 0x80000000); // mcs4_res_n = 1
+        // Enable 141-PF Hardware
+        mem_wr32(GPIO_PDR3, 0x80000000); // Enable 141-PF
+        // Execute pi4004 using 141-PF controls
+        ret = Main_CUI_141PF();
+    }
+    // If you do not have Touch LCD Panel, use CUI
+    else if (found_panel_tft == 0)
+    {
+        printf("\n===== Busicom 141-PF ===== [CUI]\n");
+        // Load Program
+        if (MCS4_ROM_Detection() != ROMHEX_141PF)
+        {
+            printf("Loading...");
+            if (MCS4_ROM_Stote_141PF()) printf("CAUTION! Load Error 141-PF\n");
+            printf("Done\n");
+        }
+        // Start MCS4
+        mem_wr32(GPIO_PDR5, 0x80000000); // mcs4_res_n = 1
+        // Execute 141-PF (CUI)
+        ret = Main_CUI_141PF();
+    }
+    // If you do have Touch LCD Panel, use GUI
+    else
+    {
+        // Load Program
+        if (MCS4_ROM_Detection() != ROMHEX_141PF)
+        {
+            if (MCS4_ROM_Stote_141PF()) printf("CAUTION! Load Error 141-PF\n");
+        }
+        // Start MCS4
+        mem_wr32(GPIO_PDR5, 0x80000000); // mcs4_res_n = 1
+        // Execute 141-PF (GUI)
+        ret = Main_GUI_141PF(touch_dev);
+    }
+    //
+    return ret;
+}
+
+//-----------------------------------------------------------------------------
+// vApplicationMallocFailedHook
+// vApplicationMallocFailedHook() will only be called if
+// configUSE_MALLOC_FAILED_HOOK is set to 1 in FreeRTOSConfig.h.  It is a hook
+// function that will get called if a call to pvPortMalloc() fails.
+// pvPortMalloc() is called internally by the kernel whenever a task, queue,
+// timer or semaphore is created.  It is also called by various parts of the
+// demo application.  If heap_1.c or heap_2.c are used, then the size of the
+// heap available to pvPortMalloc() is defined by configTOTAL_HEAP_SIZE in
+// FreeRTOSConfig.h, and the xPortGetFreeHeapSize() API function can be used
+// to query the size of free heap space that remains (although it does not
+// provide information on how the remaining heap might be fragmented).
+//-----------------------------------------------------------------------------
+void vApplicationMallocFailedHook( void )
+{
+    taskDISABLE_INTERRUPTS();
+    for( ;; );
+}
+
+//-----------------------------------------------------------------------------
+// vApplicationIdleHook
+// vApplicationIdleHook() will only be called if configUSE_IDLE_HOOK is set
+// to 1 in FreeRTOSConfig.h.  It will be called on each iteration of the idle
+// task.  It is essential that code added to this hook function never attempts
+// to block in any way (for example, call xQueueReceive() with a block time
+// specified, or call vTaskDelay()).  If the application makes use of the
+// vTaskDelete() API function (as this demo application does) then it is also
+// important that vApplicationIdleHook() is permitted to return to its calling
+// function, because it is the responsibility of the idle task to clean up
+// memory allocated by the kernel to any task that has since been deleted.
+//-----------------------------------------------------------------------------
+void vApplicationIdleHook( void )
+{
+}
+
+//-----------------------------------------------------------------------------
+// vApplicationStackOverflowHook
+// Run time stack overflow checking is performed if
+// configCHECK_FOR_STACK_OVERFLOW is defined to 1 or 2.  This hook
+// function is called if a stack overflow is detected.
+//-----------------------------------------------------------------------------
+void vApplicationStackOverflowHook( TaskHandle_t pxTask, char *pcTaskName )
+{
+    ( void ) pcTaskName;
+    ( void ) pxTask;
+
+    taskDISABLE_INTERRUPTS();
+    for( ;; );
+}
+//-----------------------------------------------------------------------------
+// vApplicationTickHook
+//-----------------------------------------------------------------------------
+void vApplicationTickHook( void )
+{
+}
+//-----------------------------------------------------------------------------
+// vAssertCalled
+//-----------------------------------------------------------------------------
+void vAssertCalled( void )
+{
+    volatile uint32_t ulSetTo1ToExitFunction = 0;
+    taskDISABLE_INTERRUPTS();
+    while( ulSetTo1ToExitFunction != 1 )
+    {
+        __asm volatile( "NOP" );
+    }
+}
+
+//===========================================================
+// End of Program
+//===========================================================

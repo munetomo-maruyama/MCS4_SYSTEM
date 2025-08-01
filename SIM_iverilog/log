@@ -1,0 +1,3 @@
+VCD info: dumpfile tb.vcd opened for output.
+***** STIMULAS FINISHED ***** at    1910033
+/mnt/c/MCS4_141PF/MCS4_SYSTEM/SIM_iverilog/../SIM_iverilog/tb_TOP.v:397: $finish called at 19101370000 (100ps)

@@ -1,0 +1,1093 @@
+22:44:51 **** Incremental Build of configuration Debug for project MCS4_141PF ****
+make all 
+Building file: ../src_app/src/main.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/main.d" -MT"src_app/src/main.o" -c -o "src_app/src/main.o" "../src_app/src/main.c"
+Finished building: ../src_app/src/main.c
+ 
+Building target: MCS4_141PF.elf
+Invoking: GNU RISC-V Cross C Linker
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -T "C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\link.ld" -nostartfiles -Xlinker --gc-sections -L/opt/riscv/riscv64-unknown-elf/lib/rv32imafc/ilp32f -L/opt/riscv/lib/gcc/riscv64-unknown-elf/12.2.0/rv32imafc/ilp32f -Xlinker --no-warn-rwx-segmen -Wl,-Map,"MCS4_141PF.map" -nostartfiles -nostdlib -o "MCS4_141PF.elf" ./src_kernel/src/croutine.o ./src_kernel/src/event_groups.o ./src_kernel/src/heap_4.o ./src_kernel/src/list.o ./src_kernel/src/port.o ./src_kernel/src/portASM.o ./src_kernel/src/queue.o ./src_kernel/src/riscv-virt.o ./src_kernel/src/stream_buffer.o ./src_kernel/src/tasks.o ./src_kernel/src/timers.o  ./src_app/src/cui_141pf.o ./src_app/src/gpio.o ./src_app/src/gui_141pf.o ./src_app/src/i2c.o ./src_app/src/interrupt.o ./src_app/src/libc-hooks.o ./src_app/src/main.o ./src_app/src/mcs4.o ./src_app/src/spi.o ./src_app/src/startup.o ./src_app/src/system.o ./src_app/src/touchlcd_cap.o ./src_app/src/touchlcd_res.o ./src_app/src/touchlcd_tft.o ./src_app/src/uart.o ./src_app/src/xprintf.o   -lm -lc -lgcc
+Finished building target: MCS4_141PF.elf
+ 
+Invoking: GNU RISC-V Cross Create Flash Image
+riscv-none-elf-objcopy -O ihex "MCS4_141PF.elf"  "MCS4_141PF.hex"
+Finished building: MCS4_141PF.hex
+ 
+Invoking: GNU RISC-V Cross Print Size
+riscv-none-elf-size --format=berkeley "MCS4_141PF.elf"
+   text	   data	    bss	    dec	    hex	filename
+  58342	    516	 533152	 592010	  9088a	MCS4_141PF.elf
+Finished building: MCS4_141PF.siz
+ 
+22:45:09 **** Incremental Build of configuration Debug for project MCS4_141PF ****
+make all 
+Invoking: GNU RISC-V Cross Print Size
+riscv-none-elf-size --format=berkeley "MCS4_141PF.elf"
+   text	   data	    bss	    dec	    hex	filename
+  58342	    516	 533152	 592010	  9088a	MCS4_141PF.elf
+Finished building: MCS4_141PF.siz
+ 
+22:48:01 **** Incremental Build of configuration Debug for project MCS4_141PF ****
+make all 
+Invoking: GNU RISC-V Cross Print Size
+riscv-none-elf-size --format=berkeley "MCS4_141PF.elf"
+   text	   data	    bss	    dec	    hex	filename
+  58342	    516	 533152	 592010	  9088a	MCS4_141PF.elf
+Finished building: MCS4_141PF.siz
+ 
+22:53:29 **** Clean-only build of configuration Debug for project MCS4_141PF ****
+make clean 
+rm -rf ./src_kernel/src/croutine.o ./src_kernel/src/event_groups.o ./src_kernel/src/heap_4.o ./src_kernel/src/list.o ./src_kernel/src/port.o ./src_kernel/src/portASM.o ./src_kernel/src/queue.o ./src_kernel/src/riscv-virt.o ./src_kernel/src/stream_buffer.o ./src_kernel/src/tasks.o ./src_kernel/src/timers.o  ./src_app/src/cui_141pf.o ./src_app/src/gpio.o ./src_app/src/gui_141pf.o ./src_app/src/i2c.o ./src_app/src/interrupt.o ./src_app/src/libc-hooks.o ./src_app/src/main.o ./src_app/src/mcs4.o ./src_app/src/spi.o ./src_app/src/startup.o ./src_app/src/system.o ./src_app/src/touchlcd_cap.o ./src_app/src/touchlcd_res.o ./src_app/src/touchlcd_tft.o ./src_app/src/uart.o ./src_app/src/xprintf.o MCS4_141PF.hex MCS4_141PF.siz ./src_kernel/src/portASM.d  ./src_app/src/startup.d ./src_kernel/src/croutine.d ./src_kernel/src/event_groups.d ./src_kernel/src/heap_4.d ./src_kernel/src/list.d ./src_kernel/src/port.d ./src_kernel/src/queue.d ./src_kernel/src/riscv-virt.d ./src_kernel/src/stream_buffer.d ./src_kernel/src/tasks.d ./src_kernel/src/timers.d  ./src_app/src/cui_141pf.d ./src_app/src/gpio.d ./src_app/src/gui_141pf.d ./src_app/src/i2c.d ./src_app/src/interrupt.d ./src_app/src/libc-hooks.d ./src_app/src/main.d ./src_app/src/mcs4.d ./src_app/src/spi.d ./src_app/src/system.d ./src_app/src/touchlcd_cap.d ./src_app/src/touchlcd_res.d ./src_app/src/touchlcd_tft.d ./src_app/src/uart.d ./src_app/src/xprintf.d  MCS4_141PF.elf
+ 
+22:53:29 **** Build of configuration Debug for project MCS4_141PF ****
+make all 
+Building file: ../src_kernel/src/croutine.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/croutine.d" -MT"src_kernel/src/croutine.o" -c -o "src_kernel/src/croutine.o" "../src_kernel/src/croutine.c"
+Finished building: ../src_kernel/src/croutine.c
+ 
+Building file: ../src_kernel/src/event_groups.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/event_groups.d" -MT"src_kernel/src/event_groups.o" -c -o "src_kernel/src/event_groups.o" "../src_kernel/src/event_groups.c"
+Finished building: ../src_kernel/src/event_groups.c
+ 
+Building file: ../src_kernel/src/heap_4.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/heap_4.d" -MT"src_kernel/src/heap_4.o" -c -o "src_kernel/src/heap_4.o" "../src_kernel/src/heap_4.c"
+Finished building: ../src_kernel/src/heap_4.c
+ 
+Building file: ../src_kernel/src/list.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/list.d" -MT"src_kernel/src/list.o" -c -o "src_kernel/src/list.o" "../src_kernel/src/list.c"
+Finished building: ../src_kernel/src/list.c
+ 
+Building file: ../src_kernel/src/port.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/port.d" -MT"src_kernel/src/port.o" -c -o "src_kernel/src/port.o" "../src_kernel/src/port.c"
+Finished building: ../src_kernel/src/port.c
+ 
+Building file: ../src_kernel/src/portASM.S
+Invoking: GNU RISC-V Cross Assembler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -x assembler-with-cpp -DportasmHANDLE_INTERRUPT=External_Interrupt_Handler -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -MMD -MP -MF"src_kernel/src/portASM.d" -MT"src_kernel/src/portASM.o" -c -o "src_kernel/src/portASM.o" "../src_kernel/src/portASM.S"
+Finished building: ../src_kernel/src/portASM.S
+ 
+Building file: ../src_kernel/src/queue.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/queue.d" -MT"src_kernel/src/queue.o" -c -o "src_kernel/src/queue.o" "../src_kernel/src/queue.c"
+Finished building: ../src_kernel/src/queue.c
+ 
+Building file: ../src_kernel/src/riscv-virt.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/riscv-virt.d" -MT"src_kernel/src/riscv-virt.o" -c -o "src_kernel/src/riscv-virt.o" "../src_kernel/src/riscv-virt.c"
+Finished building: ../src_kernel/src/riscv-virt.c
+ 
+Building file: ../src_kernel/src/stream_buffer.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/stream_buffer.d" -MT"src_kernel/src/stream_buffer.o" -c -o "src_kernel/src/stream_buffer.o" "../src_kernel/src/stream_buffer.c"
+Finished building: ../src_kernel/src/stream_buffer.c
+ 
+Building file: ../src_kernel/src/tasks.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/tasks.d" -MT"src_kernel/src/tasks.o" -c -o "src_kernel/src/tasks.o" "../src_kernel/src/tasks.c"
+Finished building: ../src_kernel/src/tasks.c
+ 
+Building file: ../src_kernel/src/timers.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/timers.d" -MT"src_kernel/src/timers.o" -c -o "src_kernel/src/timers.o" "../src_kernel/src/timers.c"
+Finished building: ../src_kernel/src/timers.c
+ 
+Building file: ../src_app/src/cui_141pf.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/cui_141pf.d" -MT"src_app/src/cui_141pf.o" -c -o "src_app/src/cui_141pf.o" "../src_app/src/cui_141pf.c"
+Finished building: ../src_app/src/cui_141pf.c
+ 
+Building file: ../src_app/src/gpio.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/gpio.d" -MT"src_app/src/gpio.o" -c -o "src_app/src/gpio.o" "../src_app/src/gpio.c"
+Finished building: ../src_app/src/gpio.c
+ 
+Building file: ../src_app/src/gui_141pf.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/gui_141pf.d" -MT"src_app/src/gui_141pf.o" -c -o "src_app/src/gui_141pf.o" "../src_app/src/gui_141pf.c"
+Finished building: ../src_app/src/gui_141pf.c
+ 
+Building file: ../src_app/src/i2c.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/i2c.d" -MT"src_app/src/i2c.o" -c -o "src_app/src/i2c.o" "../src_app/src/i2c.c"
+Finished building: ../src_app/src/i2c.c
+ 
+Building file: ../src_app/src/interrupt.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/interrupt.d" -MT"src_app/src/interrupt.o" -c -o "src_app/src/interrupt.o" "../src_app/src/interrupt.c"
+Finished building: ../src_app/src/interrupt.c
+ 
+Building file: ../src_app/src/libc-hooks.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/libc-hooks.d" -MT"src_app/src/libc-hooks.o" -c -o "src_app/src/libc-hooks.o" "../src_app/src/libc-hooks.c"
+Finished building: ../src_app/src/libc-hooks.c
+ 
+Building file: ../src_app/src/main.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/main.d" -MT"src_app/src/main.o" -c -o "src_app/src/main.o" "../src_app/src/main.c"
+Finished building: ../src_app/src/main.c
+ 
+Building file: ../src_app/src/mcs4.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/mcs4.d" -MT"src_app/src/mcs4.o" -c -o "src_app/src/mcs4.o" "../src_app/src/mcs4.c"
+Finished building: ../src_app/src/mcs4.c
+ 
+Building file: ../src_app/src/spi.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/spi.d" -MT"src_app/src/spi.o" -c -o "src_app/src/spi.o" "../src_app/src/spi.c"
+Finished building: ../src_app/src/spi.c
+ 
+Building file: ../src_app/src/startup.S
+Invoking: GNU RISC-V Cross Assembler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -x assembler-with-cpp -DportasmHANDLE_INTERRUPT=External_Interrupt_Handler -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -MMD -MP -MF"src_app/src/startup.d" -MT"src_app/src/startup.o" -c -o "src_app/src/startup.o" "../src_app/src/startup.S"
+Finished building: ../src_app/src/startup.S
+ 
+Building file: ../src_app/src/system.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/system.d" -MT"src_app/src/system.o" -c -o "src_app/src/system.o" "../src_app/src/system.c"
+Finished building: ../src_app/src/system.c
+ 
+Building file: ../src_app/src/touchlcd_cap.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/touchlcd_cap.d" -MT"src_app/src/touchlcd_cap.o" -c -o "src_app/src/touchlcd_cap.o" "../src_app/src/touchlcd_cap.c"
+Finished building: ../src_app/src/touchlcd_cap.c
+ 
+Building file: ../src_app/src/touchlcd_res.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/touchlcd_res.d" -MT"src_app/src/touchlcd_res.o" -c -o "src_app/src/touchlcd_res.o" "../src_app/src/touchlcd_res.c"
+Finished building: ../src_app/src/touchlcd_res.c
+ 
+Building file: ../src_app/src/touchlcd_tft.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/touchlcd_tft.d" -MT"src_app/src/touchlcd_tft.o" -c -o "src_app/src/touchlcd_tft.o" "../src_app/src/touchlcd_tft.c"
+Finished building: ../src_app/src/touchlcd_tft.c
+ 
+Building file: ../src_app/src/uart.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/uart.d" -MT"src_app/src/uart.o" -c -o "src_app/src/uart.o" "../src_app/src/uart.c"
+Finished building: ../src_app/src/uart.c
+ 
+Building file: ../src_app/src/xprintf.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/xprintf.d" -MT"src_app/src/xprintf.o" -c -o "src_app/src/xprintf.o" "../src_app/src/xprintf.c"
+Finished building: ../src_app/src/xprintf.c
+ 
+Building target: MCS4_141PF.elf
+Invoking: GNU RISC-V Cross C Linker
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -T "C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\link.ld" -nostartfiles -Xlinker --gc-sections -L/opt/riscv/riscv64-unknown-elf/lib/rv32imafc/ilp32f -L/opt/riscv/lib/gcc/riscv64-unknown-elf/12.2.0/rv32imafc/ilp32f -Xlinker --no-warn-rwx-segmen -Wl,-Map,"MCS4_141PF.map" -nostartfiles -nostdlib -o "MCS4_141PF.elf" ./src_kernel/src/croutine.o ./src_kernel/src/event_groups.o ./src_kernel/src/heap_4.o ./src_kernel/src/list.o ./src_kernel/src/port.o ./src_kernel/src/portASM.o ./src_kernel/src/queue.o ./src_kernel/src/riscv-virt.o ./src_kernel/src/stream_buffer.o ./src_kernel/src/tasks.o ./src_kernel/src/timers.o  ./src_app/src/cui_141pf.o ./src_app/src/gpio.o ./src_app/src/gui_141pf.o ./src_app/src/i2c.o ./src_app/src/interrupt.o ./src_app/src/libc-hooks.o ./src_app/src/main.o ./src_app/src/mcs4.o ./src_app/src/spi.o ./src_app/src/startup.o ./src_app/src/system.o ./src_app/src/touchlcd_cap.o ./src_app/src/touchlcd_res.o ./src_app/src/touchlcd_tft.o ./src_app/src/uart.o ./src_app/src/xprintf.o   -lm -lc -lgcc
+Finished building target: MCS4_141PF.elf
+ 
+Invoking: GNU RISC-V Cross Create Flash Image
+riscv-none-elf-objcopy -O ihex "MCS4_141PF.elf"  "MCS4_141PF.hex"
+Finished building: MCS4_141PF.hex
+ 
+Invoking: GNU RISC-V Cross Print Size
+riscv-none-elf-size --format=berkeley "MCS4_141PF.elf"
+   text	   data	    bss	    dec	    hex	filename
+  58342	    516	 533152	 592010	  9088a	MCS4_141PF.elf
+Finished building: MCS4_141PF.siz
+ 
+22:54:08 **** Incremental Build of configuration Debug for project MCS4_141PF ****
+make all 
+Invoking: GNU RISC-V Cross Print Size
+riscv-none-elf-size --format=berkeley "MCS4_141PF.elf"
+   text	   data	    bss	    dec	    hex	filename
+  58342	    516	 533152	 592010	  9088a	MCS4_141PF.elf
+Finished building: MCS4_141PF.siz
+ 
+22:56:13 **** Incremental Build of configuration Debug for project MCS4_141PF ****
+make all 
+Invoking: GNU RISC-V Cross Print Size
+riscv-none-elf-size --format=berkeley "MCS4_141PF.elf"
+   text	   data	    bss	    dec	    hex	filename
+  58342	    516	 533152	 592010	  9088a	MCS4_141PF.elf
+Finished building: MCS4_141PF.siz
+ 
+22:56:18 **** Clean-only build of configuration Debug for project MCS4_141PF ****
+make clean 
+rm -rf ./src_kernel/src/croutine.o ./src_kernel/src/event_groups.o ./src_kernel/src/heap_4.o ./src_kernel/src/list.o ./src_kernel/src/port.o ./src_kernel/src/portASM.o ./src_kernel/src/queue.o ./src_kernel/src/riscv-virt.o ./src_kernel/src/stream_buffer.o ./src_kernel/src/tasks.o ./src_kernel/src/timers.o  ./src_app/src/cui_141pf.o ./src_app/src/gpio.o ./src_app/src/gui_141pf.o ./src_app/src/i2c.o ./src_app/src/interrupt.o ./src_app/src/libc-hooks.o ./src_app/src/main.o ./src_app/src/mcs4.o ./src_app/src/spi.o ./src_app/src/startup.o ./src_app/src/system.o ./src_app/src/touchlcd_cap.o ./src_app/src/touchlcd_res.o ./src_app/src/touchlcd_tft.o ./src_app/src/uart.o ./src_app/src/xprintf.o MCS4_141PF.hex MCS4_141PF.siz ./src_kernel/src/portASM.d  ./src_app/src/startup.d ./src_kernel/src/croutine.d ./src_kernel/src/event_groups.d ./src_kernel/src/heap_4.d ./src_kernel/src/list.d ./src_kernel/src/port.d ./src_kernel/src/queue.d ./src_kernel/src/riscv-virt.d ./src_kernel/src/stream_buffer.d ./src_kernel/src/tasks.d ./src_kernel/src/timers.d  ./src_app/src/cui_141pf.d ./src_app/src/gpio.d ./src_app/src/gui_141pf.d ./src_app/src/i2c.d ./src_app/src/interrupt.d ./src_app/src/libc-hooks.d ./src_app/src/main.d ./src_app/src/mcs4.d ./src_app/src/spi.d ./src_app/src/system.d ./src_app/src/touchlcd_cap.d ./src_app/src/touchlcd_res.d ./src_app/src/touchlcd_tft.d ./src_app/src/uart.d ./src_app/src/xprintf.d  MCS4_141PF.elf
+ 
+22:56:18 **** Build of configuration Debug for project MCS4_141PF ****
+make all 
+Building file: ../src_kernel/src/croutine.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/croutine.d" -MT"src_kernel/src/croutine.o" -c -o "src_kernel/src/croutine.o" "../src_kernel/src/croutine.c"
+Finished building: ../src_kernel/src/croutine.c
+ 
+Building file: ../src_kernel/src/event_groups.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/event_groups.d" -MT"src_kernel/src/event_groups.o" -c -o "src_kernel/src/event_groups.o" "../src_kernel/src/event_groups.c"
+Finished building: ../src_kernel/src/event_groups.c
+ 
+Building file: ../src_kernel/src/heap_4.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/heap_4.d" -MT"src_kernel/src/heap_4.o" -c -o "src_kernel/src/heap_4.o" "../src_kernel/src/heap_4.c"
+Finished building: ../src_kernel/src/heap_4.c
+ 
+Building file: ../src_kernel/src/list.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/list.d" -MT"src_kernel/src/list.o" -c -o "src_kernel/src/list.o" "../src_kernel/src/list.c"
+Finished building: ../src_kernel/src/list.c
+ 
+Building file: ../src_kernel/src/port.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/port.d" -MT"src_kernel/src/port.o" -c -o "src_kernel/src/port.o" "../src_kernel/src/port.c"
+Finished building: ../src_kernel/src/port.c
+ 
+Building file: ../src_kernel/src/portASM.S
+Invoking: GNU RISC-V Cross Assembler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -x assembler-with-cpp -DportasmHANDLE_INTERRUPT=External_Interrupt_Handler -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -MMD -MP -MF"src_kernel/src/portASM.d" -MT"src_kernel/src/portASM.o" -c -o "src_kernel/src/portASM.o" "../src_kernel/src/portASM.S"
+Finished building: ../src_kernel/src/portASM.S
+ 
+Building file: ../src_kernel/src/queue.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/queue.d" -MT"src_kernel/src/queue.o" -c -o "src_kernel/src/queue.o" "../src_kernel/src/queue.c"
+Finished building: ../src_kernel/src/queue.c
+ 
+Building file: ../src_kernel/src/riscv-virt.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/riscv-virt.d" -MT"src_kernel/src/riscv-virt.o" -c -o "src_kernel/src/riscv-virt.o" "../src_kernel/src/riscv-virt.c"
+Finished building: ../src_kernel/src/riscv-virt.c
+ 
+Building file: ../src_kernel/src/stream_buffer.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/stream_buffer.d" -MT"src_kernel/src/stream_buffer.o" -c -o "src_kernel/src/stream_buffer.o" "../src_kernel/src/stream_buffer.c"
+Finished building: ../src_kernel/src/stream_buffer.c
+ 
+Building file: ../src_kernel/src/tasks.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/tasks.d" -MT"src_kernel/src/tasks.o" -c -o "src_kernel/src/tasks.o" "../src_kernel/src/tasks.c"
+Finished building: ../src_kernel/src/tasks.c
+ 
+Building file: ../src_kernel/src/timers.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/timers.d" -MT"src_kernel/src/timers.o" -c -o "src_kernel/src/timers.o" "../src_kernel/src/timers.c"
+Finished building: ../src_kernel/src/timers.c
+ 
+Building file: ../src_app/src/cui_141pf.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/cui_141pf.d" -MT"src_app/src/cui_141pf.o" -c -o "src_app/src/cui_141pf.o" "../src_app/src/cui_141pf.c"
+Finished building: ../src_app/src/cui_141pf.c
+ 
+Building file: ../src_app/src/gpio.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/gpio.d" -MT"src_app/src/gpio.o" -c -o "src_app/src/gpio.o" "../src_app/src/gpio.c"
+Finished building: ../src_app/src/gpio.c
+ 
+Building file: ../src_app/src/gui_141pf.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/gui_141pf.d" -MT"src_app/src/gui_141pf.o" -c -o "src_app/src/gui_141pf.o" "../src_app/src/gui_141pf.c"
+Finished building: ../src_app/src/gui_141pf.c
+ 
+Building file: ../src_app/src/i2c.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/i2c.d" -MT"src_app/src/i2c.o" -c -o "src_app/src/i2c.o" "../src_app/src/i2c.c"
+Finished building: ../src_app/src/i2c.c
+ 
+Building file: ../src_app/src/interrupt.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/interrupt.d" -MT"src_app/src/interrupt.o" -c -o "src_app/src/interrupt.o" "../src_app/src/interrupt.c"
+Finished building: ../src_app/src/interrupt.c
+ 
+Building file: ../src_app/src/libc-hooks.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/libc-hooks.d" -MT"src_app/src/libc-hooks.o" -c -o "src_app/src/libc-hooks.o" "../src_app/src/libc-hooks.c"
+Finished building: ../src_app/src/libc-hooks.c
+ 
+Building file: ../src_app/src/main.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/main.d" -MT"src_app/src/main.o" -c -o "src_app/src/main.o" "../src_app/src/main.c"
+Finished building: ../src_app/src/main.c
+ 
+Building file: ../src_app/src/mcs4.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/mcs4.d" -MT"src_app/src/mcs4.o" -c -o "src_app/src/mcs4.o" "../src_app/src/mcs4.c"
+Finished building: ../src_app/src/mcs4.c
+ 
+Building file: ../src_app/src/spi.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/spi.d" -MT"src_app/src/spi.o" -c -o "src_app/src/spi.o" "../src_app/src/spi.c"
+Finished building: ../src_app/src/spi.c
+ 
+Building file: ../src_app/src/startup.S
+Invoking: GNU RISC-V Cross Assembler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -x assembler-with-cpp -DportasmHANDLE_INTERRUPT=External_Interrupt_Handler -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -MMD -MP -MF"src_app/src/startup.d" -MT"src_app/src/startup.o" -c -o "src_app/src/startup.o" "../src_app/src/startup.S"
+Finished building: ../src_app/src/startup.S
+ 
+Building file: ../src_app/src/system.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/system.d" -MT"src_app/src/system.o" -c -o "src_app/src/system.o" "../src_app/src/system.c"
+Finished building: ../src_app/src/system.c
+ 
+Building file: ../src_app/src/touchlcd_cap.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/touchlcd_cap.d" -MT"src_app/src/touchlcd_cap.o" -c -o "src_app/src/touchlcd_cap.o" "../src_app/src/touchlcd_cap.c"
+Finished building: ../src_app/src/touchlcd_cap.c
+ 
+Building file: ../src_app/src/touchlcd_res.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/touchlcd_res.d" -MT"src_app/src/touchlcd_res.o" -c -o "src_app/src/touchlcd_res.o" "../src_app/src/touchlcd_res.c"
+Finished building: ../src_app/src/touchlcd_res.c
+ 
+Building file: ../src_app/src/touchlcd_tft.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/touchlcd_tft.d" -MT"src_app/src/touchlcd_tft.o" -c -o "src_app/src/touchlcd_tft.o" "../src_app/src/touchlcd_tft.c"
+Finished building: ../src_app/src/touchlcd_tft.c
+ 
+Building file: ../src_app/src/uart.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/uart.d" -MT"src_app/src/uart.o" -c -o "src_app/src/uart.o" "../src_app/src/uart.c"
+Finished building: ../src_app/src/uart.c
+ 
+Building file: ../src_app/src/xprintf.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/xprintf.d" -MT"src_app/src/xprintf.o" -c -o "src_app/src/xprintf.o" "../src_app/src/xprintf.c"
+Finished building: ../src_app/src/xprintf.c
+ 
+Building target: MCS4_141PF.elf
+Invoking: GNU RISC-V Cross C Linker
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -T "C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\link.ld" -nostartfiles -Xlinker --gc-sections -L/opt/riscv/riscv64-unknown-elf/lib/rv32imafc/ilp32f -L/opt/riscv/lib/gcc/riscv64-unknown-elf/12.2.0/rv32imafc/ilp32f -Xlinker --no-warn-rwx-segmen -Wl,-Map,"MCS4_141PF.map" -nostartfiles -nostdlib -o "MCS4_141PF.elf" ./src_kernel/src/croutine.o ./src_kernel/src/event_groups.o ./src_kernel/src/heap_4.o ./src_kernel/src/list.o ./src_kernel/src/port.o ./src_kernel/src/portASM.o ./src_kernel/src/queue.o ./src_kernel/src/riscv-virt.o ./src_kernel/src/stream_buffer.o ./src_kernel/src/tasks.o ./src_kernel/src/timers.o  ./src_app/src/cui_141pf.o ./src_app/src/gpio.o ./src_app/src/gui_141pf.o ./src_app/src/i2c.o ./src_app/src/interrupt.o ./src_app/src/libc-hooks.o ./src_app/src/main.o ./src_app/src/mcs4.o ./src_app/src/spi.o ./src_app/src/startup.o ./src_app/src/system.o ./src_app/src/touchlcd_cap.o ./src_app/src/touchlcd_res.o ./src_app/src/touchlcd_tft.o ./src_app/src/uart.o ./src_app/src/xprintf.o   -lm -lc -lgcc
+Finished building target: MCS4_141PF.elf
+ 
+Invoking: GNU RISC-V Cross Create Flash Image
+riscv-none-elf-objcopy -O ihex "MCS4_141PF.elf"  "MCS4_141PF.hex"
+Finished building: MCS4_141PF.hex
+ 
+Invoking: GNU RISC-V Cross Print Size
+riscv-none-elf-size --format=berkeley "MCS4_141PF.elf"
+   text	   data	    bss	    dec	    hex	filename
+  58342	    516	 533152	 592010	  9088a	MCS4_141PF.elf
+Finished building: MCS4_141PF.siz
+ 
+22:56:31 **** Incremental Build of configuration Debug for project MCS4_141PF ****
+make all 
+Invoking: GNU RISC-V Cross Print Size
+riscv-none-elf-size --format=berkeley "MCS4_141PF.elf"
+   text	   data	    bss	    dec	    hex	filename
+  58342	    516	 533152	 592010	  9088a	MCS4_141PF.elf
+Finished building: MCS4_141PF.siz
+ 
+11:51:11 **** Build of configuration Debug for project MCS4_141PF ****
+make all 
+Building file: ../src_app/src/cui_141pf.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/cui_141pf.d" -MT"src_app/src/cui_141pf.o" -c -o "src_app/src/cui_141pf.o" "../src_app/src/cui_141pf.c"
+Finished building: ../src_app/src/cui_141pf.c
+ 
+Building file: ../src_app/src/gpio.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/gpio.d" -MT"src_app/src/gpio.o" -c -o "src_app/src/gpio.o" "../src_app/src/gpio.c"
+Finished building: ../src_app/src/gpio.c
+ 
+Building file: ../src_app/src/gui_141pf.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/gui_141pf.d" -MT"src_app/src/gui_141pf.o" -c -o "src_app/src/gui_141pf.o" "../src_app/src/gui_141pf.c"
+Finished building: ../src_app/src/gui_141pf.c
+ 
+Building file: ../src_app/src/main.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/main.d" -MT"src_app/src/main.o" -c -o "src_app/src/main.o" "../src_app/src/main.c"
+Finished building: ../src_app/src/main.c
+ 
+Building file: ../src_app/src/mcs4.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/mcs4.d" -MT"src_app/src/mcs4.o" -c -o "src_app/src/mcs4.o" "../src_app/src/mcs4.c"
+Finished building: ../src_app/src/mcs4.c
+ 
+Building file: ../src_app/src/touchlcd_res.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/touchlcd_res.d" -MT"src_app/src/touchlcd_res.o" -c -o "src_app/src/touchlcd_res.o" "../src_app/src/touchlcd_res.c"
+Finished building: ../src_app/src/touchlcd_res.c
+ 
+Building file: ../src_app/src/touchlcd_tft.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/touchlcd_tft.d" -MT"src_app/src/touchlcd_tft.o" -c -o "src_app/src/touchlcd_tft.o" "../src_app/src/touchlcd_tft.c"
+Finished building: ../src_app/src/touchlcd_tft.c
+ 
+Building file: ../src_app/src/uart.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/uart.d" -MT"src_app/src/uart.o" -c -o "src_app/src/uart.o" "../src_app/src/uart.c"
+Finished building: ../src_app/src/uart.c
+ 
+Building target: MCS4_141PF.elf
+Invoking: GNU RISC-V Cross C Linker
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -T "C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\link.ld" -nostartfiles -Xlinker --gc-sections -L/opt/riscv/riscv64-unknown-elf/lib/rv32imafc/ilp32f -L/opt/riscv/lib/gcc/riscv64-unknown-elf/12.2.0/rv32imafc/ilp32f -Xlinker --no-warn-rwx-segmen -Wl,-Map,"MCS4_141PF.map" -nostartfiles -nostdlib -o "MCS4_141PF.elf" ./src_kernel/src/croutine.o ./src_kernel/src/event_groups.o ./src_kernel/src/heap_4.o ./src_kernel/src/list.o ./src_kernel/src/port.o ./src_kernel/src/portASM.o ./src_kernel/src/queue.o ./src_kernel/src/riscv-virt.o ./src_kernel/src/stream_buffer.o ./src_kernel/src/tasks.o ./src_kernel/src/timers.o  ./src_app/src/cui_141pf.o ./src_app/src/gpio.o ./src_app/src/gui_141pf.o ./src_app/src/i2c.o ./src_app/src/interrupt.o ./src_app/src/libc-hooks.o ./src_app/src/main.o ./src_app/src/mcs4.o ./src_app/src/spi.o ./src_app/src/startup.o ./src_app/src/system.o ./src_app/src/touchlcd_cap.o ./src_app/src/touchlcd_res.o ./src_app/src/touchlcd_tft.o ./src_app/src/uart.o ./src_app/src/xprintf.o   -lm -lc -lgcc
+Finished building target: MCS4_141PF.elf
+ 
+Invoking: GNU RISC-V Cross Create Flash Image
+riscv-none-elf-objcopy -O ihex "MCS4_141PF.elf"  "MCS4_141PF.hex"
+Finished building: MCS4_141PF.hex
+ 
+Invoking: GNU RISC-V Cross Print Size
+riscv-none-elf-size --format=berkeley "MCS4_141PF.elf"
+   text	   data	    bss	    dec	    hex	filename
+  58342	    516	 533152	 592010	  9088a	MCS4_141PF.elf
+Finished building: MCS4_141PF.siz
+ 
+12:04:27 **** Clean-only build of configuration Debug for project MCS4_141PF ****
+make clean 
+rm -rf ./src_kernel/src/croutine.o ./src_kernel/src/event_groups.o ./src_kernel/src/heap_4.o ./src_kernel/src/list.o ./src_kernel/src/port.o ./src_kernel/src/portASM.o ./src_kernel/src/queue.o ./src_kernel/src/riscv-virt.o ./src_kernel/src/stream_buffer.o ./src_kernel/src/tasks.o ./src_kernel/src/timers.o  ./src_app/src/cui_141pf.o ./src_app/src/gpio.o ./src_app/src/gui_141pf.o ./src_app/src/i2c.o ./src_app/src/interrupt.o ./src_app/src/libc-hooks.o ./src_app/src/main.o ./src_app/src/mcs4.o ./src_app/src/spi.o ./src_app/src/startup.o ./src_app/src/system.o ./src_app/src/touchlcd_cap.o ./src_app/src/touchlcd_res.o ./src_app/src/touchlcd_tft.o ./src_app/src/uart.o ./src_app/src/xprintf.o MCS4_141PF.hex MCS4_141PF.siz ./src_kernel/src/portASM.d  ./src_app/src/startup.d ./src_kernel/src/croutine.d ./src_kernel/src/event_groups.d ./src_kernel/src/heap_4.d ./src_kernel/src/list.d ./src_kernel/src/port.d ./src_kernel/src/queue.d ./src_kernel/src/riscv-virt.d ./src_kernel/src/stream_buffer.d ./src_kernel/src/tasks.d ./src_kernel/src/timers.d  ./src_app/src/cui_141pf.d ./src_app/src/gpio.d ./src_app/src/gui_141pf.d ./src_app/src/i2c.d ./src_app/src/interrupt.d ./src_app/src/libc-hooks.d ./src_app/src/main.d ./src_app/src/mcs4.d ./src_app/src/spi.d ./src_app/src/system.d ./src_app/src/touchlcd_cap.d ./src_app/src/touchlcd_res.d ./src_app/src/touchlcd_tft.d ./src_app/src/uart.d ./src_app/src/xprintf.d  MCS4_141PF.elf
+ 
+12:04:27 **** Build of configuration Debug for project MCS4_141PF ****
+make all 
+Building file: ../src_kernel/src/croutine.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/croutine.d" -MT"src_kernel/src/croutine.o" -c -o "src_kernel/src/croutine.o" "../src_kernel/src/croutine.c"
+Finished building: ../src_kernel/src/croutine.c
+ 
+Building file: ../src_kernel/src/event_groups.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/event_groups.d" -MT"src_kernel/src/event_groups.o" -c -o "src_kernel/src/event_groups.o" "../src_kernel/src/event_groups.c"
+Finished building: ../src_kernel/src/event_groups.c
+ 
+Building file: ../src_kernel/src/heap_4.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/heap_4.d" -MT"src_kernel/src/heap_4.o" -c -o "src_kernel/src/heap_4.o" "../src_kernel/src/heap_4.c"
+Finished building: ../src_kernel/src/heap_4.c
+ 
+Building file: ../src_kernel/src/list.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/list.d" -MT"src_kernel/src/list.o" -c -o "src_kernel/src/list.o" "../src_kernel/src/list.c"
+Finished building: ../src_kernel/src/list.c
+ 
+Building file: ../src_kernel/src/port.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/port.d" -MT"src_kernel/src/port.o" -c -o "src_kernel/src/port.o" "../src_kernel/src/port.c"
+Finished building: ../src_kernel/src/port.c
+ 
+Building file: ../src_kernel/src/portASM.S
+Invoking: GNU RISC-V Cross Assembler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -x assembler-with-cpp -DportasmHANDLE_INTERRUPT=External_Interrupt_Handler -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -MMD -MP -MF"src_kernel/src/portASM.d" -MT"src_kernel/src/portASM.o" -c -o "src_kernel/src/portASM.o" "../src_kernel/src/portASM.S"
+Finished building: ../src_kernel/src/portASM.S
+ 
+Building file: ../src_kernel/src/queue.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/queue.d" -MT"src_kernel/src/queue.o" -c -o "src_kernel/src/queue.o" "../src_kernel/src/queue.c"
+Finished building: ../src_kernel/src/queue.c
+ 
+Building file: ../src_kernel/src/riscv-virt.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/riscv-virt.d" -MT"src_kernel/src/riscv-virt.o" -c -o "src_kernel/src/riscv-virt.o" "../src_kernel/src/riscv-virt.c"
+Finished building: ../src_kernel/src/riscv-virt.c
+ 
+Building file: ../src_kernel/src/stream_buffer.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/stream_buffer.d" -MT"src_kernel/src/stream_buffer.o" -c -o "src_kernel/src/stream_buffer.o" "../src_kernel/src/stream_buffer.c"
+Finished building: ../src_kernel/src/stream_buffer.c
+ 
+Building file: ../src_kernel/src/tasks.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/tasks.d" -MT"src_kernel/src/tasks.o" -c -o "src_kernel/src/tasks.o" "../src_kernel/src/tasks.c"
+Finished building: ../src_kernel/src/tasks.c
+ 
+Building file: ../src_kernel/src/timers.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/timers.d" -MT"src_kernel/src/timers.o" -c -o "src_kernel/src/timers.o" "../src_kernel/src/timers.c"
+Finished building: ../src_kernel/src/timers.c
+ 
+Building file: ../src_app/src/cui_141pf.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/cui_141pf.d" -MT"src_app/src/cui_141pf.o" -c -o "src_app/src/cui_141pf.o" "../src_app/src/cui_141pf.c"
+Finished building: ../src_app/src/cui_141pf.c
+ 
+Building file: ../src_app/src/gpio.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/gpio.d" -MT"src_app/src/gpio.o" -c -o "src_app/src/gpio.o" "../src_app/src/gpio.c"
+Finished building: ../src_app/src/gpio.c
+ 
+Building file: ../src_app/src/gui_141pf.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/gui_141pf.d" -MT"src_app/src/gui_141pf.o" -c -o "src_app/src/gui_141pf.o" "../src_app/src/gui_141pf.c"
+Finished building: ../src_app/src/gui_141pf.c
+ 
+Building file: ../src_app/src/i2c.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/i2c.d" -MT"src_app/src/i2c.o" -c -o "src_app/src/i2c.o" "../src_app/src/i2c.c"
+Finished building: ../src_app/src/i2c.c
+ 
+Building file: ../src_app/src/interrupt.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/interrupt.d" -MT"src_app/src/interrupt.o" -c -o "src_app/src/interrupt.o" "../src_app/src/interrupt.c"
+Finished building: ../src_app/src/interrupt.c
+ 
+Building file: ../src_app/src/libc-hooks.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/libc-hooks.d" -MT"src_app/src/libc-hooks.o" -c -o "src_app/src/libc-hooks.o" "../src_app/src/libc-hooks.c"
+Finished building: ../src_app/src/libc-hooks.c
+ 
+Building file: ../src_app/src/main.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/main.d" -MT"src_app/src/main.o" -c -o "src_app/src/main.o" "../src_app/src/main.c"
+Finished building: ../src_app/src/main.c
+ 
+Building file: ../src_app/src/mcs4.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/mcs4.d" -MT"src_app/src/mcs4.o" -c -o "src_app/src/mcs4.o" "../src_app/src/mcs4.c"
+Finished building: ../src_app/src/mcs4.c
+ 
+Building file: ../src_app/src/spi.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/spi.d" -MT"src_app/src/spi.o" -c -o "src_app/src/spi.o" "../src_app/src/spi.c"
+Finished building: ../src_app/src/spi.c
+ 
+Building file: ../src_app/src/startup.S
+Invoking: GNU RISC-V Cross Assembler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -x assembler-with-cpp -DportasmHANDLE_INTERRUPT=External_Interrupt_Handler -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -MMD -MP -MF"src_app/src/startup.d" -MT"src_app/src/startup.o" -c -o "src_app/src/startup.o" "../src_app/src/startup.S"
+Finished building: ../src_app/src/startup.S
+ 
+Building file: ../src_app/src/system.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/system.d" -MT"src_app/src/system.o" -c -o "src_app/src/system.o" "../src_app/src/system.c"
+Finished building: ../src_app/src/system.c
+ 
+Building file: ../src_app/src/touchlcd_cap.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/touchlcd_cap.d" -MT"src_app/src/touchlcd_cap.o" -c -o "src_app/src/touchlcd_cap.o" "../src_app/src/touchlcd_cap.c"
+Finished building: ../src_app/src/touchlcd_cap.c
+ 
+Building file: ../src_app/src/touchlcd_res.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/touchlcd_res.d" -MT"src_app/src/touchlcd_res.o" -c -o "src_app/src/touchlcd_res.o" "../src_app/src/touchlcd_res.c"
+Finished building: ../src_app/src/touchlcd_res.c
+ 
+Building file: ../src_app/src/touchlcd_tft.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/touchlcd_tft.d" -MT"src_app/src/touchlcd_tft.o" -c -o "src_app/src/touchlcd_tft.o" "../src_app/src/touchlcd_tft.c"
+Finished building: ../src_app/src/touchlcd_tft.c
+ 
+Building file: ../src_app/src/uart.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/uart.d" -MT"src_app/src/uart.o" -c -o "src_app/src/uart.o" "../src_app/src/uart.c"
+Finished building: ../src_app/src/uart.c
+ 
+Building file: ../src_app/src/xprintf.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/xprintf.d" -MT"src_app/src/xprintf.o" -c -o "src_app/src/xprintf.o" "../src_app/src/xprintf.c"
+Finished building: ../src_app/src/xprintf.c
+ 
+Building target: MCS4_141PF.elf
+Invoking: GNU RISC-V Cross C Linker
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -T "C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\link.ld" -nostartfiles -Xlinker --gc-sections -L/opt/riscv/riscv64-unknown-elf/lib/rv32imafc/ilp32f -L/opt/riscv/lib/gcc/riscv64-unknown-elf/12.2.0/rv32imafc/ilp32f -Xlinker --no-warn-rwx-segmen -Wl,-Map,"MCS4_141PF.map" -nostartfiles -nostdlib -o "MCS4_141PF.elf" ./src_kernel/src/croutine.o ./src_kernel/src/event_groups.o ./src_kernel/src/heap_4.o ./src_kernel/src/list.o ./src_kernel/src/port.o ./src_kernel/src/portASM.o ./src_kernel/src/queue.o ./src_kernel/src/riscv-virt.o ./src_kernel/src/stream_buffer.o ./src_kernel/src/tasks.o ./src_kernel/src/timers.o  ./src_app/src/cui_141pf.o ./src_app/src/gpio.o ./src_app/src/gui_141pf.o ./src_app/src/i2c.o ./src_app/src/interrupt.o ./src_app/src/libc-hooks.o ./src_app/src/main.o ./src_app/src/mcs4.o ./src_app/src/spi.o ./src_app/src/startup.o ./src_app/src/system.o ./src_app/src/touchlcd_cap.o ./src_app/src/touchlcd_res.o ./src_app/src/touchlcd_tft.o ./src_app/src/uart.o ./src_app/src/xprintf.o   -lm -lc -lgcc
+Finished building target: MCS4_141PF.elf
+ 
+Invoking: GNU RISC-V Cross Create Flash Image
+riscv-none-elf-objcopy -O ihex "MCS4_141PF.elf"  "MCS4_141PF.hex"
+Finished building: MCS4_141PF.hex
+ 
+Invoking: GNU RISC-V Cross Print Size
+riscv-none-elf-size --format=berkeley "MCS4_141PF.elf"
+   text	   data	    bss	    dec	    hex	filename
+  58342	    516	 533152	 592010	  9088a	MCS4_141PF.elf
+Finished building: MCS4_141PF.siz
+ 
+16:39:44 **** Incremental Build of configuration Debug for project MCS4_141PF ****
+make all 
+Invoking: GNU RISC-V Cross Print Size
+riscv-none-elf-size --format=berkeley "MCS4_141PF.elf"
+   text	   data	    bss	    dec	    hex	filename
+  58342	    516	 533152	 592010	  9088a	MCS4_141PF.elf
+Finished building: MCS4_141PF.siz
+ 
+21:27:02 **** Clean-only build of configuration Debug for project MCS4_141PF ****
+make clean 
+rm -rf ./src_kernel/src/croutine.o ./src_kernel/src/event_groups.o ./src_kernel/src/heap_4.o ./src_kernel/src/list.o ./src_kernel/src/port.o ./src_kernel/src/portASM.o ./src_kernel/src/queue.o ./src_kernel/src/riscv-virt.o ./src_kernel/src/stream_buffer.o ./src_kernel/src/tasks.o ./src_kernel/src/timers.o  ./src_app/src/cui_141pf.o ./src_app/src/gpio.o ./src_app/src/gui_141pf.o ./src_app/src/i2c.o ./src_app/src/interrupt.o ./src_app/src/libc-hooks.o ./src_app/src/main.o ./src_app/src/mcs4.o ./src_app/src/spi.o ./src_app/src/startup.o ./src_app/src/system.o ./src_app/src/touchlcd_cap.o ./src_app/src/touchlcd_res.o ./src_app/src/touchlcd_tft.o ./src_app/src/uart.o ./src_app/src/xprintf.o MCS4_141PF.hex MCS4_141PF.siz ./src_kernel/src/portASM.d  ./src_app/src/startup.d ./src_kernel/src/croutine.d ./src_kernel/src/event_groups.d ./src_kernel/src/heap_4.d ./src_kernel/src/list.d ./src_kernel/src/port.d ./src_kernel/src/queue.d ./src_kernel/src/riscv-virt.d ./src_kernel/src/stream_buffer.d ./src_kernel/src/tasks.d ./src_kernel/src/timers.d  ./src_app/src/cui_141pf.d ./src_app/src/gpio.d ./src_app/src/gui_141pf.d ./src_app/src/i2c.d ./src_app/src/interrupt.d ./src_app/src/libc-hooks.d ./src_app/src/main.d ./src_app/src/mcs4.d ./src_app/src/spi.d ./src_app/src/system.d ./src_app/src/touchlcd_cap.d ./src_app/src/touchlcd_res.d ./src_app/src/touchlcd_tft.d ./src_app/src/uart.d ./src_app/src/xprintf.d  MCS4_141PF.elf
+ 
+21:27:03 **** Build of configuration Debug for project MCS4_141PF ****
+make all 
+Building file: ../src_kernel/src/croutine.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/croutine.d" -MT"src_kernel/src/croutine.o" -c -o "src_kernel/src/croutine.o" "../src_kernel/src/croutine.c"
+Finished building: ../src_kernel/src/croutine.c
+ 
+Building file: ../src_kernel/src/event_groups.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/event_groups.d" -MT"src_kernel/src/event_groups.o" -c -o "src_kernel/src/event_groups.o" "../src_kernel/src/event_groups.c"
+Finished building: ../src_kernel/src/event_groups.c
+ 
+Building file: ../src_kernel/src/heap_4.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/heap_4.d" -MT"src_kernel/src/heap_4.o" -c -o "src_kernel/src/heap_4.o" "../src_kernel/src/heap_4.c"
+Finished building: ../src_kernel/src/heap_4.c
+ 
+Building file: ../src_kernel/src/list.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/list.d" -MT"src_kernel/src/list.o" -c -o "src_kernel/src/list.o" "../src_kernel/src/list.c"
+Finished building: ../src_kernel/src/list.c
+ 
+Building file: ../src_kernel/src/port.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/port.d" -MT"src_kernel/src/port.o" -c -o "src_kernel/src/port.o" "../src_kernel/src/port.c"
+Finished building: ../src_kernel/src/port.c
+ 
+Building file: ../src_kernel/src/portASM.S
+Invoking: GNU RISC-V Cross Assembler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -x assembler-with-cpp -DportasmHANDLE_INTERRUPT=External_Interrupt_Handler -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -MMD -MP -MF"src_kernel/src/portASM.d" -MT"src_kernel/src/portASM.o" -c -o "src_kernel/src/portASM.o" "../src_kernel/src/portASM.S"
+Finished building: ../src_kernel/src/portASM.S
+ 
+Building file: ../src_kernel/src/queue.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/queue.d" -MT"src_kernel/src/queue.o" -c -o "src_kernel/src/queue.o" "../src_kernel/src/queue.c"
+Finished building: ../src_kernel/src/queue.c
+ 
+Building file: ../src_kernel/src/riscv-virt.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/riscv-virt.d" -MT"src_kernel/src/riscv-virt.o" -c -o "src_kernel/src/riscv-virt.o" "../src_kernel/src/riscv-virt.c"
+Finished building: ../src_kernel/src/riscv-virt.c
+ 
+Building file: ../src_kernel/src/stream_buffer.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/stream_buffer.d" -MT"src_kernel/src/stream_buffer.o" -c -o "src_kernel/src/stream_buffer.o" "../src_kernel/src/stream_buffer.c"
+Finished building: ../src_kernel/src/stream_buffer.c
+ 
+Building file: ../src_kernel/src/tasks.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/tasks.d" -MT"src_kernel/src/tasks.o" -c -o "src_kernel/src/tasks.o" "../src_kernel/src/tasks.c"
+Finished building: ../src_kernel/src/tasks.c
+ 
+Building file: ../src_kernel/src/timers.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/timers.d" -MT"src_kernel/src/timers.o" -c -o "src_kernel/src/timers.o" "../src_kernel/src/timers.c"
+Finished building: ../src_kernel/src/timers.c
+ 
+Building file: ../src_app/src/cui_141pf.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/cui_141pf.d" -MT"src_app/src/cui_141pf.o" -c -o "src_app/src/cui_141pf.o" "../src_app/src/cui_141pf.c"
+Finished building: ../src_app/src/cui_141pf.c
+ 
+Building file: ../src_app/src/gpio.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/gpio.d" -MT"src_app/src/gpio.o" -c -o "src_app/src/gpio.o" "../src_app/src/gpio.c"
+Finished building: ../src_app/src/gpio.c
+ 
+Building file: ../src_app/src/gui_141pf.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/gui_141pf.d" -MT"src_app/src/gui_141pf.o" -c -o "src_app/src/gui_141pf.o" "../src_app/src/gui_141pf.c"
+Finished building: ../src_app/src/gui_141pf.c
+ 
+Building file: ../src_app/src/i2c.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/i2c.d" -MT"src_app/src/i2c.o" -c -o "src_app/src/i2c.o" "../src_app/src/i2c.c"
+Finished building: ../src_app/src/i2c.c
+ 
+Building file: ../src_app/src/interrupt.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/interrupt.d" -MT"src_app/src/interrupt.o" -c -o "src_app/src/interrupt.o" "../src_app/src/interrupt.c"
+Finished building: ../src_app/src/interrupt.c
+ 
+Building file: ../src_app/src/libc-hooks.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/libc-hooks.d" -MT"src_app/src/libc-hooks.o" -c -o "src_app/src/libc-hooks.o" "../src_app/src/libc-hooks.c"
+Finished building: ../src_app/src/libc-hooks.c
+ 
+Building file: ../src_app/src/main.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/main.d" -MT"src_app/src/main.o" -c -o "src_app/src/main.o" "../src_app/src/main.c"
+Finished building: ../src_app/src/main.c
+ 
+Building file: ../src_app/src/mcs4.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/mcs4.d" -MT"src_app/src/mcs4.o" -c -o "src_app/src/mcs4.o" "../src_app/src/mcs4.c"
+Finished building: ../src_app/src/mcs4.c
+ 
+Building file: ../src_app/src/spi.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/spi.d" -MT"src_app/src/spi.o" -c -o "src_app/src/spi.o" "../src_app/src/spi.c"
+Finished building: ../src_app/src/spi.c
+ 
+Building file: ../src_app/src/startup.S
+Invoking: GNU RISC-V Cross Assembler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -x assembler-with-cpp -DportasmHANDLE_INTERRUPT=External_Interrupt_Handler -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -MMD -MP -MF"src_app/src/startup.d" -MT"src_app/src/startup.o" -c -o "src_app/src/startup.o" "../src_app/src/startup.S"
+Finished building: ../src_app/src/startup.S
+ 
+Building file: ../src_app/src/system.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/system.d" -MT"src_app/src/system.o" -c -o "src_app/src/system.o" "../src_app/src/system.c"
+Finished building: ../src_app/src/system.c
+ 
+Building file: ../src_app/src/touchlcd_cap.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/touchlcd_cap.d" -MT"src_app/src/touchlcd_cap.o" -c -o "src_app/src/touchlcd_cap.o" "../src_app/src/touchlcd_cap.c"
+Finished building: ../src_app/src/touchlcd_cap.c
+ 
+Building file: ../src_app/src/touchlcd_res.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/touchlcd_res.d" -MT"src_app/src/touchlcd_res.o" -c -o "src_app/src/touchlcd_res.o" "../src_app/src/touchlcd_res.c"
+Finished building: ../src_app/src/touchlcd_res.c
+ 
+Building file: ../src_app/src/touchlcd_tft.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/touchlcd_tft.d" -MT"src_app/src/touchlcd_tft.o" -c -o "src_app/src/touchlcd_tft.o" "../src_app/src/touchlcd_tft.c"
+Finished building: ../src_app/src/touchlcd_tft.c
+ 
+Building file: ../src_app/src/uart.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/uart.d" -MT"src_app/src/uart.o" -c -o "src_app/src/uart.o" "../src_app/src/uart.c"
+Finished building: ../src_app/src/uart.c
+ 
+Building file: ../src_app/src/xprintf.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/xprintf.d" -MT"src_app/src/xprintf.o" -c -o "src_app/src/xprintf.o" "../src_app/src/xprintf.c"
+Finished building: ../src_app/src/xprintf.c
+ 
+Building target: MCS4_141PF.elf
+Invoking: GNU RISC-V Cross C Linker
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -T "C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\link.ld" -nostartfiles -Xlinker --gc-sections -L/opt/riscv/riscv64-unknown-elf/lib/rv32imafc/ilp32f -L/opt/riscv/lib/gcc/riscv64-unknown-elf/12.2.0/rv32imafc/ilp32f -Xlinker --no-warn-rwx-segmen -Wl,-Map,"MCS4_141PF.map" -nostartfiles -nostdlib -o "MCS4_141PF.elf" ./src_kernel/src/croutine.o ./src_kernel/src/event_groups.o ./src_kernel/src/heap_4.o ./src_kernel/src/list.o ./src_kernel/src/port.o ./src_kernel/src/portASM.o ./src_kernel/src/queue.o ./src_kernel/src/riscv-virt.o ./src_kernel/src/stream_buffer.o ./src_kernel/src/tasks.o ./src_kernel/src/timers.o  ./src_app/src/cui_141pf.o ./src_app/src/gpio.o ./src_app/src/gui_141pf.o ./src_app/src/i2c.o ./src_app/src/interrupt.o ./src_app/src/libc-hooks.o ./src_app/src/main.o ./src_app/src/mcs4.o ./src_app/src/spi.o ./src_app/src/startup.o ./src_app/src/system.o ./src_app/src/touchlcd_cap.o ./src_app/src/touchlcd_res.o ./src_app/src/touchlcd_tft.o ./src_app/src/uart.o ./src_app/src/xprintf.o   -lm -lc -lgcc
+Finished building target: MCS4_141PF.elf
+ 
+Invoking: GNU RISC-V Cross Create Flash Image
+riscv-none-elf-objcopy -O ihex "MCS4_141PF.elf"  "MCS4_141PF.hex"
+Finished building: MCS4_141PF.hex
+ 
+Invoking: GNU RISC-V Cross Print Size
+riscv-none-elf-size --format=berkeley "MCS4_141PF.elf"
+   text	   data	    bss	    dec	    hex	filename
+  58342	    516	 533152	 592010	  9088a	MCS4_141PF.elf
+Finished building: MCS4_141PF.siz
+ 
+10:47:27 **** Clean-only build of configuration Debug for project MCS4_141PF ****
+make clean 
+rm -rf ./src_kernel/src/croutine.o ./src_kernel/src/event_groups.o ./src_kernel/src/heap_4.o ./src_kernel/src/list.o ./src_kernel/src/port.o ./src_kernel/src/portASM.o ./src_kernel/src/queue.o ./src_kernel/src/riscv-virt.o ./src_kernel/src/stream_buffer.o ./src_kernel/src/tasks.o ./src_kernel/src/timers.o  ./src_app/src/cui_141pf.o ./src_app/src/gpio.o ./src_app/src/gui_141pf.o ./src_app/src/i2c.o ./src_app/src/interrupt.o ./src_app/src/libc-hooks.o ./src_app/src/main.o ./src_app/src/mcs4.o ./src_app/src/spi.o ./src_app/src/startup.o ./src_app/src/system.o ./src_app/src/touchlcd_cap.o ./src_app/src/touchlcd_res.o ./src_app/src/touchlcd_tft.o ./src_app/src/uart.o ./src_app/src/xprintf.o MCS4_141PF.hex MCS4_141PF.siz ./src_kernel/src/portASM.d  ./src_app/src/startup.d ./src_kernel/src/croutine.d ./src_kernel/src/event_groups.d ./src_kernel/src/heap_4.d ./src_kernel/src/list.d ./src_kernel/src/port.d ./src_kernel/src/queue.d ./src_kernel/src/riscv-virt.d ./src_kernel/src/stream_buffer.d ./src_kernel/src/tasks.d ./src_kernel/src/timers.d  ./src_app/src/cui_141pf.d ./src_app/src/gpio.d ./src_app/src/gui_141pf.d ./src_app/src/i2c.d ./src_app/src/interrupt.d ./src_app/src/libc-hooks.d ./src_app/src/main.d ./src_app/src/mcs4.d ./src_app/src/spi.d ./src_app/src/system.d ./src_app/src/touchlcd_cap.d ./src_app/src/touchlcd_res.d ./src_app/src/touchlcd_tft.d ./src_app/src/uart.d ./src_app/src/xprintf.d  MCS4_141PF.elf
+ 
+10:47:27 **** Build of configuration Debug for project MCS4_141PF ****
+make all 
+Building file: ../src_kernel/src/croutine.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/croutine.d" -MT"src_kernel/src/croutine.o" -c -o "src_kernel/src/croutine.o" "../src_kernel/src/croutine.c"
+Finished building: ../src_kernel/src/croutine.c
+ 
+Building file: ../src_kernel/src/event_groups.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/event_groups.d" -MT"src_kernel/src/event_groups.o" -c -o "src_kernel/src/event_groups.o" "../src_kernel/src/event_groups.c"
+Finished building: ../src_kernel/src/event_groups.c
+ 
+Building file: ../src_kernel/src/heap_4.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/heap_4.d" -MT"src_kernel/src/heap_4.o" -c -o "src_kernel/src/heap_4.o" "../src_kernel/src/heap_4.c"
+Finished building: ../src_kernel/src/heap_4.c
+ 
+Building file: ../src_kernel/src/list.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/list.d" -MT"src_kernel/src/list.o" -c -o "src_kernel/src/list.o" "../src_kernel/src/list.c"
+Finished building: ../src_kernel/src/list.c
+ 
+Building file: ../src_kernel/src/port.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/port.d" -MT"src_kernel/src/port.o" -c -o "src_kernel/src/port.o" "../src_kernel/src/port.c"
+Finished building: ../src_kernel/src/port.c
+ 
+Building file: ../src_kernel/src/portASM.S
+Invoking: GNU RISC-V Cross Assembler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -x assembler-with-cpp -DportasmHANDLE_INTERRUPT=External_Interrupt_Handler -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -MMD -MP -MF"src_kernel/src/portASM.d" -MT"src_kernel/src/portASM.o" -c -o "src_kernel/src/portASM.o" "../src_kernel/src/portASM.S"
+Finished building: ../src_kernel/src/portASM.S
+ 
+Building file: ../src_kernel/src/queue.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/queue.d" -MT"src_kernel/src/queue.o" -c -o "src_kernel/src/queue.o" "../src_kernel/src/queue.c"
+Finished building: ../src_kernel/src/queue.c
+ 
+Building file: ../src_kernel/src/riscv-virt.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/riscv-virt.d" -MT"src_kernel/src/riscv-virt.o" -c -o "src_kernel/src/riscv-virt.o" "../src_kernel/src/riscv-virt.c"
+Finished building: ../src_kernel/src/riscv-virt.c
+ 
+Building file: ../src_kernel/src/stream_buffer.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/stream_buffer.d" -MT"src_kernel/src/stream_buffer.o" -c -o "src_kernel/src/stream_buffer.o" "../src_kernel/src/stream_buffer.c"
+Finished building: ../src_kernel/src/stream_buffer.c
+ 
+Building file: ../src_kernel/src/tasks.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/tasks.d" -MT"src_kernel/src/tasks.o" -c -o "src_kernel/src/tasks.o" "../src_kernel/src/tasks.c"
+Finished building: ../src_kernel/src/tasks.c
+ 
+Building file: ../src_kernel/src/timers.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/timers.d" -MT"src_kernel/src/timers.o" -c -o "src_kernel/src/timers.o" "../src_kernel/src/timers.c"
+Finished building: ../src_kernel/src/timers.c
+ 
+Building file: ../src_app/src/cui_141pf.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/cui_141pf.d" -MT"src_app/src/cui_141pf.o" -c -o "src_app/src/cui_141pf.o" "../src_app/src/cui_141pf.c"
+Finished building: ../src_app/src/cui_141pf.c
+ 
+Building file: ../src_app/src/gpio.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/gpio.d" -MT"src_app/src/gpio.o" -c -o "src_app/src/gpio.o" "../src_app/src/gpio.c"
+Finished building: ../src_app/src/gpio.c
+ 
+Building file: ../src_app/src/gui_141pf.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/gui_141pf.d" -MT"src_app/src/gui_141pf.o" -c -o "src_app/src/gui_141pf.o" "../src_app/src/gui_141pf.c"
+Finished building: ../src_app/src/gui_141pf.c
+ 
+Building file: ../src_app/src/i2c.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/i2c.d" -MT"src_app/src/i2c.o" -c -o "src_app/src/i2c.o" "../src_app/src/i2c.c"
+Finished building: ../src_app/src/i2c.c
+ 
+Building file: ../src_app/src/interrupt.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/interrupt.d" -MT"src_app/src/interrupt.o" -c -o "src_app/src/interrupt.o" "../src_app/src/interrupt.c"
+Finished building: ../src_app/src/interrupt.c
+ 
+Building file: ../src_app/src/libc-hooks.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/libc-hooks.d" -MT"src_app/src/libc-hooks.o" -c -o "src_app/src/libc-hooks.o" "../src_app/src/libc-hooks.c"
+Finished building: ../src_app/src/libc-hooks.c
+ 
+Building file: ../src_app/src/main.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/main.d" -MT"src_app/src/main.o" -c -o "src_app/src/main.o" "../src_app/src/main.c"
+Finished building: ../src_app/src/main.c
+ 
+Building file: ../src_app/src/mcs4.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/mcs4.d" -MT"src_app/src/mcs4.o" -c -o "src_app/src/mcs4.o" "../src_app/src/mcs4.c"
+Finished building: ../src_app/src/mcs4.c
+ 
+Building file: ../src_app/src/spi.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/spi.d" -MT"src_app/src/spi.o" -c -o "src_app/src/spi.o" "../src_app/src/spi.c"
+Finished building: ../src_app/src/spi.c
+ 
+Building file: ../src_app/src/startup.S
+Invoking: GNU RISC-V Cross Assembler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -x assembler-with-cpp -DportasmHANDLE_INTERRUPT=External_Interrupt_Handler -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -MMD -MP -MF"src_app/src/startup.d" -MT"src_app/src/startup.o" -c -o "src_app/src/startup.o" "../src_app/src/startup.S"
+Finished building: ../src_app/src/startup.S
+ 
+Building file: ../src_app/src/system.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/system.d" -MT"src_app/src/system.o" -c -o "src_app/src/system.o" "../src_app/src/system.c"
+Finished building: ../src_app/src/system.c
+ 
+Building file: ../src_app/src/touchlcd_cap.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/touchlcd_cap.d" -MT"src_app/src/touchlcd_cap.o" -c -o "src_app/src/touchlcd_cap.o" "../src_app/src/touchlcd_cap.c"
+Finished building: ../src_app/src/touchlcd_cap.c
+ 
+Building file: ../src_app/src/touchlcd_res.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/touchlcd_res.d" -MT"src_app/src/touchlcd_res.o" -c -o "src_app/src/touchlcd_res.o" "../src_app/src/touchlcd_res.c"
+Finished building: ../src_app/src/touchlcd_res.c
+ 
+Building file: ../src_app/src/touchlcd_tft.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/touchlcd_tft.d" -MT"src_app/src/touchlcd_tft.o" -c -o "src_app/src/touchlcd_tft.o" "../src_app/src/touchlcd_tft.c"
+Finished building: ../src_app/src/touchlcd_tft.c
+ 
+Building file: ../src_app/src/uart.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/uart.d" -MT"src_app/src/uart.o" -c -o "src_app/src/uart.o" "../src_app/src/uart.c"
+Finished building: ../src_app/src/uart.c
+ 
+Building file: ../src_app/src/xprintf.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/xprintf.d" -MT"src_app/src/xprintf.o" -c -o "src_app/src/xprintf.o" "../src_app/src/xprintf.c"
+Finished building: ../src_app/src/xprintf.c
+ 
+Building target: MCS4_141PF.elf
+Invoking: GNU RISC-V Cross C Linker
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -T "C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\link.ld" -nostartfiles -Xlinker --gc-sections -L/opt/riscv/riscv64-unknown-elf/lib/rv32imafc/ilp32f -L/opt/riscv/lib/gcc/riscv64-unknown-elf/12.2.0/rv32imafc/ilp32f -Xlinker --no-warn-rwx-segmen -Wl,-Map,"MCS4_141PF.map" -nostartfiles -nostdlib -o "MCS4_141PF.elf" ./src_kernel/src/croutine.o ./src_kernel/src/event_groups.o ./src_kernel/src/heap_4.o ./src_kernel/src/list.o ./src_kernel/src/port.o ./src_kernel/src/portASM.o ./src_kernel/src/queue.o ./src_kernel/src/riscv-virt.o ./src_kernel/src/stream_buffer.o ./src_kernel/src/tasks.o ./src_kernel/src/timers.o  ./src_app/src/cui_141pf.o ./src_app/src/gpio.o ./src_app/src/gui_141pf.o ./src_app/src/i2c.o ./src_app/src/interrupt.o ./src_app/src/libc-hooks.o ./src_app/src/main.o ./src_app/src/mcs4.o ./src_app/src/spi.o ./src_app/src/startup.o ./src_app/src/system.o ./src_app/src/touchlcd_cap.o ./src_app/src/touchlcd_res.o ./src_app/src/touchlcd_tft.o ./src_app/src/uart.o ./src_app/src/xprintf.o   -lm -lc -lgcc
+Finished building target: MCS4_141PF.elf
+ 
+Invoking: GNU RISC-V Cross Create Flash Image
+riscv-none-elf-objcopy -O ihex "MCS4_141PF.elf"  "MCS4_141PF.hex"
+Finished building: MCS4_141PF.hex
+ 
+Invoking: GNU RISC-V Cross Print Size
+riscv-none-elf-size --format=berkeley "MCS4_141PF.elf"
+   text	   data	    bss	    dec	    hex	filename
+  58338	    516	 533152	 592006	  90886	MCS4_141PF.elf
+Finished building: MCS4_141PF.siz
+ 
+10:48:40 **** Incremental Build of configuration Debug for project MCS4_141PF ****
+make all 
+Invoking: GNU RISC-V Cross Print Size
+riscv-none-elf-size --format=berkeley "MCS4_141PF.elf"
+   text	   data	    bss	    dec	    hex	filename
+  58338	    516	 533152	 592006	  90886	MCS4_141PF.elf
+Finished building: MCS4_141PF.siz
+ 
+10:50:02 **** Incremental Build of configuration Debug for project MCS4_141PF ****
+make all 
+Building file: ../src_app/src/cui_141pf.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/cui_141pf.d" -MT"src_app/src/cui_141pf.o" -c -o "src_app/src/cui_141pf.o" "../src_app/src/cui_141pf.c"
+Finished building: ../src_app/src/cui_141pf.c
+ 
+Building target: MCS4_141PF.elf
+Invoking: GNU RISC-V Cross C Linker
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -T "C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\link.ld" -nostartfiles -Xlinker --gc-sections -L/opt/riscv/riscv64-unknown-elf/lib/rv32imafc/ilp32f -L/opt/riscv/lib/gcc/riscv64-unknown-elf/12.2.0/rv32imafc/ilp32f -Xlinker --no-warn-rwx-segmen -Wl,-Map,"MCS4_141PF.map" -nostartfiles -nostdlib -o "MCS4_141PF.elf" ./src_kernel/src/croutine.o ./src_kernel/src/event_groups.o ./src_kernel/src/heap_4.o ./src_kernel/src/list.o ./src_kernel/src/port.o ./src_kernel/src/portASM.o ./src_kernel/src/queue.o ./src_kernel/src/riscv-virt.o ./src_kernel/src/stream_buffer.o ./src_kernel/src/tasks.o ./src_kernel/src/timers.o  ./src_app/src/cui_141pf.o ./src_app/src/gpio.o ./src_app/src/gui_141pf.o ./src_app/src/i2c.o ./src_app/src/interrupt.o ./src_app/src/libc-hooks.o ./src_app/src/main.o ./src_app/src/mcs4.o ./src_app/src/spi.o ./src_app/src/startup.o ./src_app/src/system.o ./src_app/src/touchlcd_cap.o ./src_app/src/touchlcd_res.o ./src_app/src/touchlcd_tft.o ./src_app/src/uart.o ./src_app/src/xprintf.o   -lm -lc -lgcc
+Finished building target: MCS4_141PF.elf
+ 
+Invoking: GNU RISC-V Cross Create Flash Image
+riscv-none-elf-objcopy -O ihex "MCS4_141PF.elf"  "MCS4_141PF.hex"
+Finished building: MCS4_141PF.hex
+ 
+Invoking: GNU RISC-V Cross Print Size
+riscv-none-elf-size --format=berkeley "MCS4_141PF.elf"
+   text	   data	    bss	    dec	    hex	filename
+  58338	    516	 533152	 592006	  90886	MCS4_141PF.elf
+Finished building: MCS4_141PF.siz
+ 
+17:27:44 **** Clean-only build of configuration Debug for project MCS4_141PF ****
+make clean 
+rm -rf ./src_kernel/src/croutine.o ./src_kernel/src/event_groups.o ./src_kernel/src/heap_4.o ./src_kernel/src/list.o ./src_kernel/src/port.o ./src_kernel/src/portASM.o ./src_kernel/src/queue.o ./src_kernel/src/riscv-virt.o ./src_kernel/src/stream_buffer.o ./src_kernel/src/tasks.o ./src_kernel/src/timers.o  ./src_app/src/cui_141pf.o ./src_app/src/gpio.o ./src_app/src/gui_141pf.o ./src_app/src/i2c.o ./src_app/src/interrupt.o ./src_app/src/libc-hooks.o ./src_app/src/main.o ./src_app/src/mcs4.o ./src_app/src/spi.o ./src_app/src/startup.o ./src_app/src/system.o ./src_app/src/touchlcd_cap.o ./src_app/src/touchlcd_res.o ./src_app/src/touchlcd_tft.o ./src_app/src/uart.o ./src_app/src/xprintf.o MCS4_141PF.hex MCS4_141PF.siz ./src_kernel/src/portASM.d  ./src_app/src/startup.d ./src_kernel/src/croutine.d ./src_kernel/src/event_groups.d ./src_kernel/src/heap_4.d ./src_kernel/src/list.d ./src_kernel/src/port.d ./src_kernel/src/queue.d ./src_kernel/src/riscv-virt.d ./src_kernel/src/stream_buffer.d ./src_kernel/src/tasks.d ./src_kernel/src/timers.d  ./src_app/src/cui_141pf.d ./src_app/src/gpio.d ./src_app/src/gui_141pf.d ./src_app/src/i2c.d ./src_app/src/interrupt.d ./src_app/src/libc-hooks.d ./src_app/src/main.d ./src_app/src/mcs4.d ./src_app/src/spi.d ./src_app/src/system.d ./src_app/src/touchlcd_cap.d ./src_app/src/touchlcd_res.d ./src_app/src/touchlcd_tft.d ./src_app/src/uart.d ./src_app/src/xprintf.d  MCS4_141PF.elf
+ 
+17:27:45 **** Build of configuration Debug for project MCS4_141PF ****
+make all 
+Building file: ../src_kernel/src/croutine.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/croutine.d" -MT"src_kernel/src/croutine.o" -c -o "src_kernel/src/croutine.o" "../src_kernel/src/croutine.c"
+Finished building: ../src_kernel/src/croutine.c
+ 
+Building file: ../src_kernel/src/event_groups.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/event_groups.d" -MT"src_kernel/src/event_groups.o" -c -o "src_kernel/src/event_groups.o" "../src_kernel/src/event_groups.c"
+Finished building: ../src_kernel/src/event_groups.c
+ 
+Building file: ../src_kernel/src/heap_4.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/heap_4.d" -MT"src_kernel/src/heap_4.o" -c -o "src_kernel/src/heap_4.o" "../src_kernel/src/heap_4.c"
+Finished building: ../src_kernel/src/heap_4.c
+ 
+Building file: ../src_kernel/src/list.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/list.d" -MT"src_kernel/src/list.o" -c -o "src_kernel/src/list.o" "../src_kernel/src/list.c"
+Finished building: ../src_kernel/src/list.c
+ 
+Building file: ../src_kernel/src/port.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/port.d" -MT"src_kernel/src/port.o" -c -o "src_kernel/src/port.o" "../src_kernel/src/port.c"
+Finished building: ../src_kernel/src/port.c
+ 
+Building file: ../src_kernel/src/portASM.S
+Invoking: GNU RISC-V Cross Assembler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -x assembler-with-cpp -DportasmHANDLE_INTERRUPT=External_Interrupt_Handler -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -MMD -MP -MF"src_kernel/src/portASM.d" -MT"src_kernel/src/portASM.o" -c -o "src_kernel/src/portASM.o" "../src_kernel/src/portASM.S"
+Finished building: ../src_kernel/src/portASM.S
+ 
+Building file: ../src_kernel/src/queue.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/queue.d" -MT"src_kernel/src/queue.o" -c -o "src_kernel/src/queue.o" "../src_kernel/src/queue.c"
+Finished building: ../src_kernel/src/queue.c
+ 
+Building file: ../src_kernel/src/riscv-virt.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/riscv-virt.d" -MT"src_kernel/src/riscv-virt.o" -c -o "src_kernel/src/riscv-virt.o" "../src_kernel/src/riscv-virt.c"
+Finished building: ../src_kernel/src/riscv-virt.c
+ 
+Building file: ../src_kernel/src/stream_buffer.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/stream_buffer.d" -MT"src_kernel/src/stream_buffer.o" -c -o "src_kernel/src/stream_buffer.o" "../src_kernel/src/stream_buffer.c"
+Finished building: ../src_kernel/src/stream_buffer.c
+ 
+Building file: ../src_kernel/src/tasks.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/tasks.d" -MT"src_kernel/src/tasks.o" -c -o "src_kernel/src/tasks.o" "../src_kernel/src/tasks.c"
+Finished building: ../src_kernel/src/tasks.c
+ 
+Building file: ../src_kernel/src/timers.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_kernel/src/timers.d" -MT"src_kernel/src/timers.o" -c -o "src_kernel/src/timers.o" "../src_kernel/src/timers.c"
+Finished building: ../src_kernel/src/timers.c
+ 
+Building file: ../src_app/src/cui_141pf.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/cui_141pf.d" -MT"src_app/src/cui_141pf.o" -c -o "src_app/src/cui_141pf.o" "../src_app/src/cui_141pf.c"
+Finished building: ../src_app/src/cui_141pf.c
+ 
+Building file: ../src_app/src/gpio.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/gpio.d" -MT"src_app/src/gpio.o" -c -o "src_app/src/gpio.o" "../src_app/src/gpio.c"
+Finished building: ../src_app/src/gpio.c
+ 
+Building file: ../src_app/src/gui_141pf.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/gui_141pf.d" -MT"src_app/src/gui_141pf.o" -c -o "src_app/src/gui_141pf.o" "../src_app/src/gui_141pf.c"
+Finished building: ../src_app/src/gui_141pf.c
+ 
+Building file: ../src_app/src/i2c.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/i2c.d" -MT"src_app/src/i2c.o" -c -o "src_app/src/i2c.o" "../src_app/src/i2c.c"
+Finished building: ../src_app/src/i2c.c
+ 
+Building file: ../src_app/src/interrupt.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/interrupt.d" -MT"src_app/src/interrupt.o" -c -o "src_app/src/interrupt.o" "../src_app/src/interrupt.c"
+Finished building: ../src_app/src/interrupt.c
+ 
+Building file: ../src_app/src/libc-hooks.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/libc-hooks.d" -MT"src_app/src/libc-hooks.o" -c -o "src_app/src/libc-hooks.o" "../src_app/src/libc-hooks.c"
+Finished building: ../src_app/src/libc-hooks.c
+ 
+Building file: ../src_app/src/main.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/main.d" -MT"src_app/src/main.o" -c -o "src_app/src/main.o" "../src_app/src/main.c"
+Finished building: ../src_app/src/main.c
+ 
+Building file: ../src_app/src/mcs4.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/mcs4.d" -MT"src_app/src/mcs4.o" -c -o "src_app/src/mcs4.o" "../src_app/src/mcs4.c"
+Finished building: ../src_app/src/mcs4.c
+ 
+Building file: ../src_app/src/spi.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/spi.d" -MT"src_app/src/spi.o" -c -o "src_app/src/spi.o" "../src_app/src/spi.c"
+Finished building: ../src_app/src/spi.c
+ 
+Building file: ../src_app/src/startup.S
+Invoking: GNU RISC-V Cross Assembler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -x assembler-with-cpp -DportasmHANDLE_INTERRUPT=External_Interrupt_Handler -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -MMD -MP -MF"src_app/src/startup.d" -MT"src_app/src/startup.o" -c -o "src_app/src/startup.o" "../src_app/src/startup.S"
+Finished building: ../src_app/src/startup.S
+ 
+Building file: ../src_app/src/system.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/system.d" -MT"src_app/src/system.o" -c -o "src_app/src/system.o" "../src_app/src/system.c"
+Finished building: ../src_app/src/system.c
+ 
+Building file: ../src_app/src/touchlcd_cap.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/touchlcd_cap.d" -MT"src_app/src/touchlcd_cap.o" -c -o "src_app/src/touchlcd_cap.o" "../src_app/src/touchlcd_cap.c"
+Finished building: ../src_app/src/touchlcd_cap.c
+ 
+Building file: ../src_app/src/touchlcd_res.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/touchlcd_res.d" -MT"src_app/src/touchlcd_res.o" -c -o "src_app/src/touchlcd_res.o" "../src_app/src/touchlcd_res.c"
+Finished building: ../src_app/src/touchlcd_res.c
+ 
+Building file: ../src_app/src/touchlcd_tft.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/touchlcd_tft.d" -MT"src_app/src/touchlcd_tft.o" -c -o "src_app/src/touchlcd_tft.o" "../src_app/src/touchlcd_tft.c"
+Finished building: ../src_app/src/touchlcd_tft.c
+ 
+Building file: ../src_app/src/uart.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/uart.d" -MT"src_app/src/uart.o" -c -o "src_app/src/uart.o" "../src_app/src/uart.c"
+Finished building: ../src_app/src/uart.c
+ 
+Building file: ../src_app/src/xprintf.c
+Invoking: GNU RISC-V Cross C Compiler
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_kernel\inc" -I"C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\src_app\inc" -fno-common -fno-builtin-printf -nostartfiles -nostdlib -MMD -MP -MF"src_app/src/xprintf.d" -MT"src_app/src/xprintf.o" -c -o "src_app/src/xprintf.o" "../src_app/src/xprintf.c"
+Finished building: ../src_app/src/xprintf.c
+ 
+Building target: MCS4_141PF.elf
+Invoking: GNU RISC-V Cross C Linker
+riscv-none-elf-gcc -march=rv32imac_zicsr -mabi=ilp32 -msmall-data-limit=8 -mno-save-restore -O3 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -ggdb -T "C:\MCS4_141PF\MCS4_SYSTEM\SOFTWARE\workspace\MCS4_141PF\link.ld" -nostartfiles -Xlinker --gc-sections -L/opt/riscv/riscv64-unknown-elf/lib/rv32imafc/ilp32f -L/opt/riscv/lib/gcc/riscv64-unknown-elf/12.2.0/rv32imafc/ilp32f -Xlinker --no-warn-rwx-segmen -Wl,-Map,"MCS4_141PF.map" -nostartfiles -nostdlib -o "MCS4_141PF.elf" ./src_kernel/src/croutine.o ./src_kernel/src/event_groups.o ./src_kernel/src/heap_4.o ./src_kernel/src/list.o ./src_kernel/src/port.o ./src_kernel/src/portASM.o ./src_kernel/src/queue.o ./src_kernel/src/riscv-virt.o ./src_kernel/src/stream_buffer.o ./src_kernel/src/tasks.o ./src_kernel/src/timers.o  ./src_app/src/cui_141pf.o ./src_app/src/gpio.o ./src_app/src/gui_141pf.o ./src_app/src/i2c.o ./src_app/src/interrupt.o ./src_app/src/libc-hooks.o ./src_app/src/main.o ./src_app/src/mcs4.o ./src_app/src/spi.o ./src_app/src/startup.o ./src_app/src/system.o ./src_app/src/touchlcd_cap.o ./src_app/src/touchlcd_res.o ./src_app/src/touchlcd_tft.o ./src_app/src/uart.o ./src_app/src/xprintf.o   -lm -lc -lgcc
+Finished building target: MCS4_141PF.elf
+ 
+Invoking: GNU RISC-V Cross Create Flash Image
+riscv-none-elf-objcopy -O ihex "MCS4_141PF.elf"  "MCS4_141PF.hex"
+Finished building: MCS4_141PF.hex
+ 
+Invoking: GNU RISC-V Cross Print Size
+riscv-none-elf-size --format=berkeley "MCS4_141PF.elf"
+   text	   data	    bss	    dec	    hex	filename
+  58338	    516	 533152	 592006	  90886	MCS4_141PF.elf
+Finished building: MCS4_141PF.siz
+ 

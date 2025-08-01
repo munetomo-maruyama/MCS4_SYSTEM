@@ -1,0 +1,119 @@
+000         // Sample Source for ADS4004
+000             org 0x000
+000 40 62       jun RESET
+002         
+002         ; Label and Literal
+002 7B      LABEL0  123
+003 09      LABEL1, 3 * (1 + 2)
+004 12 34   LABEL2: 0x12, 0x34, 0x56
+006 56
+007 FB      LABEL3  -5 // negative
+008 FA      LABEL4  0xa // negative
+009         
+009         ; Equation
+009         LABELA= 456
+009         LABELB= LABEL0 + LABEL1
+009         LABELC equ LABELA * 3
+009         
+009         ; Origin
+040             = 0x040
+040 44 45       0x44 0x45 // literal
+042         
+050             org 0x050
+050 55 56       0x55 0x56 ; literal
+052         
+060             equ 0x060
+060 66 67       0x66 0x67 ; literals
+062         RESET
+062         
+062         ; Machine Instruction (1-word)
+062         MACHINE1
+062 00          nop
+063 DA          ldm 0xa
+064 DA          ldm 10
+065 D2          ldm LABEL0
+066 A3          ld 3
+067 AF          ld 15
+068 B3          xch 3
+069 BF          xch 15
+06A 83          add 3
+06B 8F          add 15
+06C 93          sub 3
+06D 9F          sub 15
+06E 68          inc 8
+06F 6C          inc 12
+070 CA          bbl 0xa
+071 CC          bbl 12
+072 37          jin 3p
+073 37          jin 3<
+074 2B          src 5p
+075 2B          src 5<
+076 2B          src 10
+077 3E          fin 7p
+078 3E          fin 7<
+079 3E          fin 14
+07A         ; Machine Instruction (2-word)
+07A         MACHINE2
+07A 40 62       jun MACHINE1
+07C 41 23       jun 0x123
+07E 50 62       jms MACHINE1
+080 5A BC       jms 0x0abc
+082 14 7A       jcn 0x4 MACHINE2
+084 19 AB       jcn 9 0x0ab
+086 11 7A       jcn TZ MACHINE2
+088 19 7A       jcn tn MACHINE2
+08A 1A 7A       jcn C0 MACHINE2
+08C 12 7A       jcn c1 MACHINE2
+08E 14 7A       jcn AZ MACHINE2
+090 1C 7A       jcn an MACHINE2
+092 79 7A       isz 9 MACHINE2
+094 79 AB       isz 9 0x0ab
+096 22 FE       fim 1p 0xfe
+098 22 FE       fim 1< 0xfe
+09A 22 FE       fim 2 0xfe
+09C         ; Data Access Instruction
+09C E9          rdm
+09D EC          rd0
+09E ED          rd1
+09F EE          rd2
+0A0 EF          rd3
+0A1 EA          rdr
+0A2 E0          wrm
+0A3 E4          wr0
+0A4 E5          wr1
+0A5 E6          wr2
+0A6 E7          wr3
+0A7 E2          wrr
+0A8 E1          wmp
+0A9 EB          adm
+0AA E8          sbm
+0AB E3          wpm
+0AC         ; Accumulator Instruction
+0AC F0          clb
+0AD F1          clc
+0AE F3          cmc
+0AF FA          stc
+0B0 F4          cma
+0B1 F2          iac
+0B2 F8          dac
+0B3 F5          ral
+0B4 F6          rar
+0B5 F7          tcc
+0B6 FB          daa
+0B7 F9          tcs
+0B8 FC          kbp
+0B9 FD          dcl
+0BA         ; End of Assembler
+0BA             end
+-----Label Table-----
+LABEL0   = 0x0002
+LABEL1   = 0x0003
+LABEL2   = 0x0004
+LABELB   = 0x0005
+LABEL3   = 0x0007
+LABEL4   = 0x0008
+MACHINE1 = 0x0062
+RESET    = 0x0062
+MACHINE2 = 0x007A
+-----End of Label Table-----
+Total Error = 0
