@@ -35,3 +35,12 @@ How to use 141-PF<br>
 ## A challenge: Calculating 500 Digits of Pi with the 4004 CPU
 I developed and executed a program in 4004 CPU assembly to compute 500 digits of the mathematical constant π using Machin's formula. Despite being the world’s first microprocessor developed during the dawn of microcontroller technology, the Intel 4004 exhibits surprisingly sufficient computational capability―even with its primitive instruction set. <br>
 The total computation time at a clock speed of 750 KHz (4004 CPU) is approximately 17 minutes. The final result―500 digits of π―is printed by the 141-PF printer. <br>
+
+## Firmware References
+This project utilizes historical firmware related to the 141-PF calculator:
+- [4001.code - Simulator with Flowchart](http://www.4004.com/assets/busicom-141pf-simulator-w-flowchart-071113.zip)  
+- [Assembly Source – Busicom 141-PF Calculator](http://www.4004.com/2009/Busicom-141PF-Calculator_asm_rel-1-0-1.txt)
+
+These resources are distributed under the following license, which this project inherits:
+- [Creative Commons Attribution-NonCommercial-ShareAlike 2.5](https://creativecommons.org/licenses/by-nc-sa/2.5/legalcode)
+<br>
