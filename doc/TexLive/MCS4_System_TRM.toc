@@ -28,8 +28,8 @@
 \contentsline {subsection}{\numberline {2.6.2}Pin layout and Signal Functions of the 4002 RAM}{13}{subsection.2.6.2}%
 \contentsline {subsection}{\numberline {2.6.3}Internal Architecture of the 4002 RAM}{13}{subsection.2.6.3}%
 \contentsline {subsection}{\numberline {2.6.4}CPU Addressing of the 4002 RAM}{14}{subsection.2.6.4}%
-\contentsline {section}{\numberline {2.7}4003 Shift Regieter}{15}{section.2.7}%
-\contentsline {subsection}{\numberline {2.7.1}Functional Overview of the 4003 Shift Register}{15}{subsection.2.7.1}%
+\contentsline {section}{\numberline {2.7}4003 Shift Regieter}{14}{section.2.7}%
+\contentsline {subsection}{\numberline {2.7.1}Functional Overview of the 4003 Shift Register}{14}{subsection.2.7.1}%
 \contentsline {subsection}{\numberline {2.7.2}Pin layout and Signal Functions of the 4003 Shift Register}{15}{subsection.2.7.2}%
 \contentsline {subsection}{\numberline {2.7.3}Internal Architecture of the 4003 Shift Register}{15}{subsection.2.7.3}%
 \contentsline {section}{\numberline {2.8}MCS-4 System Configuration}{16}{section.2.8}%
@@ -132,31 +132,31 @@
 \contentsline {subsection}{\numberline {6.5.3}Optional Square Root Calculations}{87}{subsection.6.5.3}%
 \contentsline {section}{\numberline {6.6}RISC-V Subsystem}{87}{section.6.6}%
 \contentsline {subsection}{\numberline {6.6.1}Hardware of the RISC-V Subsystem}{87}{subsection.6.6.1}%
-\contentsline {subsection}{\numberline {6.6.2}Software of the RISC-V Subsystem}{88}{subsection.6.6.2}%
-\contentsline {subsection}{\numberline {6.6.3}When Modifying Software of the RISC-V Subsystem}{91}{subsection.6.6.3}%
-\contentsline {section}{\numberline {6.7}Logical Simulation of the MCS-4 System}{92}{section.6.7}%
-\contentsline {subsection}{\numberline {6.7.1}Logical Simulation of the MCS-4 System Using Icarus Verilog}{92}{subsection.6.7.1}%
-\contentsline {subsection}{\numberline {6.7.2}Resources for Simulation}{92}{subsection.6.7.2}%
+\contentsline {subsection}{\numberline {6.6.2}Software of the RISC-V Subsystem}{87}{subsection.6.6.2}%
+\contentsline {subsection}{\numberline {6.6.3}When Modifying Software of the RISC-V Subsystem}{88}{subsection.6.6.3}%
+\contentsline {section}{\numberline {6.7}Logical Simulation of the MCS-4 System}{91}{section.6.7}%
+\contentsline {subsection}{\numberline {6.7.1}Logical Simulation of the MCS-4 System Using Icarus Verilog}{91}{subsection.6.7.1}%
+\contentsline {subsection}{\numberline {6.7.2}Resources for Simulation}{91}{subsection.6.7.2}%
 \contentsline {subsection}{\numberline {6.7.3}Installing Icarus Verilog}{92}{subsection.6.7.3}%
 \contentsline {subsection}{\numberline {6.7.4}For Simulation Using 141-PF Calculator Program}{92}{subsection.6.7.4}%
 \contentsline {subsection}{\numberline {6.7.5}For Simulation Using Custom 4004 Program Code}{92}{subsection.6.7.5}%
-\contentsline {subsection}{\numberline {6.7.6}Testbench for 141-PF calculator}{93}{subsection.6.7.6}%
-\contentsline {subsection}{\numberline {6.7.7}Execution of the Simulation}{93}{subsection.6.7.7}%
+\contentsline {subsection}{\numberline {6.7.6}Testbench for 141-PF calculator}{92}{subsection.6.7.6}%
+\contentsline {subsection}{\numberline {6.7.7}Execution of the Simulation}{92}{subsection.6.7.7}%
 \contentsline {subsection}{\numberline {6.7.8}Viewing Waveform Files}{93}{subsection.6.7.8}%
-\contentsline {section}{\numberline {6.8}Logical Simulation of the Entire FPGA System}{94}{section.6.8}%
-\contentsline {subsection}{\numberline {6.8.1}Logical Simulation of the Entire FPGA System Using Questa}{94}{subsection.6.8.1}%
-\contentsline {subsection}{\numberline {6.8.2}Executing Logical Simulation Using Questa}{94}{subsection.6.8.2}%
-\contentsline {section}{\numberline {6.9}FPGA Implementation}{95}{section.6.9}%
+\contentsline {section}{\numberline {6.8}Logical Simulation of the Entire FPGA System}{93}{section.6.8}%
+\contentsline {subsection}{\numberline {6.8.1}Logical Simulation of the Entire FPGA System Using Questa}{93}{subsection.6.8.1}%
+\contentsline {subsection}{\numberline {6.8.2}Executing Logical Simulation Using Questa}{93}{subsection.6.8.2}%
+\contentsline {section}{\numberline {6.9}FPGA Implementation}{94}{section.6.9}%
 \contentsline {subsection}{\numberline {6.9.1}Signal Assignments for External FPGA Terminals}{95}{subsection.6.9.1}%
 \contentsline {subsection}{\numberline {6.9.2}MCS4\_CPU Connection Methods and DE10-Lite Board Settings}{95}{subsection.6.9.2}%
 \contentsline {paragraph}{Case A:}{95}{section*.76}%
 \contentsline {paragraph}{Case B:}{95}{section*.77}%
-\contentsline {paragraph}{Case C:}{95}{section*.78}%
+\contentsline {paragraph}{Case C:}{96}{section*.78}%
 \contentsline {subsection}{\numberline {6.9.3}Connection for Debugging and Downloading RISC-V Programs}{98}{subsection.6.9.3}%
 \contentsline {section}{\numberline {6.10}Key Operation Method of the 141-PF Calculator}{98}{section.6.10}%
-\contentsline {section}{\numberline {6.11}The Charming Print Method of the 141-PF Calculator}{100}{section.6.11}%
+\contentsline {section}{\numberline {6.11}The Charming Print Method of the 141-PF Calculator}{99}{section.6.11}%
 \contentsline {section}{\numberline {6.12}Operation Method Using a Serial Terminal in This FPGA System}{101}{section.6.12}%
-\contentsline {section}{\numberline {6.13}Operation Method Using the Touch LCD Shield in This FPGA System}{103}{section.6.13}%
+\contentsline {section}{\numberline {6.13}Operation Method Using the Touch LCD Shield in This FPGA System}{102}{section.6.13}%
 \contentsline {chapter}{\numberline {7}A challenge: Calculating 500 Digits of Pi with the 4004 CPU}{105}{chapter.7}%
 \contentsline {section}{\numberline {7.1}Principle of Pi Calculation}{105}{section.7.1}%
 \contentsline {section}{\numberline {7.2}Pi Calculation Algorithm}{106}{section.7.2}%

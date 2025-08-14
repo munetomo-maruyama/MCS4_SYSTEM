@@ -2,7 +2,7 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \contentsline {table}{\numberline {2.1}{\ignorespaces Overview of MCS-4 Chip Set Specifications}}{9}{table.caption.11}%
-\contentsline {table}{\numberline {2.2}{\ignorespaces 4002 RAM Chip Selection by P0 and SRC Address Bits}}{14}{table.caption.17}%
+\contentsline {table}{\numberline {2.2}{\ignorespaces 4002 RAM Chip Selection by P0 and SRC Address Bits}}{15}{table.caption.17}%
 \contentsline {table}{\numberline {2.3}{\ignorespaces DC Characteristics of P-MOS Devices (MCS-4 Chipset)}}{18}{table.caption.22}%
 \addvspace {10\p@ }
 \contentsline {table}{\numberline {3.1}{\ignorespaces CPU Instruciton Table (1) : Machine Instruction (1 word)}}{23}{table.caption.26}%
@@ -33,16 +33,16 @@
 \contentsline {table}{\numberline {6.8}{\ignorespaces Printing Sequence Example of the Calculator's Printer}}{83}{table.caption.61}%
 \contentsline {table}{\numberline {6.9}{\ignorespaces Command Signals Sent to \texttt {KEY\_PRINTER} (Connected to RISC-V Subsystem Ports)}}{84}{table.caption.62}%
 \contentsline {table}{\numberline {6.10}{\ignorespaces Response Signals from \texttt {KEY\_PRINTER} (Connected to RISC-V Subsystem Ports)}}{85}{table.caption.63}%
-\contentsline {table}{\numberline {6.11}{\ignorespaces Registers in the PORT Module}}{87}{table.caption.64}%
-\contentsline {table}{\numberline {6.12}{\ignorespaces GPIO0 connected to External Pins}}{88}{table.caption.65}%
+\contentsline {table}{\numberline {6.11}{\ignorespaces Registers in the PORT Module}}{88}{table.caption.64}%
+\contentsline {table}{\numberline {6.12}{\ignorespaces GPIO0 connected to External Pins}}{89}{table.caption.65}%
 \contentsline {table}{\numberline {6.13}{\ignorespaces GPIO1 connected to External Pins}}{89}{table.caption.66}%
 \contentsline {table}{\numberline {6.14}{\ignorespaces GPIO2 connected to External Pins}}{89}{table.caption.67}%
 \contentsline {table}{\numberline {6.15}{\ignorespaces GPIO3 connected to Internal Signals}}{90}{table.caption.68}%
 \contentsline {table}{\numberline {6.16}{\ignorespaces GPIO4 connected to Internal Signals}}{90}{table.caption.69}%
 \contentsline {table}{\numberline {6.17}{\ignorespaces GPIO5 connected to Internal Signals}}{91}{table.caption.70}%
-\contentsline {table}{\numberline {6.18}{\ignorespaces RISC-V related External Signals except for GPIO}}{96}{table.caption.74}%
+\contentsline {table}{\numberline {6.18}{\ignorespaces RISC-V related External Signals except for GPIO}}{95}{table.caption.74}%
 \contentsline {table}{\numberline {6.19}{\ignorespaces MCS4\_CPU (4004 CPU) related External Signals}}{96}{table.caption.75}%
-\contentsline {table}{\numberline {6.20}{\ignorespaces Operation of Key Input on Serial Terminal}}{102}{table.caption.86}%
+\contentsline {table}{\numberline {6.20}{\ignorespaces Operation of Key Input on Serial Terminal}}{101}{table.caption.86}%
 \addvspace {10\p@ }
 \contentsline {table}{\numberline {7.1}{\ignorespaces Values of \texttt {T1[]}, \texttt {T2[]}, \texttt {T3[]}, and \texttt {PI[]} for Each $n$}}{107}{table.caption.89}%
 \addvspace {10\p@ }
