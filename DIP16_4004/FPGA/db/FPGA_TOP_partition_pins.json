@@ -1,0 +1,65 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "SYNC_N",
+					"strict" : false
+				},
+				{
+					"name" : "CM_ROM_N",
+					"strict" : false
+				},
+				{
+					"name" : "CM_RAM_N[0]",
+					"strict" : false
+				},
+				{
+					"name" : "CM_RAM_N[1]",
+					"strict" : false
+				},
+				{
+					"name" : "CM_RAM_N[2]",
+					"strict" : false
+				},
+				{
+					"name" : "CM_RAM_N[3]",
+					"strict" : false
+				},
+				{
+					"name" : "CLKOUT",
+					"strict" : false
+				},
+				{
+					"name" : "DATA[0]",
+					"strict" : false
+				},
+				{
+					"name" : "DATA[1]",
+					"strict" : false
+				},
+				{
+					"name" : "DATA[2]",
+					"strict" : false
+				},
+				{
+					"name" : "DATA[3]",
+					"strict" : false
+				},
+				{
+					"name" : "CLK",
+					"strict" : false
+				},
+				{
+					"name" : "RES_N",
+					"strict" : false
+				},
+				{
+					"name" : "TEST",
+					"strict" : false
+				}
+			]
+		}
+	]
+}

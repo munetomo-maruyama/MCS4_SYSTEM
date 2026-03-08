@@ -1,0 +1,16 @@
+<sld_project_info>
+  <project>
+    <hash md5_digest_80b="c725e801eb4dc57d8a5b"/>
+  </project>
+  <file_info>
+    <file device="10M02DCV36C8G" path="FPGA_TOP.sof" usercode="0xFFFFFFFF"/>
+  </file_info>
+  <sld_infos>
+    <sld_info hpath="OSC:U_OSC" name="U_OSC">
+      <assignment_values>
+        <assignment_value text="QSYS_NAME OSC HAS_SOPCINFO 1 GENERATION_ID 1766674986"/>
+      </assignment_values>
+      <parameters/>
+    </sld_info>
+  </sld_infos>
+</sld_project_info>

@@ -1,0 +1,2 @@
+Warning (10268): Verilog HDL information at mcs4_cpu.v(328): always construct contains both blocking and non-blocking assignments File: C:/Mac/Home/Documents/CQ/DIP_FPGA/DIP16_4004/RTL/mcs4_cpu.v Line: 328
+Info (10281): Verilog HDL Declaration information at mcs4_cpu.v(44): object "PC" differs only in case from object "pc" in the same scope File: C:/Mac/Home/Documents/CQ/DIP_FPGA/DIP16_4004/RTL/mcs4_cpu.v Line: 44

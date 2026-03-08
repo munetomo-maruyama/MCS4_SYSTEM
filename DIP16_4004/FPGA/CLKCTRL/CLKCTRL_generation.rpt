@@ -1,0 +1,31 @@
+Info: Starting: Create block symbol file (.bsf)
+Info: qsys-generate C:\MCS4_141PF\DIP16_4004\FPGA\CLKCTRL.qsys --block-symbol-file --output-directory=C:\MCS4_141PF\DIP16_4004\FPGA\CLKCTRL --family="MAX 10" --part=10M02DCV36C8G
+Progress: Loading FPGA/CLKCTRL.qsys
+Progress: Reading input file
+Progress: Adding altclkctrl_0 [altclkctrl 24.1]
+Progress: Parameterizing module altclkctrl_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+: CLKCTRL.altclkctrl_0: Targeting device family: MAX 10.
+Info: qsys-generate succeeded.
+Info: Finished: Create block symbol file (.bsf)
+Info: 
+Info: Starting: Create HDL design files for synthesis
+Info: qsys-generate C:\MCS4_141PF\DIP16_4004\FPGA\CLKCTRL.qsys --synthesis=VERILOG --output-directory=C:\MCS4_141PF\DIP16_4004\FPGA\CLKCTRL\synthesis --family="MAX 10" --part=10M02DCV36C8G
+Progress: Loading FPGA/CLKCTRL.qsys
+Progress: Reading input file
+Progress: Adding altclkctrl_0 [altclkctrl 24.1]
+Progress: Parameterizing module altclkctrl_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+: CLKCTRL.altclkctrl_0: Targeting device family: MAX 10.
+Info: CLKCTRL: Generating "CLKCTRL" for QUARTUS_SYNTH
+Info: altclkctrl_0: Generating top-level entity CLKCTRL_altclkctrl_0.
+Info: altclkctrl_0: "CLKCTRL" instantiated altclkctrl "altclkctrl_0"
+Info: CLKCTRL: Done "CLKCTRL" with 2 modules, 2 files
+Info: qsys-generate succeeded.
+Info: Finished: Create HDL design files for synthesis
