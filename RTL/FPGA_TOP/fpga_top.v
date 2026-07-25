@@ -361,6 +361,8 @@ genvar i;
 wire clk0;
 wire clk1;
 wire clk2;
+wire clk2f;
+wire clk2b;
 wire clk;
 wire clk_mcs4;
 wire locked;
@@ -372,6 +374,8 @@ PLL U_PLL
     .c0      (clk0),  // 20.00MHz
     .c1      (clk1),  // 16.66MHz
     .c2      (clk2),  //   750KHz
+    .c3      (clk2f), //   750KHz forward  (-33.33ns)
+    .c4      (clk2b), //   750KHz backward (+33.33ns)
     .locked  (locked)
 );
 //
@@ -453,33 +457,73 @@ wire       s_mcs4_data_oe;
 wire       s_mcs4_cm_rom_n;
 wire [3:0] s_mcs4_cm_ram_n;
 //
+reg       s_mcs4_sync_n_f;
+reg       s_mcs4_cm_rom_n_f;
+reg [3:0] s_mcs4_cm_ram_n_f;
+reg [3:0] s_mcs4_data_i_f;
+reg [3:0] s_mcs4_data_o_b;
+reg       s_mcs4_data_oe_b;
+always @(posedge clk2f, posedge res_org)
+begin
+    if (res_org)
+    begin
+        s_mcs4_data_i_f   <= 4'h0;
+        s_mcs4_sync_n_f   <= 1'b1;
+        s_mcs4_cm_rom_n_f <= 1'b1;
+        s_mcs4_cm_ram_n_f <= 4'hf;
+    end
+    else
+    begin
+        s_mcs4_data_i_f <= S_MCS4_DATA;
+        s_mcs4_sync_n_f   <= S_MCS4_SYNC_N;
+        s_mcs4_cm_rom_n_f <= S_MCS4_CM_ROM_N;
+        s_mcs4_cm_ram_n_f <= S_MCS4_CM_RAM_N;
+    end
+end
+always @(posedge clk2b, posedge res_org)
+begin
+    if (res_org)
+    begin
+        s_mcs4_data_o_b  <= 4'h0;
+        s_mcs4_data_oe_b <= 1'b0;
+    end
+    else
+    begin
+        s_mcs4_data_o_b  <= s_mcs4_data_o;
+        s_mcs4_data_oe_b <= s_mcs4_data_oe;
+    end
+end
+//
 assign s_mcs4_clk   = clk_mcs4;
 //
 assign c_mcs4_clk      = (use_external_mcs4_cpu)? C_MCS4_CLK      : s_mcs4_clk;
 assign S_MCS4_CLK      = (use_external_mcs4_cpu)? s_mcs4_clk      : 1'bz;
 assign c_mcs4_res_n    = (use_external_mcs4_cpu)? C_MCS4_RES_N    : s_mcs4_res_n;
 assign S_MCS4_RES_N    = (use_external_mcs4_cpu)? s_mcs4_res_n    : 1'bz;
-assign s_mcs4_sync_n   = (use_external_mcs4_cpu)? S_MCS4_SYNC_N   : c_mcs4_sync_n;
+//assign s_mcs4_sync_n   = (use_external_mcs4_cpu)? S_MCS4_SYNC_N   : c_mcs4_sync_n;
+assign s_mcs4_sync_n   = (use_external_mcs4_cpu)? s_mcs4_sync_n_f : c_mcs4_sync_n;
 assign C_MCS4_SYNC_N   = (use_external_mcs4_cpu)? c_mcs4_sync_n   : 1'bz;
 assign S_MCS4_TEST     = (use_external_mcs4_cpu)? s_mcs4_test     : 1'bz;
 assign c_mcs4_test     = (use_external_mcs4_cpu)? C_MCS4_TEST     : s_mcs4_test;
-assign s_mcs4_cm_rom_n = (use_external_mcs4_cpu)? S_MCS4_CM_ROM_N : c_mcs4_cm_rom_n;
+//assign s_mcs4_cm_rom_n = (use_external_mcs4_cpu)? S_MCS4_CM_ROM_N : c_mcs4_cm_rom_n;
+assign s_mcs4_cm_rom_n = (use_external_mcs4_cpu)? s_mcs4_cm_rom_n_f : c_mcs4_cm_rom_n;
 assign C_MCS4_CM_ROM_N = (use_external_mcs4_cpu)? c_mcs4_cm_rom_n : 1'bz;
-assign s_mcs4_cm_ram_n = (use_external_mcs4_cpu)? S_MCS4_CM_RAM_N : c_mcs4_cm_ram_n;
+//assign s_mcs4_cm_ram_n = (use_external_mcs4_cpu)? S_MCS4_CM_RAM_N : c_mcs4_cm_ram_n;
+assign s_mcs4_cm_ram_n = (use_external_mcs4_cpu)? s_mcs4_cm_ram_n_f : c_mcs4_cm_ram_n;
 assign C_MCS4_CM_RAM_N = (use_external_mcs4_cpu)? c_mcs4_cm_ram_n : 4'bzzzz;
 //
 assign c_mcs4_data_i   = (use_external_mcs4_cpu)? C_MCS4_DATA
                        : (s_mcs4_data_oe)? s_mcs4_data_o : (c_mcs4_data_oe)? c_mcs4_data_o : 1'b1;
-assign s_mcs4_data_i   = (use_external_mcs4_cpu)? S_MCS4_DATA
+assign s_mcs4_data_i   = (use_external_mcs4_cpu)? s_mcs4_data_i_f //S_MCS4_DATA
                        : (c_mcs4_data_oe)? c_mcs4_data_o : (s_mcs4_data_oe)? s_mcs4_data_o : 1'b1;
 assign C_MCS4_DATA[0]  = (use_external_mcs4_cpu)? ((c_mcs4_data_oe & ~c_mcs4_data_o[0])? 1'b0 : 1'bz) : 1'bz;
 assign C_MCS4_DATA[1]  = (use_external_mcs4_cpu)? ((c_mcs4_data_oe & ~c_mcs4_data_o[1])? 1'b0 : 1'bz) : 1'bz;
 assign C_MCS4_DATA[2]  = (use_external_mcs4_cpu)? ((c_mcs4_data_oe & ~c_mcs4_data_o[2])? 1'b0 : 1'bz) : 1'bz;
 assign C_MCS4_DATA[3]  = (use_external_mcs4_cpu)? ((c_mcs4_data_oe & ~c_mcs4_data_o[3])? 1'b0 : 1'bz) : 1'bz;
-assign S_MCS4_DATA[0]  = (use_external_mcs4_cpu)? ((s_mcs4_data_oe & ~s_mcs4_data_o[0])? 1'b0 : 1'bz) : 1'bz;
-assign S_MCS4_DATA[1]  = (use_external_mcs4_cpu)? ((s_mcs4_data_oe & ~s_mcs4_data_o[1])? 1'b0 : 1'bz) : 1'bz;
-assign S_MCS4_DATA[2]  = (use_external_mcs4_cpu)? ((s_mcs4_data_oe & ~s_mcs4_data_o[2])? 1'b0 : 1'bz) : 1'bz;
-assign S_MCS4_DATA[3]  = (use_external_mcs4_cpu)? ((s_mcs4_data_oe & ~s_mcs4_data_o[3])? 1'b0 : 1'bz) : 1'bz;
+assign S_MCS4_DATA[0]  = (use_external_mcs4_cpu)? ((s_mcs4_data_oe_b & ~s_mcs4_data_o_b[0])? 1'b0 : 1'bz) : 1'bz;
+assign S_MCS4_DATA[1]  = (use_external_mcs4_cpu)? ((s_mcs4_data_oe_b & ~s_mcs4_data_o_b[1])? 1'b0 : 1'bz) : 1'bz;
+assign S_MCS4_DATA[2]  = (use_external_mcs4_cpu)? ((s_mcs4_data_oe_b & ~s_mcs4_data_o_b[2])? 1'b0 : 1'bz) : 1'bz;
+assign S_MCS4_DATA[3]  = (use_external_mcs4_cpu)? ((s_mcs4_data_oe_b & ~s_mcs4_data_o_b[3])? 1'b0 : 1'bz) : 1'bz;
 
 //-----------------------------------------
 // Initialize MCS4 ROM from RISC-V 

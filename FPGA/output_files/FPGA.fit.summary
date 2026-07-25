@@ -1,14 +1,14 @@
-Fitter Status : Successful - Fri Aug  1 17:38:26 2025
+Fitter Status : Successful - Sat Jul 25 11:35:32 2026
 Quartus Prime Version : 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 Revision Name : FPGA
 Top-level Entity Name : FPGA_TOP
 Family : MAX 10
 Device : 10M50DAF484C7G
 Timing Models : Final
-Total logic elements : 29,610 / 49,760 ( 60 % )
-    Total combinational functions : 27,630 / 49,760 ( 56 % )
-    Dedicated logic registers : 9,601 / 49,760 ( 19 % )
-Total registers : 9601
+Total logic elements : 29,669 / 49,760 ( 60 % )
+    Total combinational functions : 27,604 / 49,760 ( 55 % )
+    Dedicated logic registers : 9,616 / 49,760 ( 19 % )
+Total registers : 9616
 Total pins : 162 / 360 ( 45 % )
 Total virtual pins : 0
 Total memory bits : 1,357,568 / 1,677,312 ( 81 % )

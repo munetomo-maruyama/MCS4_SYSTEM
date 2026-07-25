@@ -1,4 +1,4 @@
-//altpll bandwidth_type="AUTO" CBX_DECLARE_ALL_CONNECTED_PORTS="OFF" clk0_divide_by=5 clk0_duty_cycle=50 clk0_multiply_by=2 clk0_phase_shift="0" clk1_divide_by=25000000 clk1_duty_cycle=50 clk1_multiply_by=8333333 clk1_phase_shift="0" clk2_divide_by=200 clk2_duty_cycle=50 clk2_multiply_by=3 clk2_phase_shift="0" compensate_clock="CLK0" device_family="MAX 10" inclk0_input_frequency=20000 intended_device_family="MAX 10" lpm_hint="CBX_MODULE_PREFIX=PLL" operation_mode="normal" pll_type="AUTO" port_clk0="PORT_USED" port_clk1="PORT_USED" port_clk2="PORT_USED" port_clk3="PORT_UNUSED" port_clk4="PORT_UNUSED" port_clk5="PORT_UNUSED" port_extclk0="PORT_UNUSED" port_extclk1="PORT_UNUSED" port_extclk2="PORT_UNUSED" port_extclk3="PORT_UNUSED" port_inclk1="PORT_UNUSED" port_phasecounterselect="PORT_UNUSED" port_phasedone="PORT_UNUSED" port_scandata="PORT_UNUSED" port_scandataout="PORT_UNUSED" self_reset_on_loss_lock="OFF" width_clock=5 areset clk inclk locked CARRY_CHAIN="MANUAL" CARRY_CHAIN_LENGTH=48
+//altpll bandwidth_type="AUTO" CBX_DECLARE_ALL_CONNECTED_PORTS="OFF" clk0_divide_by=5 clk0_duty_cycle=50 clk0_multiply_by=2 clk0_phase_shift="0" clk1_divide_by=25000000 clk1_duty_cycle=50 clk1_multiply_by=8333333 clk1_phase_shift="0" clk2_divide_by=200 clk2_duty_cycle=50 clk2_multiply_by=3 clk2_phase_shift="0" clk3_divide_by=200 clk3_duty_cycle=50 clk3_multiply_by=3 clk3_phase_shift="-133330" clk4_divide_by=200 clk4_duty_cycle=50 clk4_multiply_by=3 clk4_phase_shift="133330" compensate_clock="CLK0" device_family="MAX 10" inclk0_input_frequency=20000 intended_device_family="MAX 10" lpm_hint="CBX_MODULE_PREFIX=PLL" operation_mode="normal" pll_type="AUTO" port_clk0="PORT_USED" port_clk1="PORT_USED" port_clk2="PORT_USED" port_clk3="PORT_USED" port_clk4="PORT_USED" port_clk5="PORT_UNUSED" port_extclk0="PORT_UNUSED" port_extclk1="PORT_UNUSED" port_extclk2="PORT_UNUSED" port_extclk3="PORT_UNUSED" port_inclk1="PORT_UNUSED" port_phasecounterselect="PORT_UNUSED" port_phasedone="PORT_UNUSED" port_scandata="PORT_UNUSED" port_scandataout="PORT_UNUSED" self_reset_on_loss_lock="OFF" width_clock=5 areset clk inclk locked CARRY_CHAIN="MANUAL" CARRY_CHAIN_LENGTH=48
 //VERSION_BEGIN 24.1 cbx_altclkbuf 2025:03:05:20:06:36:SC cbx_altiobuf_bidir 2025:03:05:20:06:36:SC cbx_altiobuf_in 2025:03:05:20:06:36:SC cbx_altiobuf_out 2025:03:05:20:06:36:SC cbx_altpll 2025:03:05:20:06:36:SC cbx_cycloneii 2025:03:05:20:06:36:SC cbx_lpm_add_sub 2025:03:05:20:06:36:SC cbx_lpm_compare 2025:03:05:20:06:36:SC cbx_lpm_counter 2025:03:05:20:06:36:SC cbx_lpm_decode 2025:03:05:20:06:36:SC cbx_lpm_mux 2025:03:05:20:06:36:SC cbx_mgl 2025:03:05:20:07:01:SC cbx_nadder 2025:03:05:20:06:36:SC cbx_stratix 2025:03:05:20:06:36:SC cbx_stratixii 2025:03:05:20:06:36:SC cbx_stratixiii 2025:03:05:20:06:36:SC cbx_stratixv 2025:03:05:20:06:36:SC cbx_util_mgl 2025:03:05:20:06:36:SC  VERSION_END
 //CBXI_INSTANCE_NAME="FPGA_TOP_PLL_U_PLL_altpll_altpll_component"
 // synthesis VERILOG_INPUT_VERSION VERILOG_2001
@@ -105,6 +105,14 @@ module  PLL_altpll
 		pll1.clk2_duty_cycle = 50,
 		pll1.clk2_multiply_by = 3,
 		pll1.clk2_phase_shift = "0",
+		pll1.clk3_divide_by = 200,
+		pll1.clk3_duty_cycle = 50,
+		pll1.clk3_multiply_by = 3,
+		pll1.clk3_phase_shift = "-133330",
+		pll1.clk4_divide_by = 200,
+		pll1.clk4_duty_cycle = 50,
+		pll1.clk4_multiply_by = 3,
+		pll1.clk4_phase_shift = "133330",
 		pll1.compensate_clock = "clk0",
 		pll1.inclk0_input_frequency = 20000,
 		pll1.operation_mode = "normal",

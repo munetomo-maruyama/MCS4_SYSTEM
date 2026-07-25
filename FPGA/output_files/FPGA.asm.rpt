@@ -1,5 +1,5 @@
 Assembler report for FPGA
-Fri Aug  1 17:38:38 2025
+Sat Jul 25 11:35:47 2026
 Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 
 
@@ -10,7 +10,7 @@ Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
   2. Assembler Summary
   3. Assembler Settings
   4. Assembler Generated Files
-  5. Assembler Device Options: C:/MCS4_141PF/mcs4_system/FPGA/output_files/FPGA.sof
+  5. Assembler Device Options: C:/Mac/Home/Documents/CQ/i4004/MCS4_SYSTEM/FPGA/output_files/FPGA.sof
   6. Assembler Messages
 
 
@@ -38,7 +38,7 @@ on the Quartus Prime software download page.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Fri Aug  1 17:38:38 2025 ;
+; Assembler Status      ; Successful - Sat Jul 25 11:35:47 2026 ;
 ; Revision Name         ; FPGA                                  ;
 ; Top-level Entity Name ; FPGA_TOP                              ;
 ; Family                ; MAX 10                                ;
@@ -53,23 +53,23 @@ on the Quartus Prime software download page.
 +--------+---------+---------------+
 
 
-+------------------------------------------------------+
-; Assembler Generated Files                            ;
-+------------------------------------------------------+
-; File Name                                            ;
-+------------------------------------------------------+
-; C:/MCS4_141PF/mcs4_system/FPGA/output_files/FPGA.sof ;
-+------------------------------------------------------+
++-----------------------------------------------------------------------+
+; Assembler Generated Files                                             ;
++-----------------------------------------------------------------------+
+; File Name                                                             ;
++-----------------------------------------------------------------------+
+; C:/Mac/Home/Documents/CQ/i4004/MCS4_SYSTEM/FPGA/output_files/FPGA.sof ;
++-----------------------------------------------------------------------+
 
 
-+--------------------------------------------------------------------------------+
-; Assembler Device Options: C:/MCS4_141PF/mcs4_system/FPGA/output_files/FPGA.sof ;
-+----------------+---------------------------------------------------------------+
-; Option         ; Setting                                                       ;
-+----------------+---------------------------------------------------------------+
-; JTAG usercode  ; 0x01D5B18C                                                    ;
-; Checksum       ; 0x01D5B18C                                                    ;
-+----------------+---------------------------------------------------------------+
++-------------------------------------------------------------------------------------------------+
+; Assembler Device Options: C:/Mac/Home/Documents/CQ/i4004/MCS4_SYSTEM/FPGA/output_files/FPGA.sof ;
++----------------+--------------------------------------------------------------------------------+
+; Option         ; Setting                                                                        ;
++----------------+--------------------------------------------------------------------------------+
+; JTAG usercode  ; 0x01D87BDA                                                                     ;
+; Checksum       ; 0x01D87BDA                                                                     ;
++----------------+--------------------------------------------------------------------------------+
 
 
 +--------------------+
@@ -78,15 +78,15 @@ on the Quartus Prime software download page.
 Info: *******************************************************************
 Info: Running Quartus Prime Assembler
     Info: Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
-    Info: Processing started: Fri Aug  1 17:38:33 2025
+    Info: Processing started: Sat Jul 25 11:35:41 2026
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off FPGA -c FPGA
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (115031): Writing out detailed assembly data for power analysis
 Info (115030): Assembler is generating device programming files
 Info: Quartus Prime Assembler was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 4940 megabytes
-    Info: Processing ended: Fri Aug  1 17:38:38 2025
-    Info: Elapsed time: 00:00:05
-    Info: Total CPU time (on all processors): 00:00:05
+    Info: Peak virtual memory: 13450 megabytes
+    Info: Processing ended: Sat Jul 25 11:35:48 2026
+    Info: Elapsed time: 00:00:07
+    Info: Total CPU time (on all processors): 00:00:06
 
 

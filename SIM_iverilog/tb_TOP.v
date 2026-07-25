@@ -11,7 +11,8 @@
 //===========================================================
 
 `timescale 1ns/100ps
-`define TB_CYCLE 1000 //ns (1MHz)
+`define TB_CYCLE  1000 //ns (1MHz)
+`define TB_CLKSKEW 100 // ns
 `define TB_FINISH_COUNT 2000000 //cyc
 
 //---------------
@@ -45,10 +46,15 @@ end
 //-------------------------------
 // Generate Clock
 //-------------------------------
-reg tb_clk;
+reg  tb_clkf;
+wire tb_clk;
+wire tb_clkb;
 //
-initial tb_clk = 1'b0;
-always #(`TB_CYCLE / 2) tb_clk = ~tb_clk;
+initial tb_clkf = 1'b0;
+always #(`TB_CYCLE / 2) tb_clkf = ~tb_clkf;
+//
+assign #(`TB_CLKSKEW) tb_clk  = tb_clkf;
+assign #(`TB_CLKSKEW) tb_clkb = tb_clk;
 
 //--------------------------
 // Generate Reset
@@ -89,9 +95,12 @@ end
 //-----------------------
 // Signals in TestBench
 //-----------------------
-wire        sync_n;
-wire        cm_rom_n;
-wire [ 3:0] cm_ram_n;
+wire        c_sync_n;
+wire        c_cm_rom_n;
+wire [ 3:0] c_cm_ram_n;
+reg         s_sync_n;
+reg         s_cm_rom_n;
+reg  [ 3:0] s_cm_ram_n;
 wire        test;
 //
 wire [ 3:0] data;
@@ -106,6 +115,25 @@ reg  [31:0] port_keyprt_cmd;
 wire [31:0] port_keyprt_res;
 
 //----------------------
+// MCS4 System Controls
+//----------------------
+always @(posedge tb_clkf, posedge tb_res)
+begin
+    if (tb_res)
+    begin
+        s_sync_n   <= 1'b1;
+        s_cm_rom_n <= 1'b1;
+        s_cm_ram_n <= 4'hf;
+    end
+    else
+    begin
+        s_sync_n   <= c_sync_n;
+        s_cm_rom_n <= c_cm_rom_n;
+        s_cm_ram_n <= c_cm_ram_n;
+    end
+end
+
+//----------------------
 // MCS4 Data Bus
 //----------------------
 pullup(data[0]);
@@ -113,16 +141,40 @@ pullup(data[1]);
 pullup(data[2]);
 pullup(data[3]);
 //
+reg [3:0] s_data_i_f;
+reg [3:0] s_data_o_b;
+reg       s_data_oe_b;
+always @(posedge tb_clkf, posedge tb_res)
+begin
+    if (tb_res)
+        s_data_i_f <= 4'h0;
+    else
+        s_data_i_f <= data;
+end
+always @(posedge tb_clkb, posedge tb_res)
+begin
+    if (tb_res)
+    begin
+        s_data_o_b  <= 4'h0;
+        s_data_oe_b <= 1'b0;
+    end
+    else
+    begin
+        s_data_o_b  <= s_data_o;
+        s_data_oe_b <= s_data_oe;
+    end
+end
+//
 assign c_data_i = data;
-assign s_data_i = data;
+assign s_data_i = s_data_i_f; //data;
 assign data[0] = (c_data_oe & ~c_data_o[0])? 1'b0 : 1'bz; // open-drain
 assign data[1] = (c_data_oe & ~c_data_o[1])? 1'b0 : 1'bz; // open-drain
 assign data[2] = (c_data_oe & ~c_data_o[2])? 1'b0 : 1'bz; // open-drain
 assign data[3] = (c_data_oe & ~c_data_o[3])? 1'b0 : 1'bz; // open-drain
-assign data[0] = (s_data_oe & ~s_data_o[0])? 1'b0 : 1'bz; // open-drain
-assign data[1] = (s_data_oe & ~s_data_o[1])? 1'b0 : 1'bz; // open-drain
-assign data[2] = (s_data_oe & ~s_data_o[2])? 1'b0 : 1'bz; // open-drain
-assign data[3] = (s_data_oe & ~s_data_o[3])? 1'b0 : 1'bz; // open-drain
+assign data[0] = (s_data_oe_b & ~s_data_o_b[0])? 1'b0 : 1'bz; // open-drain
+assign data[1] = (s_data_oe_b & ~s_data_o_b[1])? 1'b0 : 1'bz; // open-drain
+assign data[2] = (s_data_oe_b & ~s_data_o_b[2])? 1'b0 : 1'bz; // open-drain
+assign data[3] = (s_data_oe_b & ~s_data_o_b[3])? 1'b0 : 1'bz; // open-drain
 
 //---------------------------------
 // MCS-4 CPU Chip i4004
@@ -132,14 +184,14 @@ MCS4_CPU U_MCS4_CPU
     .CLK   (tb_clk),  // clock
     .RES_N (~tb_res), // reset_n
     //
-    .SYNC_N   (sync_n),   // Sync Signal
+    .SYNC_N   (c_sync_n),   // Sync Signal
     //
     .DATA_I   (c_data_i ), // Data Input
     .DATA_O   (c_data_o ), // Data Output
     .DATA_OE  (c_data_oe), // Data Output Enable
     //
-    .CM_ROM_N (cm_rom_n), // Memory Control for ROM
-    .CM_RAM_N (cm_ram_n), // Memory Control for RAM
+    .CM_ROM_N (c_cm_rom_n), // Memory Control for ROM
+    .CM_RAM_N (c_cm_ram_n), // Memory Control for RAM
     .TEST     (test)      // Test Input
 );
 
@@ -152,14 +204,14 @@ MCS4_SYS U_MCS4_SYS
     .CLK   (tb_clk),  // clock
     .RES_N (~tb_res), // reset_n
     //
-    .SYNC_N   (sync_n),   // Sync Signal
+    .SYNC_N   (s_sync_n),   // Sync Signal
     //
     .DATA_I   (s_data_i ), // Data Input
     .DATA_O   (s_data_o ), // Data Output
     .DATA_OE  (s_data_oe), // Data Output Enable
     //
-    .CM_ROM_N (cm_rom_n), // Memory Control for ROM
-    .CM_RAM_N (cm_ram_n), // Memory Control for RAM
+    .CM_ROM_N (s_cm_rom_n), // Memory Control for ROM
+    .CM_RAM_N (s_cm_ram_n), // Memory Control for RAM
     .TEST     (test),     // Test Input
     //
     // Calculator Command : Host MCU (UI) --> MCS4_SYS

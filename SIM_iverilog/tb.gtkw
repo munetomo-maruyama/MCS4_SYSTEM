@@ -1,18 +1,18 @@
 [*]
-[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Sun Jul 06 13:34:58 2025
+[*] GTKWave Analyzer v3.3.116 (w)1999-2023 BSI
+[*] Sat Jul 25 02:19:26 2026
 [*]
-[dumpfile] "C:\MCS4_141PF\MCS4_SYSTEM\SIM_iverilog\tb.vcd"
-[dumpfile_mtime] "Sun Jul 06 13:29:32 2025"
-[dumpfile_size] 2013942902
-[savefile] "C:\MCS4_141PF\MCS4_SYSTEM\SIM_iverilog\tb.gtkw"
+[dumpfile] "/media/psf/Home/Documents/CQ/i4004/MCS4_SYSTEM/SIM_iverilog/tb.vcd"
+[dumpfile_mtime] "Sat Jul 25 02:16:28 2026"
+[dumpfile_size] 2120882490
+[savefile] "/media/psf/Home/Documents/CQ/i4004/MCS4_SYSTEM/SIM_iverilog/tb.gtkw"
 [timestart] 0
 [size] 1645 889
 [pos] -1 -1
-*-38.385387 108500000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-38.442078 177947500000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] TB_TOP.
 [treeopen] TB_TOP.U_MCS4_SYS.
-[sst_width] 211
+[sst_width] 278
 [signals_width] 318
 [sst_expanded] 1
 [sst_vpaned_height] 256
@@ -29,9 +29,8 @@ TB_TOP.U_MCS4_SYS.PORT_KEYPRT_RES[31:0]
 TB_TOP.U_MCS4_SYS.RES_N
 TB_TOP.U_MCS4_SYS.SYNC_N
 TB_TOP.U_MCS4_SYS.TEST
-@23
-TB_TOP.data[3:0]
 @22
+TB_TOP.data[3:0]
 TB_TOP.c_data_i[3:0]
 TB_TOP.c_data_o[3:0]
 @28
@@ -41,6 +40,24 @@ TB_TOP.s_data_i[3:0]
 TB_TOP.s_data_o[3:0]
 @28
 TB_TOP.s_data_oe
+@22
+TB_TOP.data[3:0]
+TB_TOP.s_data_i[3:0]
+TB_TOP.s_data_i_f[3:0]
+TB_TOP.s_data_o[3:0]
+TB_TOP.s_data_o_b[3:0]
+@28
+TB_TOP.s_data_oe
+TB_TOP.s_data_oe_b
+TB_TOP.c_sync_n
+TB_TOP.c_cm_rom_n
+@22
+TB_TOP.c_cm_ram_n[3:0]
+@28
+TB_TOP.s_sync_n
+TB_TOP.s_cm_rom_n
+@23
+TB_TOP.s_cm_ram_n[3:0]
 @22
 TB_TOP.U_MCS4_SYS.cm_ram_n_decoded[7:0]
 TB_TOP.U_MCS4_SYS.data_i_ram[3:0]

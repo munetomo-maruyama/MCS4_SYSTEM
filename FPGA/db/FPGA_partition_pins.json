@@ -588,10 +588,6 @@
 					"strict" : false
 				},
 				{
-					"name" : "S_MCS4_CM_ROM_N",
-					"strict" : false
-				},
-				{
 					"name" : "I2C0_INT1",
 					"strict" : false
 				},
@@ -601,6 +597,14 @@
 				},
 				{
 					"name" : "C_MCS4_CLK",
+					"strict" : false
+				},
+				{
+					"name" : "C_MCS4_TEST",
+					"strict" : false
+				},
+				{
+					"name" : "S_MCS4_CM_ROM_N",
 					"strict" : false
 				},
 				{
@@ -621,10 +625,6 @@
 				},
 				{
 					"name" : "S_MCS4_CM_RAM_N[0]",
-					"strict" : false
-				},
-				{
-					"name" : "C_MCS4_TEST",
 					"strict" : false
 				},
 				{
