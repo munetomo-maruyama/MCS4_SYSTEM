@@ -163,5 +163,13 @@
 \contentsline {section}{\numberline {7.3}RAM Data Assignment}{107}{section.7.3}%
 \contentsline {section}{\numberline {7.4}Source Program for Pi Computation}{107}{section.7.4}%
 \contentsline {section}{\numberline {7.5}Printing the Result with 141-PF Printer}{107}{section.7.5}%
-\contentsline {chapter}{\numberline {8}Conclusion}{109}{chapter.8}%
-\contentsline {chapter}{}{113}{chapter*.91}%
+\contentsline {chapter}{\numberline {8}Tiny Tapeout}{109}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Overview of the Tiny Tapeout}{109}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Chips that can be made with Tiny Tapeout}{110}{section.8.2}%
+\contentsline {section}{\numberline {8.3}Design flow of Tiny Tapeout}{110}{section.8.3}%
+\contentsline {section}{\numberline {8.4}Top Level RTL of MCS4\_CPU}{112}{section.8.4}%
+\contentsline {section}{\numberline {8.5}Project Information file for Tiny Tapeout}{114}{section.8.5}%
+\contentsline {section}{\numberline {8.6}Layout Design of MCS4\_CPU and its Assignment in the Chip}{115}{section.8.6}%
+\contentsline {section}{\numberline {8.7}Debugging}{115}{section.8.7}%
+\contentsline {chapter}{\numberline {9}Conclusion}{121}{chapter.9}%
+\contentsline {chapter}{}{125}{chapter*.103}%

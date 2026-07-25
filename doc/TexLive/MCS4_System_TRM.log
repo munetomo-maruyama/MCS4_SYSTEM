@@ -1,4 +1,4 @@
-This is e-upTeX, Version 3.141592653-p4.1.2-u2.00-250202-2.6 (utf8.sjis) (TeX Live 2025) (preloaded format=platex 2025.7.7)  12 SEP 2025 23:26
+This is e-upTeX, Version 3.141592653-p4.1.2-u2.00-250202-2.6 (utf8.sjis) (TeX Live 2025) (preloaded format=platex 2025.7.7)  26 JUL 2026 00:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -910,6 +910,7 @@ File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 \tabRowHeight@A=\dimen326
 \tabRowHeight@B=\dimen327
 \tabRowHeight@C=\dimen328
+\tabRowHeight@D=\dimen329
 )
 \openout1 = `MCS4_System_TRM.aux'.
 
@@ -1203,40 +1204,40 @@ File: ./00_Front/./Figure/141PFonFPGA.jpg Graphic file (type bmp)
 
 
 ]) (./00_Front/History.tex
-LaTeX Font Info:    Trying to load font information for T1+lmss on input line 2
-6.
+LaTeX Font Info:    Trying to load font information for T1+lmss on input line 3
+1.
  (c:/texlive/2025/texmf-dist/tex/latex/lm/t1lmss.fd
 File: t1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 2
-6.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 3
+1.
  (c:/texlive/2025/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 2
-6.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 3
+1.
 
 (c:/texlive/2025/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-26.
+31.
 
 (c:/texlive/2025/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-26.
+31.
 
 (c:/texlive/2025/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 26.
+(Font)              <12> on input line 31.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 26.
+(Font)              <8> on input line 31.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 26.
+(Font)              <6> on input line 31.
 
 BEGIN ROW : 1
 CELL(1,1):
@@ -1252,12 +1253,12 @@ BEGIN ROW : 2
 CELL(2,1):
  colspan: 1
 
-Overfull \hbox (6.34975pt too wide) in paragraph at lines 26--26
+Overfull \hbox (6.34975pt too wide) in paragraph at lines 31--31
 []\T1/lmss/bx/n/12 Rev|  
  []
 
 
-Overfull \hbox (6.34975pt too wide) detected at line 26
+Overfull \hbox (6.34975pt too wide) detected at line 31
 []\T1/lmss/bx/n/12 Rev|  
  []
 
@@ -1268,12 +1269,12 @@ CELL(2,2):
 CELL(2,3):
  colspan: 1
 
-Overfull \hbox (9.13522pt too wide) in paragraph at lines 26--26
+Overfull \hbox (9.13522pt too wide) in paragraph at lines 31--31
 []\T1/lmss/bx/n/12 Author|  
  []
 
 
-Overfull \hbox (9.13522pt too wide) detected at line 26
+Overfull \hbox (9.13522pt too wide) detected at line 31
 []\T1/lmss/bx/n/12 Author|  
  []
 
@@ -1295,12 +1296,12 @@ CELL(3,1):
 CELL(3,2):
  colspan: 1
 
-Overfull \hbox (0.86722pt too wide) in paragraph at lines 26--26
+Overfull \hbox (0.86722pt too wide) in paragraph at lines 31--31
 []\T1/lmss/m/n/12 Jul.10 
  []
 
 
-Overfull \hbox (0.86722pt too wide) detected at line 26
+Overfull \hbox (0.86722pt too wide) detected at line 31
 []\T1/lmss/m/n/12 Jul.10 
  []
 
@@ -1317,8 +1318,37 @@ CELL(3,5):
  finish row
  max(27.18303pt, 27.18303pt) + 0.0pt{} - 4.35004pt
  do post row stuff 
+BEGIN ROW : 4
+CELL(4,1):
+ colspan: 1
+ max(12.21103pt, 27.18303pt) + 0.0pt{} - 12.21103pt
+CELL(4,2):
+ colspan: 1
+
+Overfull \hbox (0.86722pt too wide) in paragraph at lines 31--31
+[]\T1/lmss/m/n/12 Jul.25 
+ []
+
+
+Overfull \hbox (0.86722pt too wide) detected at line 31
+[]\T1/lmss/m/n/12 Jul.25 
+ []
+
+ max(27.18303pt, 27.18303pt) + 0.0pt{} - 27.18303pt
+CELL(4,3):
+ colspan: 1
+ max(27.18303pt, 27.18303pt) + 0.0pt{} - 12.68303pt
+CELL(4,4):
+ colspan: 1
+ max(27.18303pt, 27.18303pt) + 0.0pt{} - 10.51704pt
+CELL(4,5):
+ in multi row mode, end at 2row 
+ colspan: 1
+ finish row
+ max(27.18303pt, 27.18303pt) + 0.0pt{} - 4.35004pt
+ do post row stuff 
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 3
-4.
+9.
 (c:/texlive/2025/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ))
@@ -1341,7 +1371,19 @@ LaTeX Font Info:    Kanji font shape `JY1/mc/m/sl' undefined
 
 [5
 
-])
+]
+Overfull \hbox (9.78157pt too wide) in paragraph at lines 52--52
+ [][] [][]\T1/lmr/m/n/12 Design Flow of Tiny Tape-out; Li-bre-Lane ($\T1/lmtt/c
+/it/12 https : / / www . zerotoasiccourse . 
+ []
+
+
+Overfull \hbox (15.22528pt too wide) in paragraph at lines 54--54
+ [][] [][]\T1/lmr/m/n/12 Connection of Tiny Tape-out Chip (MCS4_-CPU) and FPGA 
+Sys-tem (MCS4_- 
+ []
+
+)
 \tf@lof=\write7
 \openout7 = `MCS4_System_TRM.lof'.
 
@@ -2582,13 +2624,123 @@ ITS OF PI WITH THE 4004 CPU
 
 [108]
 Chapter 8.
-(./MCS4_System_TRM.bbl
+(./08_TinyTapeout/TinyTapeout.tex
 
 [109
 
 ]
+File: ./08_TinyTapeout/./Figure/ProjectSelection.png Graphic file (type bmp)
+<./08_TinyTapeout/./Figure/ProjectSelection.png>
+LaTeX Font Info:    Kanji font shape `JY1/mc/bx/it' undefined
+(Font)              No change on input line 71.
 
-[110
+
+LaTeX Font Info:    Kanji font shape `JY1/mc/m/sl' undefined
+(Font)              No change on input line 84.
+[110]
+File: ./08_TinyTapeout/./Figure/LibreLane.png Graphic file (type bmp)
+<./08_TinyTapeout/./Figure/LibreLane.png>
+LaTeX Font Info:    Kanji font shape `JY1/mc/bx/it' undefined
+(Font)              No change on input line 96.
+File: ./08_TinyTapeout/./Figure/cocotb.png Graphic file (type bmp)
+<./08_TinyTapeout/./Figure/cocotb.png>
+LaTeX Font Info:    Kanji font shape `JY1/mc/bx/it' undefined
+(Font)              No change on input line 107.
+
+
+LaTeX Font Info:    Kanji font shape `JY1/mc/m/sl' undefined
+(Font)              No change on input line 119.
+[111]
+File: ./08_TinyTapeout/./Figure/Connection.png Graphic file (type bmp)
+<./08_TinyTapeout/./Figure/Connection.png>
+LaTeX Font Info:    Kanji font shape `JY1/mc/bx/it' undefined
+(Font)              No change on input line 124.
+
+
+LaTeX Font Info:    Kanji font shape `JY1/mc/m/sl' undefined
+(Font)              No change on input line 147.
+[112]
+LaTeX Font Info:    Kanji font shape `JY1/mc/bx/it' undefined
+(Font)              No change on input line 218.
+
+
+LaTeX Font Info:    Kanji font shape `JY1/mc/m/sl' undefined
+(Font)              No change on input line 223.
+[113]
+LaTeX Font Info:    Kanji font shape `JY1/mc/bx/it' undefined
+(Font)              No change on input line 287.
+
+Overfull \hbox (5.33565pt too wide) in paragraph at lines 293--295
+\T1/lmr/m/n/12 The Tiny Tape-out repos-i-tory of this project is []$\T1/lmtt/c/
+it/12 https : / / github . com / munetomo-[]maruyama /
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+LaTeX Font Info:    Kanji font shape `JY1/mc/m/sl' undefined
+(Font)              No change on input line 295.
+[114]
+File: ./08_TinyTapeout/./Figure/Layout.png Graphic file (type bmp)
+<./08_TinyTapeout/./Figure/Layout.png>
+LaTeX Font Info:    Kanji font shape `JY1/mc/bx/it' undefined
+(Font)              No change on input line 300.
+File: ./08_TinyTapeout/./Figure/Assignment.png Graphic file (type bmp)
+<./08_TinyTapeout/./Figure/Assignment.png>
+LaTeX Font Info:    Kanji font shape `JY1/mc/bx/it' undefined
+(Font)              No change on input line 308.
+File: ./08_TinyTapeout/./Figure/Debug.jpg Graphic file (type bmp)
+<./08_TinyTapeout/./Figure/Debug.jpg>
+LaTeX Font Info:    Kanji font shape `JY1/mc/bx/it' undefined
+(Font)              No change on input line 322.
+
+
+LaTeX Font Info:    Kanji font shape `JY1/mc/m/sl' undefined
+(Font)              No change on input line 331.
+[115]
+
+LaTeX Font Info:    Kanji font shape `JY1/mc/m/sl' undefined
+(Font)              No change on input line 331.
+[116]
+File: ./08_TinyTapeout/./Figure/HoldIssue01.png Graphic file (type bmp)
+<./08_TinyTapeout/./Figure/HoldIssue01.png>
+LaTeX Font Info:    Kanji font shape `JY1/mc/bx/it' undefined
+(Font)              No change on input line 345.
+
+
+LaTeX Font Info:    Kanji font shape `JY1/mc/m/sl' undefined
+(Font)              No change on input line 357.
+[117]
+File: ./08_TinyTapeout/./Figure/HoldIssue02.png Graphic file (type bmp)
+<./08_TinyTapeout/./Figure/HoldIssue02.png>
+LaTeX Font Info:    Kanji font shape `JY1/mc/bx/it' undefined
+(Font)              No change on input line 370.
+
+
+LaTeX Font Info:    Kanji font shape `JY1/mc/m/sl' undefined
+(Font)              No change on input line 380.
+[118]
+File: ./08_TinyTapeout/./Figure/HoldIssue03.png Graphic file (type bmp)
+<./08_TinyTapeout/./Figure/HoldIssue03.png>
+LaTeX Font Info:    Kanji font shape `JY1/mc/bx/it' undefined
+(Font)              No change on input line 395.
+)
+
+LaTeX Font Info:    Kanji font shape `JY1/mc/m/sl' undefined
+(Font)              No change on input line 132.
+[119]
+
+[120
+
+]
+Chapter 9.
+(./MCS4_System_TRM.bbl
+
+[121]
+
+[122
 
 ]
 LaTeX Font Info:    Kanji font shape `JY1/gt/m/it' undefined
@@ -2599,23 +2751,24 @@ LaTeX Font Info:    Kanji font shape `JY1/gt/m/it' undefined
 (Font)              No change on input line 17.
 )
 
-[111]
+[123]
 
-[112
+[124
 
 ]
 
-[113
+[125
 
 ] (./99_Back/back.tex
 File: ./99_Back/./Logo/mmRISC_Logo.png Graphic file (type bmp)
 <./99_Back/./Logo/mmRISC_Logo.png>
 )
 
-[114] (./MCS4_System_TRM.aux
-\tabRowHeight@A=\dimen329
-\tabRowHeight@B=\dimen330
-\tabRowHeight@C=\dimen331
+[126] (./MCS4_System_TRM.aux
+\tabRowHeight@A=\dimen330
+\tabRowHeight@B=\dimen331
+\tabRowHeight@C=\dimen332
+\tabRowHeight@D=\dimen333
 )
  ***********
 pLaTeX2e <2023-02-14>+1, based on
@@ -2630,15 +2783,15 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `MCS4_System_TRM.out' has not changed.
-(rerunfilecheck)             Checksum: 88ABED81BD6A7D29857E84426A71C718;19057.
+(rerunfilecheck)             Checksum: 8154BC5DFD7E5829EF1ABDCDC3D04992;20959.
  ) 
 Here is how much of TeX's memory you used:
- 25390 strings out of 468532
- 464331 string characters out of 5452746
- 976426 words of memory out of 5000000
- 53264 multiletter control sequences out of 15000+600000
+ 25495 strings out of 468532
+ 468078 string characters out of 5452746
+ 1136242 words of memory out of 5000000
+ 53351 multiletter control sequences out of 15000+600000
  742486 words of font info for 143 fonts, out of 8000000 for 9000
  929 hyphenation exceptions out of 8191
  105i,15n,117p,1229b,2207s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on MCS4_System_TRM.dvi (124 pages, 644212 bytes).
+Output written on MCS4_System_TRM.dvi (136 pages, 720612 bytes).

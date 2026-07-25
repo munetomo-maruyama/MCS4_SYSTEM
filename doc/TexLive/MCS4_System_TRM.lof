@@ -48,4 +48,15 @@
 \contentsline {figure}{\numberline {6.18}{\ignorespaces Operation on Touch LCD Panel}}{103}{figure.caption.88}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {8.1}{\ignorespaces Project Selection}}{110}{figure.caption.91}%
+\contentsline {figure}{\numberline {8.2}{\ignorespaces Design Flow of Tiny Tapeout; LibreLane (\url {https://www.zerotoasiccourse.com/terminology/librelane/})}}{111}{figure.caption.92}%
+\contentsline {figure}{\numberline {8.3}{\ignorespaces Test Bench for Logic Verification; cocotb (\url {https://docs.cocotb.org/en/stable/index.html})}}{112}{figure.caption.93}%
+\contentsline {figure}{\numberline {8.4}{\ignorespaces Connection of Tiny Tapeout Chip (MCS4\_CPU) and FPGA System (MCS4\_SYS)}}{112}{figure.caption.94}%
+\contentsline {figure}{\numberline {8.5}{\ignorespaces Layout Design of MCS4\_CPU}}{115}{figure.caption.95}%
+\contentsline {figure}{\numberline {8.6}{\ignorespaces Assignment in the Chip}}{116}{figure.caption.96}%
+\contentsline {figure}{\numberline {8.7}{\ignorespaces Worked perfectry!}}{116}{figure.caption.97}%
+\contentsline {figure}{\numberline {8.8}{\ignorespaces Hold Timing Issue (1)}}{117}{figure.caption.99}%
+\contentsline {figure}{\numberline {8.9}{\ignorespaces Hold Timing Issue (2)}}{118}{figure.caption.100}%
+\contentsline {figure}{\numberline {8.10}{\ignorespaces Hold Timing Issue (3)}}{119}{figure.caption.101}%
+\addvspace {10\p@ }
 \addvspace {10\p@ }
