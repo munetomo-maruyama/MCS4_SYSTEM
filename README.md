@@ -36,6 +36,15 @@ How to use 141-PF<br>
 I developed and executed a program in 4004 CPU assembly to compute 500 digits of the mathematical constant π using Machin's formula. Despite being the world’s first microprocessor developed during the dawn of microcontroller technology, the Intel 4004 exhibits surprisingly sufficient computational capability―even with its primitive instruction set. <br>
 The total computation time at a clock speed of 750 KHz (4004 CPU) is approximately 17 minutes. The final result―500 digits of π―is printed by the 141-PF printer. <br>
 
+## Real Silicon Chip of 4004 using Tiny Tapeout Service
+I have designed real silicon chip of 4004 using LibreLane tool chain and created GDS-II layout data, then submitted the data to Tiny Tapeout Service of "ttsky25a : Skaywater 130nm process". I have received the silicon chip and confirmed its operation perfectry.<br>
+
+<img alt="How to Use" src="doc/TexLive/08_TinyTapeout/Figure/Layout.png" width="50%"><br>
+Layout of 4004<br>
+
+<img alt="How to Use" src="doc/TexLive/08_TinyTapeout/Figure/Debug.jpg" width="50%"><br>
+Worked Perfectly!<br>
+
 ## Firmware References
 This project utilizes historical firmware related to the 141-PF calculator:
 - [4001.code - Simulator with Flowchart](http://www.4004.com/assets/busicom-141pf-simulator-w-flowchart-071113.zip)  
